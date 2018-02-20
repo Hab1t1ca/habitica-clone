@@ -31,6 +31,7 @@ passport.use(new Auth0strat({
     callbackURL: process.env.CALLBACKURL,
     scope: "openid profile"
 }, function(accessToken, refreshToken, extraParams, profile, done ){
+    console.log(profile)
     return done(null, user[0])
 }))
 

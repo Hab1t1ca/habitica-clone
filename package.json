@@ -2,10 +2,11 @@
   "name": "habitica-clone",
   "version": "0.1.0",
   "private": true,
-  "main": "server/server.js", 
+  "main": "server/server.js",
   "proxy": "http://localhost:3020",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "build-css": "node-sass-chokidar src/ -o src/",
     "cors": "^2.8.4",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
@@ -17,8 +18,8 @@
     "passport-auth0": "^0.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1",
-    "build-css": "node-sass-chokidar src/ -o src/"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.1"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
