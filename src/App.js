@@ -1,18 +1,13 @@
-import react from 'react';
-import {
-    BrowserRouter,
-    Route,
-    Link,
-    Switch
-} from "react-browser-router";
-import Home from './components/home';
+import React, { Component } from 'react';
+import './App.css';
 
-const App = ()=> (
-  <BrowserRouter>
+class App extends Component {
+  render() {
+    return (
+      <div>
 
-  <Route path="/" component={Home}/>
-
-
-  </BrowserRouter>
-)
+      </div>
+    );
+  }
+}
 
