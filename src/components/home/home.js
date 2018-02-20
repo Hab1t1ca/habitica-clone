@@ -3,7 +3,7 @@ import React from 'react';
 export default function Home(){
     return(
         <div>
-            <h1>Home</h1>
+            <a href='http://localhost:3020/api/login'><button>Login</button></a>
         </div>
     )
 }
