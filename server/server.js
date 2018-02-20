@@ -10,7 +10,7 @@ const express = require('express')
     , controller = require('./controller.js')
     , passport = require('passport')
     , Auth0strat = require('passport-auth0')
-
+console.log('yo');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(session({
@@ -44,8 +44,8 @@ passport.deserializeUser((user, done)=>{
 })
 
 app.get('/api/login', passport.authenticate('auth0', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/'
+    successRedirect: process.env.SUCCESSREDIRECT,
+    failureRedirect: process.env.FAILUREREDIRECT
 }));
 
 massive(process.env.CONNECTION).then(db => {
