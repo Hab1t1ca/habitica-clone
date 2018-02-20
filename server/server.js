@@ -10,7 +10,7 @@ const express = require('express')
     , controller = require('./controller.js')
     , passport = require('passport')
     , Auth0strat = require('passport-auth0')
-
+console.log('yo');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(session({
