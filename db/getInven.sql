@@ -1,4 +1,3 @@
-SELECT DISTINCT ON (items.name) items.name, items.description, items.image, items.stats, items.bodlocation
-from items
+SELECT DISTINCT ON (inventory.itemid) inventory.itemid
 join users
-on inventory.itemId = items.itemId
+on inventory.userid = users.userid;
