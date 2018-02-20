@@ -3,7 +3,7 @@ import {
     Route,
     Link,
     Switch
-} from "react-browser-router";
+} from "react-router-dom";
 import Home from './components/home/home';
 import Dashboard from './components/dashboard/dashboard';
 import Inventory from './components/inventory/inventory';
