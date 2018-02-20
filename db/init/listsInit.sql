@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS lists (
+id SERIAL PRIMARY KEY,
+listId TEXT,
+daily_ToDo TEXT,
+content TEXT,
+userId SERIAL,
+age TEXT
+)
