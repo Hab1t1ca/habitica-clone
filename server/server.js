@@ -31,17 +31,31 @@ passport.use(new Auth0strat({
     callbackURL: process.env.CALLBACKURL,
     scope: "openid profile"
 }, function(accessToken, refreshToken, extraParams, profile, done ){
-    console.log('profile',profile)
-    return done(null, profile)
+
+    const db=app.get('db');
+
+    let {user_id} = profile;
+
+    db.find_user([user_id]).then(users=>{
+        if (!users[0]){
+            db.create_user([null,user_id, null, null, null, null]).then(user=>{
+                return done(null, user[0])
+            })
+        }
+        else {
+            console.log('user already created')
+            return done(null, users[0])
+        }
+    })
 }))
 
 passport.serializeUser((user, done)=>{
-    console.log('cereal')
-    return done(null,user)
+    console.log(user.id,'user')
+    return done(null,user.id)
 })
 
 passport.deserializeUser((user, done)=>{
-    console.log('tree')
+    console.log("you are not supposed to be here")
     return done(null, user)
 })
 
