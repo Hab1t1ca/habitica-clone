@@ -36,16 +36,18 @@ passport.use(new Auth0strat({
 }))
 
 passport.serializeUser((user, done)=>{
+    console.log('cereal')
     return done(null,user)
 })
 
 passport.deserializeUser((user, done)=>{
+    console.log('tree')
     return done(null, user)
 })
 
 app.get('/api/login', passport.authenticate('auth0', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/'
+    successRedirect: process.env.SUCCESSREDIRECT,
+    failureRedirect: process.env.FAILUREREDIRECT
 }));
 
 massive(process.env.CONNECTION).then(db => {
