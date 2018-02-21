@@ -37,7 +37,7 @@ passport.use(new Auth0strat({
 
     db.find_user([user_id]).then(users=>{
         if (!users[0]){
-            db.authuser([user_id]).then(user=>{
+            db.create_auth([user_id]).then(user=>{
                 return done(null, user[0])
             })
         }
