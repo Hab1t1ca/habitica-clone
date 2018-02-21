@@ -1,3 +1,4 @@
+import axios from 'axios';
 const initialState = {
     name: '',
     HP: 50,
