@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Nav from '../nav/nav';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
-import {connect} from 'react-redux';
-import createChar from '../../ducks/reducer';
+import { connect } from 'react-redux';
+import { createChar } from '../../ducks/reducer';
 
 class Dashboard extends Component {
     constructor() {

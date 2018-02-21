@@ -1,4 +1,8 @@
 import axios from 'axios';
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 const initialState = {
     name: '',
     HP: 50,
