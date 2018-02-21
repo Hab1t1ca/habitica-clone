@@ -5,6 +5,7 @@
   "main": "server/server.js",
   "proxy": "http://localhost:3020",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "build-css": "node-sass-chokidar src/ -o src/",
     "cors": "^2.8.4",
