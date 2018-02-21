@@ -58,10 +58,13 @@ passport.deserializeUser((user, done)=>{
     return done(null, user)
 })
 
+//endpoints
 app.get('/api/login', passport.authenticate('auth0', {
     successRedirect: process.env.SUCCESSREDIRECT,
     failureRedirect: process.env.FAILUREREDIRECT
 }));
+
+app.get('/api/getitems', controller.getitems);
 
 //user endpoints
 app.post('/api/createChar', controller.createName);
