@@ -16,5 +16,14 @@ module.exports = {
             console.log('items', items);
             res.send(items)//returning an array of items
         })
-    }    
+    },
+    
+    getUser: (req,res)=>{
+        console.log(req.session.passport.user, "session");
+        const userid = req.session.passport.user;
+        let db = req.app.get('db');
+        db.getUser([userid]).then(user=>{
+            res.send(user[0]) //this sends all the user data. We will need to filter out the data on the front end for what we want in each component. But this will put all user data into the Store. 
+        })
+    }
 }
