@@ -36,6 +36,7 @@ export default class Dashboard extends Component {
     }
 
     class(field){
+        console.log(field, 'field')
         this.setState({
             class: field,
             secondModal: false,
@@ -74,7 +75,7 @@ export default class Dashboard extends Component {
                 }}
                 style={{opacity : '0.9', textAlign : "center", borderRadius : '25px'}}
                 >
-                <div onClick={this.class.bind(this, 'mage')}>Mage</div>
+                <div onClick={this.class.bind(this,'mage')}>Mage</div>
                 <div onClick={this.class.bind(this, 'rogue')}>Rogue</div>
                 <div onClick={this.class.bind(this, 'warrior')}>Warrior</div>
                 </Dialog>
