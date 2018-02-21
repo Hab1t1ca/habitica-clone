@@ -10,7 +10,6 @@ const express = require('express')
     , controller = require('./controller.js')
     , passport = require('passport')
     , Auth0strat = require('passport-auth0')
-console.log('yo');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(session({
@@ -38,7 +37,7 @@ passport.use(new Auth0strat({
 
     db.find_user([user_id]).then(users=>{
         if (!users[0]){
-            db.create_user([null,user_id, null, null, null, null]).then(user=>{
+            db.authuser([user_id]).then(user=>{
                 return done(null, user[0])
             })
         }
@@ -63,6 +62,12 @@ app.get('/api/login', passport.authenticate('auth0', {
     successRedirect: process.env.SUCCESSREDIRECT,
     failureRedirect: process.env.FAILUREREDIRECT
 }));
+
+//user endpoints
+app.post('/api/createChar', controller.createName);
+
+//End user endpoints
+
 
 massive(process.env.CONNECTION).then(db => {
     app.set('db', db);

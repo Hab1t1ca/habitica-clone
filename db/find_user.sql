@@ -1,2 +1,2 @@
-select * from users
+select * from authuser
 where authid = $1;
