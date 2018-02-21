@@ -44,7 +44,7 @@ export function shop() {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-        case NAME:
+        case NAME + '_FULFILLED':
             return Object.assign({}, state, { name: action.payload });
 
         case SHOP:
