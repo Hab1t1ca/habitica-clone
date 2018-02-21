@@ -68,6 +68,7 @@ app.get('/api/getitems', controller.getitems);
 
 //user endpoints
 app.post('/api/createChar', controller.createName);
+app.get('/api/getUser', controller.getUser);
 
 //End user endpoints
 
