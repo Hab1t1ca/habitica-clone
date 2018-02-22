@@ -40,6 +40,9 @@ export function shop() {
         payload: shop
     }
 }
+// export function getUser(){
+//     let 
+// }
 
 
 function reducer(state = initialState, action) {
