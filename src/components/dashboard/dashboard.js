@@ -4,6 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import { createChar } from '../../ducks/reducer';
+// import UserIcon from '../userIcon/UserIcon';
 
 class Dashboard extends Component {
     constructor() {
@@ -17,7 +18,7 @@ class Dashboard extends Component {
         }
     }
 
-    name(string) {
+    handleName(string) {
         this.setState({
             name: string
         })
@@ -46,6 +47,15 @@ class Dashboard extends Component {
         })
     }
 
+    moveOn(){
+        createChar(this.state.name);
+        this.setState({
+            firstModal: false,
+            secondModal: true
+        })
+
+    }
+
     render() {
         let createChar = this.props.createChar;
 
@@ -55,6 +65,9 @@ class Dashboard extends Component {
                 <Nav />
                 <h1>Dashboard</h1>
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
+
+                {/* <UserIcon/> */}
+
                 {/* first modal */}
                 <Dialog
                     title="Welcome to Stick To It!"
@@ -66,8 +79,8 @@ class Dashboard extends Component {
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px' }}
                 >
                     <p>Please call your stick person something. We don't care what. Just stick it in the box.</p>
-                    <input placeholder="Name thing goes here" onChange={e => this.name(e.target.value)} />
-                    <button onClick={createChar(this.state.name)}>Submit</button>
+                    <input placeholder="Name thing goes here" onChange={e => this.handleName(e.target.value)} />
+                    <button onClick={() => this.moveOn()}>Submit</button>
                 </Dialog>
                 {/* second modal */}
                 <Dialog

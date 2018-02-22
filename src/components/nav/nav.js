@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './nav.css';
 import {connect} from 'react-redux';
+import UserIcon from '../userIcon/UserIcon';
 
 
 class Nav extends Component {
@@ -52,7 +53,7 @@ class Nav extends Component {
                     </div>
                 </div>
                 <div className="main-header">
-
+                    <UserIcon />
                 </div>
             </div>
         )
