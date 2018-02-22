@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import UserIcon from '../userIcon/UserIcon';
 import stick from "./stick-512.png"
+import "./nav.css";
 
 
 class Nav extends Component {

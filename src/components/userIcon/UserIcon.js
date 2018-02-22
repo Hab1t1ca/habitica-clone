@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getUser} from '../../ducks/reducer';
+import "./userIcon.css";
 
 class UserIcon extends Component{
     constructor(){

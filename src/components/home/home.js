@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './home.css'
+import './home.css'
 import { bounce, fadeIn } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 
@@ -48,15 +48,22 @@ class Home extends Component {
             <div>
                 <div className="bgImage"></div>
                 <div className="content">
+
+    <div class="cloud x1"></div>
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+
                     {/* RAINBOW */}
                     <div>
                         <div className="Rainbow2" style={(this.state.rainbowRight) ? { width: '100vw', transition: '3s', opacity: '1' } : { width: '0', opacity: '0' }}></div>
                     </div>
                     {/* END RAINBOW */}
-
+                    <div className="divButton">
                     <a href='http://localhost:3020/api/login'><button className="LoginButton">Login</button></a>
-
-                    <footer></footer>
+                    </div>
+                    {/* <footer></footer> */}
 
                 </div>
             </div>
