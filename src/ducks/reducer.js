@@ -63,9 +63,9 @@ export function getUser() {
 }
 
 //add class to character
-export function addClass() {
+export function addClass(name, value) {
     let body = {
-        "name": value,
+        "name": name,
         "Class": value
     }
     let addClass = axios.post(`/api/addClass`, body).then(res => {
@@ -74,7 +74,7 @@ export function addClass() {
 
     return {
         type: CLASS,
-        payload: user.Class
+        payload: addClass.Class
     }
 }
 
