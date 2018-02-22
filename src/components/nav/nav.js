@@ -26,14 +26,15 @@ export default class Nav extends Component {
 
     render() {
         return (
-            <div className="main-nav">
+            <div>
                 <div className="navbar">
                     <div >
-                        <img className="logo" src="http://clipartbarn.com/wp-content/uploads/2016/12/Tree-stick-clipart-3.png" alt="a stick" />
+                        <img className="logo" src="http://res.cloudinary.com/rigrater/image/upload/v1519325205/stick_bubbr8.png" alt="a stick" />
                     </div>
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
                     <Link to='/shop' className="nav-link"><div >Shop</div></Link>
+                
 
                     <div className="hammy"
                         onClick={() => this.openmenu()}>
@@ -41,7 +42,10 @@ export default class Nav extends Component {
                         <div></div>
                         <div></div>
                     </div>
+                
                 </div>
+
+                
                 <div>
                     <div className={this.state.open ? "media-nav on" : "media-nav off"}>
                         <Link to='/dashboard'><span className="media-nav-link">Dashboard</span></Link>
