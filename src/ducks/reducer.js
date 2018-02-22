@@ -16,11 +16,11 @@ const NAME = 'NAME';
 const SHOP = 'SHOP';
 
 export function createChar(value) {
-
+    console.log(value)
     let body = {
         "name": value
     }
-    let user = axios.post(`/api/createChar`).then(res => {
+    let user = axios.post(`/api/createChar`, body).then(res => {
         console.log(res.data, "Character Created");
         return res.data
     })
