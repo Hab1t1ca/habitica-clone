@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import UserIcon from '../userIcon/UserIcon';
+import stick from "./stick-512.png"
 
 
 class Nav extends Component {
@@ -30,9 +31,14 @@ class Nav extends Component {
         return (
             <div>
                 <div className="navbar">
-                    <div >
-                        <img className="logo" src="http://res.cloudinary.com/rigrater/image/upload/v1519325205/stick_bubbr8.png" alt="a stick" />
+
+
+                    <div>
+                        <img className="logo" src={stick} alt="a stick" />
                     </div>
+
+                    <div className="logoText">Stick To It</div>
+
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
                     <Link to='/shop' className="nav-link"><div >Shop</div></Link>

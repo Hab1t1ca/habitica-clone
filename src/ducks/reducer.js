@@ -63,7 +63,7 @@ export function getUser() {
 }
 
 //add class to character
-export function addClass() {
+export function addClass(value) {
     let body = {
         "name": value,
         "Class": value
@@ -74,7 +74,7 @@ export function addClass() {
 
     return {
         type: CLASS,
-        payload: user.Class
+        payload: body.Class
     }
 }
 
