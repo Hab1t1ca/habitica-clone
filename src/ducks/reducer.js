@@ -37,9 +37,11 @@ export function createChar(value) {
 
 //Get shop function
 export function shop() {
-
+    
     let shop = axios.get(`/api/getitems`).then(res => {
+        console.log(res.data, "reducer data")
         return res.data
+        
     })
     return {
         type: SHOP,
@@ -49,7 +51,9 @@ export function shop() {
 
 //Get user function
 export function getUser() {
+
     let user = axios.get('/api/getUser').then(res => {
+        console.log(res.data)
         return res.data
     })
     return {

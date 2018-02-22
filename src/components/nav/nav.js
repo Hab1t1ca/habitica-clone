@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import './nav.css';
+import {connect} from 'react-redux';
+import UserIcon from '../userIcon/UserIcon';
 
-export default class Nav extends Component {
+
+class Nav extends Component {
     constructor() {
         super();
 
@@ -44,15 +46,22 @@ export default class Nav extends Component {
                 </div>
                 <div>
                     <div className={this.state.open ? "media-nav on" : "media-nav off"}>
-                        <Link to='/dashboard'><span className="media-nav-link">Dashboard</span></Link>
-                        <Link to='/inventory'><div className="media-nav-link">Inventory</div></Link>
-                        <Link to='/shop'><div className="media-nav-link">Shop</div></Link>
+                        <Link to='/dashboard' className="media-nav-link"><div>Dashboard</div></Link>
+                        <Link to='/inventory' className="media-nav-link"><div >Inventory</div></Link>
+                        <Link to='/shop' className="media-nav-link"><div >Shop</div></Link>
                     </div>
                 </div>
                 <div className="main-header">
-
+                    <UserIcon />
                 </div>
             </div>
         )
     }
 }
+
+function mapStateToProps() {
+    return {
+       
+    }
+}
+export default connect(mapStateToProps, {  })(Nav)
