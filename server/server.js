@@ -42,19 +42,16 @@ passport.use(new Auth0strat({
             })
         }
         else {
-            console.log('user already created')
             return done(null, users[0])
         }
     })
 }))
 
 passport.serializeUser((user, done)=>{
-    console.log(user.id,'user')
     return done(null,user.id)
 })
 
 passport.deserializeUser((user, done)=>{
-    console.log("you are not supposed to be here")
     return done(null, user)
 })
 

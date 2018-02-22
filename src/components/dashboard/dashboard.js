@@ -4,6 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import { createChar } from '../../ducks/reducer';
+// import UserIcon from '../userIcon/UserIcon';
 
 class Dashboard extends Component {
     constructor() {
@@ -64,6 +65,9 @@ class Dashboard extends Component {
                 <Nav />
                 <h1>Dashboard</h1>
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
+
+                {/* <UserIcon/> */}
+
                 {/* first modal */}
                 <Dialog
                     title="Welcome to Stick To It!"

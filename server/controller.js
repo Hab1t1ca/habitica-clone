@@ -3,7 +3,6 @@
 module.exports = {
 
     createName: (req,res) =>{
-        console.log("Hitting endpoint")
         const db = req.app.get('db');
         let {name} = req.body;
         console.log(name, "names", req.body)
