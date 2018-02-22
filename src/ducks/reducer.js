@@ -16,7 +16,9 @@ const initialState = {
 const NAME = 'NAME';
 const SHOP = 'SHOP';
 const USER = 'USER';
+const CLASS = 'CLASS';
 
+//Create Character function
 export function createChar(value) {
     console.log(value)
     let body = {
@@ -32,6 +34,8 @@ export function createChar(value) {
         payload: user.name
     }
 }
+
+//Get shop function
 export function shop() {
 
     let shop = axios.get(`/api/getitems`).then(res => {
@@ -42,6 +46,8 @@ export function shop() {
         payload: shop
     }
 }
+
+//Get user function
 export function getUser() {
     let user = axios.get('/api/getUser').then(res => {
         return res.data
@@ -49,6 +55,22 @@ export function getUser() {
     return {
         type: USER,
         payload: user
+    }
+}
+
+//add class to character
+export function addClass() {
+    let body = {
+        "name": value,
+        "Class": value
+    }
+    let addClass = axios.post(`/api/addClass`, body).then(res => {
+        return res.data
+    })
+
+    return {
+        type: CLASS,
+        payload: user.Class
     }
 }
 
@@ -60,9 +82,12 @@ function reducer(state = initialState, action) {
 
         case SHOP + '_FULFILLED':
             return Object.assign({}, state, { shop: action.payload });
-            
+
         case USER + '_FULFILLED':
-            return Object.assign({}, state, { user: action.payload })
+            return Object.assign({}, state, { user: action.payload });
+
+        case CLASS + '_FULFILLED':
+            return Object.assign({}, state, { Class: action.payload })
 
         default: return state;
     }
