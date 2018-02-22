@@ -9,11 +9,13 @@ const initialState = {
     list_items: [],
     inventory: [],
     avatar: '',
-    shop: []
+    shop: [],
+    user: {}
 };
 
 const NAME = 'NAME';
 const SHOP = 'SHOP';
+const USER = 'USER';
 
 export function createChar(value) {
     console.log(value)
@@ -40,6 +42,15 @@ export function shop() {
         payload: shop
     }
 }
+export function getUser() {
+    let user = axios.get('/api/getUser').then(res => {
+        return res.data
+    })
+    return {
+        type: USER,
+        payload: user
+    }
+}
 
 
 function reducer(state = initialState, action) {
@@ -49,6 +60,13 @@ function reducer(state = initialState, action) {
 
         case SHOP + '_FULFILLED':
             return Object.assign({}, state, { shop: action.payload });
+<<<<<<< HEAD
+=======
+
+        case USER + '_FULFILLED':
+            return Object.assign({}, state, { user: action.payload })
+
+>>>>>>> master
         default: return state;
     }
 }
