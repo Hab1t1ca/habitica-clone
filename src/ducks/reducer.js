@@ -31,9 +31,11 @@ export function createChar(value) {
     }
 }
 export function shop() {
-
+    
     let shop = axios.get(`/api/getitems`).then(res => {
+        console.log(res.data, "reducer data")
         return res.data
+        
     })
     return {
         type: SHOP,
@@ -47,7 +49,7 @@ function reducer(state = initialState, action) {
         case NAME + '_FULFILLED':
             return Object.assign({}, state, { name: action.payload });
 
-        case SHOP:
+        case SHOP + '_FULFILLED':
             return Object.assign({}, state, { shop: action.payload });
 
         default: return state;
