@@ -10,13 +10,19 @@ const initialState = {
     inventory: [],
     avatar: '',
     shop: [],
-    user: {}
+    user: {},
+    daily: {},
+    todo: {},
+    lists: []
 };
 
 const NAME = 'NAME';
 const SHOP = 'SHOP';
 const USER = 'USER';
 const CLASS = 'CLASS';
+const ADD_DAILY = 'ADD_DAILY';
+const ADD_TODO = 'ADD_TODO';
+const GET_LISTS = 'ADD_LISTS';
 
 //Create Character function
 export function createChar(value) {
@@ -37,11 +43,11 @@ export function createChar(value) {
 
 //Get shop function
 export function shop() {
-    
+
     let shop = axios.get(`/api/getitems`).then(res => {
         console.log(res.data, "reducer data")
         return res.data
-        
+
     })
     return {
         type: SHOP,
@@ -78,6 +84,45 @@ export function addClass(value) {
     }
 }
 
+//addDailies
+export function addDailies(daily) {
+    let body = {
+        daily
+    }
+    let addDaily = axios.post('http://localhost:3020/api/addDaily', body).then(res => {
+        return res.data
+    })
+    return {
+        type: ADD_DAILY,
+        payload: addDaily.data
+    }
+}
+
+//addTodos
+export function addTodos(todo) {
+    let body = {
+        todo
+    }
+    let addTodo = axios.post(`http://localhost:3020/api/addTodo`, body).then(res => {
+        return res.data
+    })
+    return {
+        type: ADD_TODO,
+        payload: addTodo.data
+    }
+}
+
+//getLists
+export function getLists() {
+    let lists = axios.get('/api/getLists').then(res => {
+        return res.data
+    })
+    return {
+        type: GET_LISTS,
+        payload: lists
+    }
+}
+
 
 function reducer(state = initialState, action) {
     switch (action.type) {
@@ -92,6 +137,15 @@ function reducer(state = initialState, action) {
 
         case CLASS + '_FULFILLED':
             return Object.assign({}, state, { Class: action.payload })
+
+        case ADD_DAILY + '_FULFILLED':
+            return Object.assign({}, state, { daily: action.payload })
+
+        case ADD_TODO + '_FULFILLED':
+            return Object.assign({}, state, { todo: action.payload })
+
+        case GET_LISTS + '_FULFILLED':
+            return Object.assign({}, state, { lists: action.payload })
 
         default: return state;
     }
