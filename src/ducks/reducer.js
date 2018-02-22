@@ -60,13 +60,10 @@ function reducer(state = initialState, action) {
 
         case SHOP + '_FULFILLED':
             return Object.assign({}, state, { shop: action.payload });
-<<<<<<< HEAD
-=======
-
+            
         case USER + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload })
 
->>>>>>> master
         default: return state;
     }
 }
