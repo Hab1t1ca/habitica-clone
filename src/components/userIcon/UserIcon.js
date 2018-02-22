@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {userIcon} from '../../ducks/reducer';
 
 class UserIcon extends Component{
     constructor(){
@@ -7,12 +9,20 @@ class UserIcon extends Component{
     }
 
     componentWillMount(){
-        //function from reducer that runs axios call to DB for user data
+        this.props.userIcon()
     }
 
     render(){
         return(
-            <div></div>
+            <div>{JSON.stringify(this.props.user)}</div>
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+
+export default connect (mapStateToProps, {userIcon})(UserIcon)
