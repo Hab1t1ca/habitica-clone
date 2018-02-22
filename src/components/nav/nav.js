@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import UserIcon from '../userIcon/UserIcon';
+import stick from "./stick-512.png"
 
 
 class Nav extends Component {
@@ -28,14 +29,20 @@ class Nav extends Component {
 
     render() {
         return (
-            <div className="main-nav">
+            <div>
                 <div className="navbar">
-                    <div >
-                        <img className="logo" src="http://clipartbarn.com/wp-content/uploads/2016/12/Tree-stick-clipart-3.png" alt="a stick" />
+
+
+                    <div>
+                        <img className="logo" src={stick} alt="a stick" />
                     </div>
+
+                    <div className="logoText">Stick To It</div>
+
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
                     <Link to='/shop' className="nav-link"><div >Shop</div></Link>
+                
 
                     <div className="hammy"
                         onClick={() => this.openmenu()}>
@@ -43,7 +50,10 @@ class Nav extends Component {
                         <div></div>
                         <div></div>
                     </div>
+                
                 </div>
+
+                
                 <div>
                     <div className={this.state.open ? "media-nav on" : "media-nav off"}>
                         <Link to='/dashboard' className="media-nav-link"><div>Dashboard</div></Link>

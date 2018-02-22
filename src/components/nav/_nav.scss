@@ -4,19 +4,34 @@
 }
 
 .logo {
-    width: 2.5rem;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #2D3A3A;
+    border-radius: 40px;
+    padding: 4px;
+    justify-content: center;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.logoText {
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
 }
 
 .navbar {
     position: relative;
-    background-color: #248232;
+    background-color: #2BA84A;
     width: 100%;
     height: 10vh;
-    box-shadow: 0 0 1px 3px rgba(22, 22, 22, 0.26), 0 0 2px 3px rgba(22, 22, 22, 0.322);
+    box-shadow: 0 0 10px 4px #040F0F, 0 0 1px 3px rgba(36, 130, 50, 0.322);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 2;
+    overflow: hidden;
+    // border-bottom: 4px solid #2D3A3A;
 }
 
 
@@ -29,7 +44,7 @@
 .hammy {
     height: 30px;
     width: 40px;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.26), 0 0 2px 0 rgba(0, 0, 0, 0.527);
+    box-shadow: 0 0 1px 0 #2D3A3A, 0 0 2px 0 #2D3A3A;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -37,6 +52,12 @@
     border-radius: 5px;
     padding: 5px;
     opacity: 0;
+    position: relative;
+    margin-right: 10px;
+}
+
+.hammyOutside {
+    
 }
 
 .hammy div {
@@ -62,11 +83,6 @@
 
     .hammy:active {
         box-shadow: inset 0 0 5px rgba(22, 22, 22, 0.603);
-    }
-
-    .navbar {
-        justify-content: space-around;
-        position: relative;
     }
 
     .media-nav {
@@ -97,6 +113,9 @@
     color: rgb(214, 214, 214);
     display: inline-block;
     text-decoration: none;
+    // text-align: center;
+    padding: 20px;
+    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.385);
 }
 
 }
