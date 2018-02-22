@@ -38,7 +38,9 @@ passport.use(new Auth0strat({
     db.find_user([user_id]).then(users=>{
         if (!users[0]){
             db.create_auth([user_id]).then(user=>{
-                return done(null, user[0])
+                db.insertID_user([user[0].userid]).then(userdata=>{
+                    return done(null, userdata[0])
+                })
             })
         }
         else {
@@ -48,11 +50,11 @@ passport.use(new Auth0strat({
 }))
 
 passport.serializeUser((user, done)=>{
-    return done(null,user.id)
+    return done(null,user.userid)
 })
 
 passport.deserializeUser((user, done)=>{
-    return done(null, user)
+    return done(null, user.userid)
 })
 
 //endpoints
@@ -62,9 +64,11 @@ app.get('/api/login', passport.authenticate('auth0', {
 }));
 
 app.get('/api/getitems', controller.getitems);
+app.post('/api/addDaily', controller.addDaily);
 
 //user endpoints
 app.post('/api/createChar', controller.createName);
+app.post('/api/addClass', controller.addClass);
 app.get('/api/getUser', controller.getUser);
 
 //End user endpoints
