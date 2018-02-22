@@ -53,8 +53,8 @@ passport.serializeUser((user, done)=>{
     return done(null,user.userid)
 })
 
-passport.deserializeUser((user, done)=>{
-    return done(null, user.userid)
+passport.deserializeUser((userid, done)=>{
+    return done(null, userid)
 })
 
 //endpoints

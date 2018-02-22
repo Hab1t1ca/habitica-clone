@@ -96,14 +96,14 @@ footer {
   height: 30vh; }
 
 .logo {
-  width: 5rem; }
+  width: 2.5rem; }
 
 .navbar {
   position: relative;
   background-color: #248232;
   width: 100%;
   height: 10vh;
-  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26), 0 2px 3px 1px rgba(0, 0, 0, 0.527);
+  box-shadow: 0 0 1px 3px rgba(22, 22, 22, 0.26), 0 0 2px 3px rgba(22, 22, 22, 0.322);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +117,7 @@ footer {
 .hammy {
   height: 30px;
   width: 40px;
-  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26), 0 2px 3px 1px rgba(0, 0, 0, 0.527);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.26), 0 0 2px 0 rgba(0, 0, 0, 0.527);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -141,7 +141,7 @@ footer {
   .hammy {
     opacity: 1; }
   .hammy:active {
-    box-shadow: inset 0 0 10px #000000; }
+    box-shadow: inset 0 0 5px rgba(22, 22, 22, 0.603); }
   .navbar {
     justify-content: space-around;
     position: relative; }
@@ -151,7 +151,7 @@ footer {
     justify-content: center;
     width: 50%;
     height: 30vh;
-    background-color: #248232;
+    background-color: #2BA84A;
     transition: .3s; }
   .on {
     position: absolute;
@@ -166,4 +166,24 @@ footer {
     height: 4rem;
     color: #d6d6d6;
     display: inline-block;
-    align-items: center; } }
+    text-decoration: none; } }
+
+.items {
+  width: 100%;
+  height: auto;
+  font-size: .8rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+
+.itemCard {
+  width: 150px;
+  height: 300px;
+  padding: 5px;
+  box-shadow: 0 1px 2px 0 #ccc;
+  overflow: scroll;
+  margin-bottom: 2.5em; }
+
+.itemCard img {
+  width: 5rem;
+  height: 5rem; }
