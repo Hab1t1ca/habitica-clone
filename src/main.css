@@ -1,0 +1,169 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+.App {
+  text-align: center; }
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px; }
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white; }
+
+.App-title {
+  font-size: 1.5em; }
+
+.App-intro {
+  font-size: large; }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+.previewWindow {
+  border: solid 1px green;
+  border-radius: 200px;
+  width: 50px;
+  height: 50px; }
+
+.stickman {
+  margin-top: -4px; }
+
+.center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  height: 200px; }
+
+.content {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: auto; }
+
+.bgImage {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #248232;
+  background-image: url("http://www.kinyu-z.net/data/wallpapers/119/1119507.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  z-index: -999; }
+
+.Rainbow2 {
+  position: relative;
+  width: 100vw;
+  height: 45vh;
+  overflow: hidden;
+  background: transparent;
+  transform: translate(-50vw, -16.666vw);
+  top: 18vw;
+  left: 50vw; }
+
+.Rainbow2:after {
+  position: absolute;
+  content: '';
+  width: 110vw;
+  height: 100%;
+  top: 25vw;
+  left: -5.2vw;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2vw #4200AB, 0 0 0 4vw #000095, 0 0 0 6vw #00ABFF, 0 0 0 8vw #00C800, 0 0 0 10vw #FFF800, 0 0 0 12vw #FF7642, 0 0 0 14vw #E40000; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 10vh;
+  width: 100%;
+  background-color: #2D3A3A; }
+
+.main-nav {
+  width: 100%;
+  height: 30vh; }
+
+.logo {
+  width: 5rem; }
+
+.navbar {
+  position: relative;
+  background-color: #248232;
+  width: 100%;
+  height: 10vh;
+  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26), 0 2px 3px 1px rgba(0, 0, 0, 0.527);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2; }
+
+.main-header {
+  background-color: #1d3d3d;
+  width: 100%;
+  height: 20vh; }
+
+.hammy {
+  height: 30px;
+  width: 40px;
+  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.26), 0 2px 3px 1px rgba(0, 0, 0, 0.527);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  opacity: 0; }
+
+.hammy div {
+  width: 80%;
+  height: 4px;
+  background-color: #212b2b;
+  border-radius: 5px; }
+
+.media-nav-link {
+  display: none; }
+
+@media (max-width: 425px) {
+  .nav-link {
+    display: none; }
+  .hammy {
+    opacity: 1; }
+  .hammy:active {
+    box-shadow: inset 0 0 10px #000000; }
+  .navbar {
+    justify-content: space-around;
+    position: relative; }
+  .media-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 30vh;
+    background-color: #248232;
+    transition: .3s; }
+  .on {
+    position: absolute;
+    right: 0; }
+  .off {
+    position: absolute;
+    right: 0px;
+    width: 0px;
+    overflow: hidden; }
+  .media-nav-link {
+    width: 100%;
+    height: 4rem;
+    color: #d6d6d6;
+    display: inline-block;
+    align-items: center; } }
