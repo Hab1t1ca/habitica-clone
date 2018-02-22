@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import AvatarEditor from 'react-avatar-editor';
 import Slider from 'material-ui/Slider';
-// import './dashboard.css';
+import './dashboard.css';
 import stickman from './stickmanTemplate.png';
 import { connect } from 'react-redux';
 import { createChar, addClass } from '../../ducks/reducer';

@@ -1,0 +1,90 @@
+.main-nav {
+  width: 100%;
+  height: 30vh; }
+
+.logo {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #2D3A3A;
+  border-radius: 40px;
+  padding: 4px;
+  justify-content: center;
+  margin-left: 10px;
+  margin-top: 5px; }
+
+.logoText {
+  display: flex;
+  justify-content: center;
+  margin-right: 10px; }
+
+.navbar {
+  position: relative;
+  background-color: #2BA84A;
+  width: 100%;
+  height: 10vh;
+  box-shadow: 0 0 10px 4px #040F0F, 0 0 1px 3px rgba(36, 130, 50, 0.322);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  overflow: hidden; }
+
+.main-header {
+  background-color: #1d3d3d;
+  width: 100%;
+  height: 20vh; }
+
+.hammy {
+  height: 30px;
+  width: 40px;
+  box-shadow: 0 0 1px 0 #2D3A3A, 0 0 2px 0 #2D3A3A;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  opacity: 0;
+  position: relative;
+  margin-right: 10px; }
+
+.hammy div {
+  width: 80%;
+  height: 4px;
+  background-color: #212b2b;
+  border-radius: 5px; }
+
+.media-nav-link {
+  display: none; }
+
+@media (max-width: 425px) {
+  .nav-link {
+    display: none; }
+  .hammy {
+    opacity: 1; }
+  .hammy:active {
+    box-shadow: inset 0 0 5px rgba(22, 22, 22, 0.603); }
+  .media-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 30vh;
+    background-color: #2BA84A;
+    transition: .3s; }
+  .on {
+    position: absolute;
+    right: 0; }
+  .off {
+    position: absolute;
+    right: 0px;
+    width: 0px;
+    overflow: hidden; }
+  .media-nav-link {
+    width: 100%;
+    height: 4rem;
+    color: #d6d6d6;
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px;
+    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.385); } }
