@@ -17,7 +17,7 @@ class Dashboard extends Component {
         }
     }
 
-    name(string) {
+    handleName(string) {
         this.setState({
             name: string
         })
@@ -46,6 +46,15 @@ class Dashboard extends Component {
         })
     }
 
+    moveOn(){
+        createChar(this.state.name);
+        this.setState({
+            firstModal: false,
+            secondModal: true
+        })
+
+    }
+
     render() {
         let createChar = this.props.createChar;
 
@@ -66,8 +75,8 @@ class Dashboard extends Component {
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px' }}
                 >
                     <p>Please call your stick person something. We don't care what. Just stick it in the box.</p>
-                    <input placeholder="Name thing goes here" onChange={e => this.name(e.target.value)} />
-                    <button onClick={createChar(this.state.name)}>Submit</button>
+                    <input placeholder="Name thing goes here" onChange={e => this.handleName(e.target.value)} />
+                    <button onClick={() => this.moveOn()}>Submit</button>
                 </Dialog>
                 {/* second modal */}
                 <Dialog
