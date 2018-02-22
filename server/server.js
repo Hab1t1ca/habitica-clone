@@ -50,11 +50,13 @@ passport.use(new Auth0strat({
 }))
 
 passport.serializeUser((user, done)=>{
-    return done(null,user.userid)
+    console.log('serialize', user)
+    return done(null,user)
 })
 
-passport.deserializeUser((userid, done)=>{
-    return done(null, userid)
+passport.deserializeUser((user, done)=>{
+    console.log('deserial', user)
+    return done(null, user.userid)
 })
 
 //endpoints

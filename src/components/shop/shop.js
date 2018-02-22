@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Nav from '../nav/nav';
-import './shop.css';
 import { connect } from 'react-redux';
 import { shop } from '../../ducks/reducer';
 

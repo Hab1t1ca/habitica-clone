@@ -4,20 +4,26 @@ module.exports = {
 
     createName: (req,res) =>{
         const db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
         let {name} = req.body;
+
         console.log(name, "names", req.body)
-        db.create_user([name, null, null, null, null]).then(user => {
+
+        db.create_user(['name', name, userid]).then(user => {
             res.send(user[0])
-        })
+        }).catch(e=>console.log(e))
     },
 
     addClass: (req,res) =>{
         const db = req.app.get('db');
-        let {Class, name} = req.body;
-        console.log('backend class', Class, name)
-        db.create_user([name, null, null, Class, null]).then(user => {
+        let {Class} = req.body;
+        let userid = req.session.passport.user.userid;
+
+        console.log('backend class', Class)
+        
+        db.create_user(["class", Class, userid]).then(user => {
             res.send(user[0])
-        })
+        }).catch(e=>console.log(e))
     },
 
     getitems: (req,res) =>{
@@ -25,16 +31,16 @@ module.exports = {
 
         db.getItems().then(items=>{
             res.send(items)//returning an array of items
-        })
+        }).catch(e=>console.log(e))
     },
     
     getUser: (req,res)=>{
-        console.log(req.session.passport.user, "session");
-        const userid = req.session.passport.user;
+        console.log("session", req.session.passport.user.userid)
+        const userid = req.session.passport.user.userid;
         let db = req.app.get('db');
         db.getUser([userid]).then(user=>{
             res.send(user[0]) //this sends all the user data. We will need to filter out the data on the front end for what we want in each component. But this will put all user data into the Store. 
-        })
+        }).catch(e=>console.log(e))
     },
 
     addDaily: (req,res)=>{
