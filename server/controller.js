@@ -26,6 +26,15 @@ module.exports = {
         }).catch(e=>console.log(e))
     },
 
+    addClass: (req,res) =>{
+        const db = req.app.get('db');
+        let {Class, name} = req.body;
+        console.log('backend class', Class, name)
+        db.create_user([name, null, null, Class, null]).then(user => {
+            res.send(user[0])
+        })
+    },
+
     getitems: (req,res) =>{
         let db = req.app.get('db');
 
@@ -41,6 +50,7 @@ module.exports = {
         db.getUser([userid]).then(user=>{
             res.send(user[0]) //this sends all the user data. We will need to filter out the data on the front end for what we want in each component. But this will put all user data into the Store. 
         }).catch(e=>console.log(e))
+
     },
 
     addDaily: (req,res)=>{

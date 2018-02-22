@@ -9,7 +9,7 @@ import Slider from 'material-ui/Slider';
 // import './dashboard.css';
 import stickman from './stickmanTemplate.png';
 import { connect } from 'react-redux';
-import { createChar } from '../../ducks/reducer';
+import { createChar, addClass } from '../../ducks/reducer';
 // import UserIcon from '../userIcon/UserIcon';
 
 
@@ -30,7 +30,7 @@ class Dashboard extends Component {
             image: null,
             preview: null,
             
-            scaleSlider: 250
+            scaleSlider: 1.8
         }
         this.onClickSave = this.onClickSave.bind(this);
     }
@@ -116,8 +116,10 @@ class Dashboard extends Component {
 
 
     class(field) {
+
+        this.props.addClass(field)
+
         this.setState({
-            class: field,
             secondModal: false,
             thirdModal: true
         })
@@ -231,4 +233,4 @@ function mapStateToProps(state) {
         name: state.name
     }
 }
-export default connect(mapStateToProps, { createChar })(Dashboard)
+export default connect(mapStateToProps, { createChar, addClass })(Dashboard)
