@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './nav.css';
 import {connect} from 'react-redux';
 import UserIcon from '../userIcon/UserIcon';
 
