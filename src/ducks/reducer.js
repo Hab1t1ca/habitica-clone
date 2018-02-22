@@ -63,6 +63,7 @@ export function getUser() {
 }
 
 //add class to character
+console.log("git merge is broken")
 export function addClass(name, value) {
     let body = {
         "name": name,
