@@ -64,9 +64,8 @@ export function getUser() {
 
 //add class to character
 console.log("git merge is broken")
-export function addClass(name, value) {
+export function addClass(value) {
     let body = {
-        "name": name,
         "Class": value
     }
     let addClass = axios.post(`/api/addClass`, body).then(res => {
