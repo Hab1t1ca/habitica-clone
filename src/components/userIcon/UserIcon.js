@@ -1,20 +1,34 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {userIcon} from '../../ducks/reducer';
+import {getUser} from '../../ducks/reducer';
 
 class UserIcon extends Component{
     constructor(){
         super()
+
+        this.displayUser = this.displayUser.bind(this)
     }
 
     componentWillMount(){
-        this.props.userIcon()
+        this.props.getUser()
     }
 
+    displayUser(){
+        // let {user} = this.props
+        console.log(this.props.user.hp, 'props')
+            return(
+                <div>
+                    {/* <h1>{user.hp}</h1> */}
+                </div>
+            )
+            
+        }
+
     render(){
+        console.log(this.props.user, 'render props')
         return(
-            <div>{JSON.stringify(this.props.user)}</div>
+            <div>{this.displayUser()}</div>
         )
     }
 }
@@ -25,4 +39,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect (mapStateToProps, {userIcon})(UserIcon)
+export default connect (mapStateToProps, {getUser})(UserIcon)

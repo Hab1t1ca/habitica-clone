@@ -1,9 +1,14 @@
+-- create Auth table
+CREATE TABLE auth_user (
+authid TEXT,
+userid SERIAL PRIMARY KEY
+)
+
 -- create user table
 CREATE TABLE IF NOT EXISTS users (
-id SERIAL PRIMARY KEY, 
 name TEXT,
 authID TEXT,
-userId SERIAL,
+userId SERIAL PRIMARY KEY,
 hp INTEGER,
 mana INTEGER,
 avatar TEXT,
