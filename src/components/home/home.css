@@ -37,11 +37,29 @@
 .divButton {
   display: flex;
   justify-content: center;
-  color: #040F0F; }
+  color: #040F0F;
+  margin-top: 20%; }
 
 .LoginButton {
+  border-radius: 50px;
   width: 150px;
-  height: 50px; }
+  height: 50px;
+  border: 1px solid white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 52px; }
+
+.Flex {
+  display: flex;
+  justify-content: center; }
+
+.stickFront {
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 15px;
+  width: 125px;
+  height: 125px;
+  margin-top: -10px; }
 
 footer {
   position: absolute;
@@ -49,10 +67,6 @@ footer {
   height: 10vh;
   width: 100%;
   background-color: #2D3A3A; }
-
-* {
-  margin: 0;
-  padding: 0; }
 
 body {
   /*To hide the horizontal scroller appearing during the animation*/

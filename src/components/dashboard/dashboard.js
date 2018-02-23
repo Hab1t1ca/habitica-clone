@@ -139,7 +139,7 @@ class Dashboard extends Component {
 
         console.log(this.state.class)
         return (
-            <div>
+            <div className="backgroundDashboard">
                 <Nav />
                 <h1>Dashboard</h1>
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>

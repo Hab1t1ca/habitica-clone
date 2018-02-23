@@ -39,7 +39,7 @@ class Nav extends Component {
                     </div>
 
                     <div className="logoText">Stick To It</div>
-
+                
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
                     <Link to='/shop' className="nav-link"><div >Shop</div></Link>

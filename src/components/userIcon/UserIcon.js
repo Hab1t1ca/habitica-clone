@@ -29,7 +29,8 @@ class UserIcon extends Component{
     render(){
         console.log(this.props.user, 'render props')
         return(
-            <div>{this.displayUser()}</div>
+            // <div>{this.displayUser()}</div>
+            <div className="avatarBox">box</div>
         )
     }
 }

@@ -1,0 +1,10 @@
+.avatarBox {
+  width: 35%;
+  height: 75%;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  border: 1.5px solid #3D315B;
+  background-color: white;
+  background-image: url("http://www.extremetech.com/wp-content/uploads/2014/04/windows-xp-default3.jpg");
+  background-size: cover; }
