@@ -33,5 +33,16 @@ module.exports = {
         })
 
         //add action creator when putting this into the reducer. 
+    },
+
+    addTodos: (todo)=>{
+        let body = {
+            todo
+        }
+
+        return axios.post('http://localhost:3020/api/addTodo', body).then(res=>{
+            console.log(res.data)
+            return res.data
+        })
     }
 }
