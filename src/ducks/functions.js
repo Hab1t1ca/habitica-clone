@@ -44,5 +44,12 @@ module.exports = {
             console.log(res.data)
             return res.data
         })
+    }, 
+
+    getLists: ()=>{
+        return axios.get('http://localhost:3020/api/getLists').then(res=>{
+            console.log(res.data);
+            return res.data;
+        }).catch(e=>console.log(e))
     }
 }
