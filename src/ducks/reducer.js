@@ -13,7 +13,9 @@ const initialState = {
     user: {},
     daily: {},
     todo: {},
-    lists: []
+    lists: [],
+    maxhp: 50,
+    maxmana: 50
 };
 
 const NAME = 'NAME';
@@ -23,6 +25,8 @@ const CLASS = 'CLASS';
 const ADD_DAILY = 'ADD_DAILY';
 const ADD_TODO = 'ADD_TODO';
 const GET_LISTS = 'ADD_LISTS';
+const SHOW_MAX_HEALTH = "SHOW_MAX_HEALTH";
+const SHOW_MAX_MANA = "SHOW_MAX_MANA";
 
 //Create Character function
 export function createChar(value) {
@@ -89,12 +93,12 @@ export function addDailies(daily) {
     let body = {
         daily
     }
-    let addDaily = axios.post('http://localhost:3020/api/addDaily', body).then(res => {
+    let dailies = axios.post('/api/addDaily', body).then(res => {
         return res.data
     })
     return {
         type: ADD_DAILY,
-        payload: addDaily.data
+        payload: dailies
     }
 }
 
@@ -103,12 +107,12 @@ export function addTodos(todo) {
     let body = {
         todo
     }
-    let addTodo = axios.post(`http://localhost:3020/api/addTodo`, body).then(res => {
+    let addTodo = axios.post(`api/addTodo`, body).then(res => {
         return res.data
     })
     return {
         type: ADD_TODO,
-        payload: addTodo.data
+        payload: addTodo
     }
 }
 
@@ -120,6 +124,22 @@ export function getLists() {
     return {
         type: GET_LISTS,
         payload: lists
+    }
+}
+
+//show max health
+export function showMaxHp() {
+    return {
+        type: SHOW_MAX_HEALTH,
+        payload: maxhp
+    }
+}
+
+//show max mana
+export function showMaxMana() {
+    return {
+        type: SHOW_MAX_MANA,
+        payload: maxmana
     }
 }
 
@@ -146,6 +166,12 @@ function reducer(state = initialState, action) {
 
         case GET_LISTS + '_FULFILLED':
             return Object.assign({}, state, { lists: action.payload })
+
+        case SHOW_MAX_HEALTH + '_FULFILLED':
+            return Object.assign({}, state, { maxhp: action.payload })
+
+        case SHOW_MAX_MANA + '_FULFILLED':
+            return Object.assign({}, state, { maxmana: action.payload })
 
         default: return state;
     }
