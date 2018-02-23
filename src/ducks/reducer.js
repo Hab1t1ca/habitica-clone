@@ -89,12 +89,12 @@ export function addDailies(daily) {
     let body = {
         daily
     }
-    let addDaily = axios.post('http://localhost:3020/api/addDaily', body).then(res => {
+    let dailies = axios.post('/api/addDaily', body).then(res => {
         return res.data
     })
     return {
         type: ADD_DAILY,
-        payload: addDaily.data
+        payload: dailies
     }
 }
 
@@ -103,12 +103,12 @@ export function addTodos(todo) {
     let body = {
         todo
     }
-    let addTodo = axios.post(`http://localhost:3020/api/addTodo`, body).then(res => {
+    let addTodo = axios.post(`api/addTodo`, body).then(res => {
         return res.data
     })
     return {
         type: ADD_TODO,
-        payload: addTodo.data
+        payload: addTodo
     }
 }
 
