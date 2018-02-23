@@ -38,7 +38,8 @@ passport.use(new Auth0strat({
     db.find_user([user_id]).then(users=>{
         if (!users[0]){
             db.create_auth([user_id]).then(user=>{
-                db.insertID_user([user[0].userid]).then(userdata=>{
+                console.log('hell on wheels', user[0].userid)
+                db.insertID_users([user[0].userid]).then(userdata=>{
                     return done(null, userdata[0])
                 })
             })
@@ -67,6 +68,8 @@ app.get('/api/login', passport.authenticate('auth0', {
 
 app.get('/api/getitems', controller.getitems);
 app.post('/api/addDaily', controller.addDaily);
+app.post('/api/addTodo', controller.addTodo);
+app.get('/api/getLists', controller.getLists);
 
 //user endpoints
 app.post('/api/createChar', controller.createName);
