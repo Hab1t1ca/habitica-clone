@@ -13,7 +13,9 @@ const initialState = {
     user: {},
     daily: {},
     todo: {},
-    lists: []
+    lists: [],
+    maxhp: 50,
+    maxmana: 50
 };
 
 const NAME = 'NAME';
@@ -23,6 +25,8 @@ const CLASS = 'CLASS';
 const ADD_DAILY = 'ADD_DAILY';
 const ADD_TODO = 'ADD_TODO';
 const GET_LISTS = 'ADD_LISTS';
+const SHOW_MAX_HEALTH = "SHOW_MAX_HEALTH";
+const SHOW_MAX_MANA = "SHOW_MAX_MANA";
 
 //Create Character function
 export function createChar(value) {
@@ -120,6 +124,22 @@ export function getLists() {
     return {
         type: GET_LISTS,
         payload: lists
+    }
+}
+
+//show max health
+export function showMaxHp() {
+    return {
+        type: SHOW_MAX_HEALTH,
+        payload: maxhp
+    }
+}
+
+//show max mana
+export function showMaxMana() {
+    return {
+        type: SHOW_MAX_MANA,
+        payload: maxmana
     }
 }
 
