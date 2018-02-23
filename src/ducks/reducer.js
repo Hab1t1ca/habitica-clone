@@ -167,6 +167,12 @@ function reducer(state = initialState, action) {
         case GET_LISTS + '_FULFILLED':
             return Object.assign({}, state, { lists: action.payload })
 
+        case SHOW_MAX_HEALTH + '_FULFILLED':
+            return Object.assign({}, state, { maxhp: action.payload })
+
+        case SHOW_MAX_MANA + '_FULFILLED':
+            return Object.assign({}, state, { maxmana: action.payload })
+
         default: return state;
     }
 }
