@@ -6,8 +6,10 @@ module.exports = {
         const db = req.app.get('db');
         let userid = req.session.passport.user.userid;
         let {name} = req.body;
+        console.log('name me', name)
 
-        db.create_user(['name', name, userid]).then(user => {
+        db.createName([name, userid]).then(user => {
+            console.log('i am within you', user)
             res.send(user[0])
         }).catch(e=>console.log(e))
     },
@@ -17,7 +19,9 @@ module.exports = {
         let {Class} = req.body;
         let userid = req.session.passport.user.userid;
 
-        db.create_user(["class", Class, userid]).then(user => {
+        console.log('classless like a Marxist Utopia', Class, userid);
+
+        db.createClass([Class, userid]).then(user => {
             res.send(user[0])
         }).catch(e=>console.log(e))
     },
