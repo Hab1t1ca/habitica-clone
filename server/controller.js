@@ -57,14 +57,25 @@ module.exports = {
     },
 
     getLists: (req,res)=>{
-        // let userid = req.session.passport.user.userid;
+        let userid = req.session.passport.user.userid;
         let db = req.app.get('db');
-        let userid = 1; //this is for testing purposes
+        // let userid = 1; //this is for testing purposes
 
         db.getLists([userid]).then(listitems=>{
             res.send(listitems)
-        })
-
+        }).catch(e=>console.log(e))
     },
 
+    addTodo: (req,res)=>{
+        let userid = req.session.passport.user.userid;
+        let db = req.app.get('db');
+        let {todo} = req.body;
+        let d = new Date();
+        let age = d.toString().substring(0,15)
+        // let userid = 1; //for testing purposes
+
+        db.addTodo([todo, userid, age]).then(todos=>{
+            res.send(todos)
+        }).catch(e=>console.log(e))
+    }
 }

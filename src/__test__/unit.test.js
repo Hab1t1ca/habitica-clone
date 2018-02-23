@@ -18,8 +18,16 @@ describe('items', ()=>{
 })
 
 describe('lists', ()=>{
-    test('add daily', ()=>{
+    test('add daily', ()=>{//works as long as you hard code in a userid
         return fns.addDaily('something to do').then(response=>{
+            console.log(response)
+            expect(Array.isArray(response)).toBeTruthy;
+            expect(response.length).toBeGreaterThan(0);
+        }).catch(e=>console.log(e))
+    })
+
+    test('add todo', ()=>{//works as long as you hard code in a userid
+        return fns.addTodos('chew bubble gum and kick ass').then(response=>{
             console.log(response)
             expect(Array.isArray(response)).toBeTruthy;
             expect(response.length).toBeGreaterThan(0);
