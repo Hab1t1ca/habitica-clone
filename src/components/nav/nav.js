@@ -62,9 +62,9 @@ class Nav extends Component {
                         <Link to='/shop' className="media-nav-link"><div >Shop</div></Link>
                     </div>
                 </div>
-                <div className="main-header">
+                {/* <div className="main-header"> */}
                     <UserIcon />
-                </div>
+                {/* </div> */}
             </div>
         )
     }

@@ -22,6 +22,7 @@
     "react": "^16.2.0",
     "react-animations": "^1.0.0",
     "react-avatar-editor": "^10.3.0",
+    "react-bars": "^0.1.2",
     "react-browser-router": "^2.1.0",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.8",
