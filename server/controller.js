@@ -43,21 +43,28 @@ module.exports = {
         }).catch(e=>console.log(e))
     },
 
-    addDaily: (req,res)=>{
-        const userid = req.session.passport.user.userid;
+    addDaily: (req, res)=>{
+        // console.log('request', req);
+        
+        let userid = req.user;
+        // let userid = 13;
         let db = req.app.get('db');
         let {daily} = req.body;
         let d = new Date();
         let age = d.toString().substring(0,15)
+
+        console.log('hitting add Daily', daily, userid, age)
         // let userid = 1; this one is for doing the unit tests
 
         db.addDaily([daily, userid, age]).then(dailies=>{
+            console.log('daily added to db', dailies)
             res.send(dailies);//returns an array of an object. NOTE: THIS ONLY RETURNS THE DAILY YOU JUST POSTED, NOT THE ENTIRE DB. 
         }).catch(e=>console.log(e))
     },
 
     getLists: (req,res)=>{
-        let userid = req.session.passport.user.userid;
+        let userid = req.user;
+        console.log('get lists userid', userid)
         let db = req.app.get('db');
         // let userid = 1; //this is for testing purposes
 
