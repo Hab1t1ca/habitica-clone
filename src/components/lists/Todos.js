@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {addTodos} from '../../ducks/reducer';
+import {addTodos, goldExpTask, deleteTask} from '../../ducks/reducer';
 
 class Todo extends Component {
     constructor(){
@@ -19,18 +19,42 @@ class Todo extends Component {
         })
     }
 
+    completeTask(listid){
+        let {gold, currentexp} = this.props.user
+
+        gold+=1;
+        currentexp+=10;
+
+        this.props.goldExpTask(currentexp, gold);
+        this.props.deleteTask(listid);
+    }
+
     render(){
+
+        let todos = this.props.lists.map(item=>{
+            if (item.daily_todo==="todo"){
+                return(
+                    <div key={item.id}>
+                    <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
+                    <label htmlFor={item.content}>{item.content}</label>
+                    </div>
+                )
+            }
+        })
+
         return(
             <div>
                 <form onSubmit={(e)=>{
                     e.preventDefault();
-                    this.props.addTodos(this.state.content)}}>
-                <input placeholder="Add a to-do here" onChange={e=> {
+                    this.props.addTodos(this.state.content)
+                    this.setState({content:''})
+                    }}>
+                <input placeholder="Add a to-do here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
                 <button type="submit">Submit</button>
                 </form>
-
+                {todos}
             </div>
         )
     }
@@ -39,7 +63,8 @@ class Todo extends Component {
 function mapStateToProps(state){
     return{
         lists: state.lists,
+        user: state.user
     }
 }
 
-export default connect(mapStateToProps, {addTodos})(Todo)
+export default connect(mapStateToProps, {addTodos, goldExpTask, deleteTask })(Todo)

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {getLists, addDailies} from '../../ducks/reducer';
+import {getLists, addDailies, goldExpTask, deleteTask} from '../../ducks/reducer';
 import { connect } from 'react-redux';
-
 
 class Dailies extends Component {
     constructor(){
@@ -21,12 +20,25 @@ class Dailies extends Component {
         })
     }
 
+    completeTask(listid){
+        let {gold, currentexp} = this.props.user
+
+        gold+=1;
+        currentexp+=10;
+
+        this.props.goldExpTask(currentexp, gold);
+        this.props.deleteTask(listid);
+    }
+
     render(){
 
         let dailies = this.props.lists.map(item=>{
             if (item.daily_todo==="daily"){
                 return (
-                    <div key={item.id}>{item.content}</div>
+                    <div key={item.id}>
+                    <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
+                    <label htmlFor={item.content}>{item.content}</label>
+                    </div>
                 )
             }
         })
@@ -35,8 +47,10 @@ class Dailies extends Component {
             <div>
                 <form onSubmit={(e)=>{
                     e.preventDefault();
-                    this.props.addDailies(this.state.content)}}>
-                <input placeholder="Add a daily here" onChange={e=> {
+                    this.props.addDailies(this.state.content)
+                    this.setState({content:''})
+                    }}>
+                <input placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
                 <button type="submit">Submit</button>
@@ -50,8 +64,8 @@ class Dailies extends Component {
 function mapStateToProps(state){
     return{
         lists: state.lists,
-        addedDaily : state.daily
+        user: state.user
     }
 }
 
-export default connect(mapStateToProps, {getLists, addDailies})(Dailies)
+export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask})(Dailies)

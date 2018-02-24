@@ -84,5 +84,28 @@ module.exports = {
         db.addTodo([todo, userid, age]).then(todos=>{
             res.send(todos)
         }).catch(e=>console.log(e))
+    },
+
+    deleteTask: (req,res)=>{
+        let db = req.app.get('db');
+        let listid = req.params.listid;
+        let userid = req.session.passport.user.userid;
+
+        db.deleteTask([listid]).then(results=>{
+            db.getLists([userid]).then(lists=>{
+                res.send(lists);
+            })
+        }).catch(e=>console.log(e))
+    },
+
+    updateXPGold: (req,res)=>{
+        let {XP, Gold} = req.body;
+        let userid = req.session.passport.user.userid;
+        let db = req.app.get('db');
+
+        db.updateXPGold([Gold,XP,userid]).then(user=>{
+            console.log('returning updated user', user)
+            res.send(user);
+        })
     }
 }
