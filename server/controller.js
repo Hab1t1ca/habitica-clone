@@ -107,5 +107,21 @@ module.exports = {
             console.log('returning updated user', user)
             res.send(user);
         })
+    },
+
+    streak: (req,res)=>{
+        //pull streak number off of the req.body. and we will need list item number. 
+
+        req.app.get('db').updateStreak([/*streak*/]).then(user=>{
+            res.send(user[0]);
+        })
+    },
+
+    complete: (req,res)=>{
+        let listid = req.params.listid;
+
+        req.app.get('db').completeDaily([listid]).then(daily=>{
+            res.send(daily);
+        })
     }
 }

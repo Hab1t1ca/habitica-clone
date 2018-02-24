@@ -27,7 +27,8 @@ class Dailies extends Component {
         currentexp+=10;
 
         this.props.goldExpTask(currentexp, gold);
-        this.props.deleteTask(listid);
+        // this.props.deleteTask(listid);
+        //need to pull function from reducer that completes the task, not delete
 
         setTimeout(()=>{
             window.location.reload()
