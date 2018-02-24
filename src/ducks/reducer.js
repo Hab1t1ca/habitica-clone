@@ -27,7 +27,7 @@ const ADD_TODO = 'ADD_TODO';
 const GET_LISTS = 'ADD_LISTS';
 const SHOW_MAX_HEALTH = "SHOW_MAX_HEALTH";
 const SHOW_MAX_MANA = "SHOW_MAX_MANA";
-
+//delete me
 //Create Character function
 export function createChar(value) {
     console.log(value)
