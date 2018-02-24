@@ -34,11 +34,19 @@ describe('lists', ()=>{
         }).catch(e=>console.log(e))
     })
 
-    test('receiving lists from DB', ()=>{//must hard code userid when testing. This works.
+    test.skip('receiving lists from DB', ()=>{//must hard code userid when testing. This works.
         return fns.getLists().then(response=>{
             console.log(response);
             expect(Array.isArray(response)).toBeTruthy;
             expect(response.length).toBeGreaterThan(0);
         }).catch(e=>console.log(e))
+    })
+
+    test('XP and Gold is being returned', ()=>{
+        return fns.addGoldandXp(10, 1).then(response =>{
+            console.log(response, 'response');
+            expect(Array.isArray(response)).toBeTruthy;
+            expect(response.length).toBeGreaterThan(0);
+        })
     })
 })
