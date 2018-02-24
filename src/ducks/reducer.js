@@ -15,7 +15,8 @@ const initialState = {
     todo: {},
     lists: [],
     maxhp: 50,
-    maxmana: 50
+    maxmana: 50,
+    baseexp: 100
 };
 
 const NAME = 'NAME';
@@ -27,7 +28,11 @@ const ADD_TODO = 'ADD_TODO';
 const GET_LISTS = 'ADD_LISTS';
 const SHOW_MAX_HEALTH = "SHOW_MAX_HEALTH";
 const SHOW_MAX_MANA = "SHOW_MAX_MANA";
-//delete me
+const SHOW_BASE_EXP = "SHOW_BASE_EXP";
+const DELETE_TASK = "DELETE_TASK";
+const UPDATE_GOEXP = "UPDATE_GOEXP";
+
+
 //Create Character function
 export function createChar(value) {
     console.log(value)
@@ -127,8 +132,35 @@ export function getLists() {
     }
 }
 
+//delete task
+export function deleteTask(id) {
+    let listid = id;
+    let lists = axios.delete(`/api/deleteTask/${listid}`).then(res => {
+        return res.data
+    })
+    return {
+        type: DELETE_TASK,
+        paload: lists
+    }
+}
+
+//update gold and exp on task completion
+export function goldExpTask(xp, gold) {
+    let body = {
+        "XP": xp,
+        "Gold": gold
+    }
+    let taskComp = axios.put('/api/taskComp', body).then(res => {
+        return res.data
+    })
+    return {
+        type: UPDATE_GOEXP,
+        payload: taskComp
+    }
+}
+
 //show max health
-export function showMaxHp() {
+export function showMaxHp(maxhp) {
     return {
         type: SHOW_MAX_HEALTH,
         payload: maxhp
@@ -136,10 +168,18 @@ export function showMaxHp() {
 }
 
 //show max mana
-export function showMaxMana() {
+export function showMaxMana(maxmana) {
     return {
         type: SHOW_MAX_MANA,
         payload: maxmana
+    }
+}
+
+//Show base exp
+export function showBaseExp(baseexp) {
+    return {
+        type: SHOW_BASE_EXP,
+        payload: baseexp
     }
 }
 
@@ -172,6 +212,15 @@ function reducer(state = initialState, action) {
 
         case SHOW_MAX_MANA + '_FULFILLED':
             return Object.assign({}, state, { maxmana: action.payload })
+
+        case SHOW_BASE_EXP + '_FULFILLED':
+            return Object.assign({}, state, { baseexp: action.payload })
+
+        case DELETE_TASK + '_FULFILLED':
+            return Object.assign({}, state, { lists: action.payload })
+
+        case UPDATE_GOEXP + '_FULFILLED':
+            return Object.assign({}, state, { user: action.payload })
 
         default: return state;
     }
