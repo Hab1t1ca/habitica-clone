@@ -16,7 +16,8 @@ const initialState = {
     lists: [],
     maxhp: 50,
     maxmana: 50,
-    baseexp: 100
+    baseexp: 100,
+    completed: false
 };
 
 const NAME = 'NAME';
@@ -31,6 +32,8 @@ const SHOW_MAX_MANA = "SHOW_MAX_MANA";
 const SHOW_BASE_EXP = "SHOW_BASE_EXP";
 const DELETE_TASK = "DELETE_TASK";
 const UPDATE_GOEXP = "UPDATE_GOEXP";
+const COMPLETE_DAILY = "COMPLETE_DAILY";
+const COMPLETED = "COMPLETED"
 
 
 //Create Character function
@@ -140,7 +143,7 @@ export function deleteTask(id) {
     })
     return {
         type: DELETE_TASK,
-        paload: lists
+        payload: lists
     }
 }
 
@@ -183,6 +186,34 @@ export function showBaseExp(baseexp) {
     }
 }
 
+//Complete a daily
+// export function compDaily(comp, listid) {
+//     let body = {
+//         "completed": comp,
+
+//     }
+//     if (!comp) {
+//         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
+//             return res.data
+//         })
+//     } else { streak = 0 }
+//     return {
+//         type: COMPLETE_DAILY,
+//         payload: streak
+//     }
+// }
+
+//Complete
+export function complete(listid) {
+    let complete = axios.put(`/api/complete/${listid}`).then(res => {
+        return res.data
+    })
+    return {
+        type: COMPLETED,
+        payload: complete
+    }
+}
+
 
 function reducer(state = initialState, action) {
     switch (action.type) {
@@ -221,6 +252,12 @@ function reducer(state = initialState, action) {
 
         case UPDATE_GOEXP + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload })
+
+        case COMPLETE_DAILY + 'FULFILLED':
+            return Object.assign({}, state, { completed: action.payload })
+
+        case COMPLETED + 'FULFILLED':
+            return Object.assign({}, state, { completed: action.payload })
 
         default: return state;
     }
