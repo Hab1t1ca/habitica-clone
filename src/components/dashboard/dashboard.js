@@ -145,6 +145,9 @@ class Dashboard extends Component {
                 <h1>Dashboard</h1>
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
+                <Dailies/>
+                <Todos/>
+
                 {/* <UserIcon/> */}
 
                 {/* first modal */}
