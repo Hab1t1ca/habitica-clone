@@ -47,7 +47,10 @@ class Todo extends Component {
                 <form onSubmit={(e)=>{
                     e.preventDefault();
                     this.props.addTodos(this.state.content)
-                    this.setState({content:''})
+                    this.setState({content:''});
+                    setTimeout(()=>{
+                        window.location.reload()
+                    }, 1500)
                     }}>
                 <input placeholder="Add a to-do here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
