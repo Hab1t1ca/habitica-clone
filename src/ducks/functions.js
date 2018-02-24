@@ -50,20 +50,13 @@ module.exports = {
         return axios.get('http://localhost:3020/api/getLists').then(res => {
             console.log(res.data);
             return res.data;
-        }).catch(e => console.log(e))
+        }).catch(e=>console.log(e))
     },
 
-    addGoldandXp: (xp, gold) => {
-
-        let body = {
-            "XP": xp,
-            "Gold": gold
-        }
-        
-        let taskComp = axios.put('/api/taskComp', body).then(res => {
-            console.log(res.data)
-            return res.data
-        }).catch(e => console.log(e))
-        return taskComp
+    deleteTask: (id)=>{
+        let itemid = id;
+        return axios.delete(`http://localhost:3020/api/deleteTask/${itemid}`).then(res=>{
+            return res.data;
+        }).catch(e=>console.log(e))
     }
 }

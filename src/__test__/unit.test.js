@@ -1,13 +1,5 @@
 const fns = require('../ducks/functions.js');
 
-// describe('character creation', ()=>{
-//     test.skip('username is created', ()=>{
-//         fns.userName('Sticky Sam').then(results=>{
-//             expect(results.name).toBe('Sticky Sam');
-//         })
-//     })
-// })
-
 describe('items', ()=>{
     
     test.skip('grab shop', ()=>{
@@ -42,11 +34,19 @@ describe('lists', ()=>{
         }).catch(e=>console.log(e))
     })
 
+<<<<<<< HEAD
     test('XP and Gold is being returned', ()=>{
         return fns.addGoldandXp(10, 1).then(response =>{
             console.log(response, 'response');
             expect(Array.isArray(response)).toBeTruthy;
             expect(response.length).toBeGreaterThan(0);
         })
+=======
+    test.skip('can delete task from DB', ()=>{//this works
+        return fns.deleteTask(1).then(response=>{
+            console.log(response);
+            expect(response).toBe('task has been deleted');
+        }).catch(e=>console.log(e))
+>>>>>>> master
     })
 })
