@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {getLists, addDailies, goldExpTask, deleteTask} from '../../ducks/reducer';
 import { connect } from 'react-redux';
-import { Checkbox } from 'material-ui';
-
 
 class Dailies extends Component {
     constructor(){
@@ -57,9 +55,7 @@ class Dailies extends Component {
                 }}/>
                 <button type="submit">Submit</button>
                 </form>
-                <div>
                 {dailies}
-                </div>
             </div>
         )
     }
