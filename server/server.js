@@ -76,6 +76,7 @@ app.delete('/api/deleteTask/:listid', controller.deleteTask);
 app.post('/api/createChar', controller.createName);
 app.post('/api/addClass', controller.addClass);
 app.get('/api/getUser', controller.getUser);
+app.put('/api/taskComp', controller.updateXPGold);
 
 //End user endpoints
 

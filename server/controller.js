@@ -96,5 +96,16 @@ module.exports = {
                 res.send(lists);
             })
         }).catch(e=>console.log(e))
+    },
+
+    updateXPGold: (req,res)=>{
+        let {XP, Gold} = req.body;
+        let userid = req.session.passport.user.userid;
+        let db = req.app.get('db');
+
+        db.updateXPGold([Gold,XP,userid]).then(user=>{
+            console.log('returning updated user', user)
+            res.send(user);
+        })
     }
 }

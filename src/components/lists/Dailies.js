@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getLists, addDailies} from '../../ducks/reducer';
+import {getLists, addDailies, goldExpTask, deleteTask} from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Checkbox } from 'material-ui';
 
@@ -28,9 +28,8 @@ class Dailies extends Component {
         gold+=1;
         currentexp+=10;
 
-        
-        //function from reducer. Put in gold and xp
-        //invoke delete function
+        this.props.goldExpTask(currentexp, gold);
+        this.props.deleteTask(listid);
     }
 
     render(){
@@ -38,9 +37,9 @@ class Dailies extends Component {
         let dailies = this.props.lists.map(item=>{
             if (item.daily_todo==="daily"){
                 return (
-                    <div>
+                    <div key={item.id}>
                     <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
-                    <label for={item.content}>{item.content}</label>
+                    <label htmlFor={item.content}>{item.content}</label>
                     </div>
                 )
             }
@@ -69,8 +68,8 @@ class Dailies extends Component {
 function mapStateToProps(state){
     return{
         lists: state.lists,
-        addedDaily : state.daily
+        user: state.user
     }
 }
 
-export default connect(mapStateToProps, {getLists, addDailies})(Dailies)
+export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask})(Dailies)
