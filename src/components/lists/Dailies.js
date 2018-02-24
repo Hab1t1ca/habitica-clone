@@ -28,6 +28,10 @@ class Dailies extends Component {
 
         this.props.goldExpTask(currentexp, gold);
         this.props.deleteTask(listid);
+
+        setTimeout(()=>{
+            window.location.reload()
+        }, 1500)
     }
 
     render(){
@@ -48,7 +52,10 @@ class Dailies extends Component {
                 <form onSubmit={(e)=>{
                     e.preventDefault();
                     this.props.addDailies(this.state.content)
-                    this.setState({content:''})
+                    this.setState({content:''});
+                    setTimeout(()=>{
+                        window.location.reload()
+                    }, 1500)
                     }}>
                 <input placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
