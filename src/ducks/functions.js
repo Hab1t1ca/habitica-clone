@@ -51,5 +51,12 @@ module.exports = {
             console.log(res.data);
             return res.data;
         }).catch(e=>console.log(e))
+    },
+
+    deleteTask: (id)=>{
+        let itemid = id;
+        return axios.delete(`http://localhost:3020/api/deleteTask/${itemid}`).then(res=>{
+            return res.data;
+        }).catch(e=>console.log(e))
     }
 }

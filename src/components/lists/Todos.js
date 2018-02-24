@@ -20,17 +20,28 @@ class Todo extends Component {
     }
 
     render(){
+
+        let todos = this.props.lists.map(item=>{
+            if (item.daily_todo==="todo"){
+                return(
+                    <div key={item.id}>{item.content}</div>
+                )
+            }
+        })
+
         return(
             <div>
                 <form onSubmit={(e)=>{
                     e.preventDefault();
-                    this.props.addTodos(this.state.content)}}>
-                <input placeholder="Add a to-do here" onChange={e=> {
+                    this.props.addTodos(this.state.content)
+                    this.setState({content:''})
+                    }}>
+                <input placeholder="Add a to-do here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
                 <button type="submit">Submit</button>
                 </form>
-
+                {todos}
             </div>
         )
     }

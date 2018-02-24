@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {getLists, addDailies} from '../../ducks/reducer';
 import { connect } from 'react-redux';
+import { Checkbox } from 'material-ui';
 
 
 class Dailies extends Component {
@@ -21,12 +22,26 @@ class Dailies extends Component {
         })
     }
 
+    completeTask(listid){
+        let {gold, currentexp} = this.props.user
+
+        gold+=1;
+        currentexp+=10;
+
+        
+        //function from reducer. Put in gold and xp
+        //invoke delete function
+    }
+
     render(){
 
         let dailies = this.props.lists.map(item=>{
             if (item.daily_todo==="daily"){
                 return (
-                    <div key={item.id}>{item.content}</div>
+                    <div>
+                    <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
+                    <label for={item.content}>{item.content}</label>
+                    </div>
                 )
             }
         })
@@ -35,13 +50,17 @@ class Dailies extends Component {
             <div>
                 <form onSubmit={(e)=>{
                     e.preventDefault();
-                    this.props.addDailies(this.state.content)}}>
-                <input placeholder="Add a daily here" onChange={e=> {
+                    this.props.addDailies(this.state.content)
+                    this.setState({content:''})
+                    }}>
+                <input placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
                 <button type="submit">Submit</button>
                 </form>
+                <div>
                 {dailies}
+                </div>
             </div>
         )
     }
