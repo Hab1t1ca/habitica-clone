@@ -10,8 +10,14 @@ const express = require('express')
     , controller = require('./controller.js')
     , passport = require('passport')
     , Auth0strat = require('passport-auth0')
+    , cron = require('node-cron')
 app.use(bodyParser.json());
 app.use(cors());
+
+cron.schedule('0 0 0 * * *', function(){
+    //check dailies
+  });
+
 app.use(session({
     secret: process.env.SECRET, 
     resave: false, 
