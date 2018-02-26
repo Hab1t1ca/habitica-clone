@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import UserIcon from '../userIcon/UserIcon';
+import { getUser } from '../../ducks/reducer';
 import stick from "./stick-512.png"
 import "./nav.css";
 
@@ -15,6 +16,9 @@ class Nav extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.getUser()
+    }
 
     openmenu() {
         if (!this.state.open) {
@@ -29,6 +33,8 @@ class Nav extends Component {
     }
 
     render() {
+
+        console.log(this.props.user, 'stuff')
         return (
             <div>
                 <div className="navbar">
@@ -38,7 +44,7 @@ class Nav extends Component {
                         <img className="logo" src={stick} alt="a stick" />
                     </div>
 
-                    <div className="logoText">Stick To It</div>
+                    <p className="logoText">{this.props.user.name}</p>
                 
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
@@ -70,9 +76,9 @@ class Nav extends Component {
     }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
     return {
-       
+        user: state.user
     }
 }
-export default connect(mapStateToProps, {  })(Nav)
+export default connect(mapStateToProps, { getUser })(Nav)

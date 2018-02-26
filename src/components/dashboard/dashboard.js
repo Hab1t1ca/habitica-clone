@@ -7,16 +7,38 @@ import request from 'superagent';
 import AvatarEditor from 'react-avatar-editor';
 import Slider from 'material-ui/Slider';
 import './dashboard.css';
-import stickman from './stickmanTemplate.png';
+import stickman from './stickmanTemplateV2.png';
 import { connect } from 'react-redux';
 import { createChar, addClass, createAvatar } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import SwipeableViews from 'react-swipeable-views';
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'zj5sgnrc';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/rigrater/image/upload';
 
+
+const styles = {
+    headline: {
+      fontSize: 24,
+      paddingTop: 1,
+      marginBottom: 12,
+      fontWeight: 400,
+      backgroundColor: '#3D315B'
+    },
+    slide: {
+      padding: 5,
+    },
+    color: {
+        backgroundColor: "#3D315B"
+    },
+    inkBar: {
+        backgroundColor: 'white'
+    }
+  };
+  
 class Dashboard extends Component {
     constructor() {
         super()
@@ -31,10 +53,19 @@ class Dashboard extends Component {
             image: null,
             preview: null,
             
-            scaleSlider: 1.8
+            scaleSlider: 1.8,
+            slideIndex: 0
         }
         this.onClickSave = this.onClickSave.bind(this);
     }
+
+
+
+    handleChange = (value) => {
+        this.setState({
+          slideIndex: value,
+        });
+      };
 
 
     onClickSave = () => {
@@ -153,12 +184,39 @@ class Dashboard extends Component {
             <div className="backgroundDashboard">
                 <Nav />
 
-                <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
+
+
+                <Tabs
+          onChange={this.handleChange}
+          value={this.state.slideIndex}
+          inkBarStyle={styles.inkBar}
+        //   tabItemContainerStyle={styles.headline}          
+        >
+          <Tab label="Daily" value={0} style={styles.color}/>
+          <Tab label="To Do" value={1}  style={styles.color}/>
+        </Tabs>
+        <SwipeableViews
+          index={this.state.slideIndex}
+          onChangeIndex={this.handleChange}
+        >
+          <div className="tabsStuff" style={styles.slide}>
                 <Dailies/>
+          </div>
+          <div  className="tabsStuff" style={styles.slide}>
                 <Todos/>
+          </div>
+        </SwipeableViews>
+
+            
+
+
+
+
+
 
                 {/* <UserIcon/> */}
+                <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
                 {/* first modal */}
                 <Dialog

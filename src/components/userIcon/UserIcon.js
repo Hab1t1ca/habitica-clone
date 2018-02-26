@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer';
 import "./userIcon.css";
+import stickman from '../dashboard/stickmanTemplateV2.png'
 
 class UserIcon extends Component {
     constructor() {
@@ -38,24 +39,27 @@ class UserIcon extends Component {
 
             <div className="mainHeader">
                 <div className="avatarBox">
-                <img src={this.props.avatar}/>
+
+                <img  className="avatarWindow" src={this.props.user.avatar}/>
+                <img className="stickmanInBox" src={stickman}/>
+
                 </div>
 
 
                 <div className="stats">
-                    <div className="Class">Class</div>
+                    <div className="Class">{this.props.user.class}</div>
 
-                    <div className="health">HP</div>
+                    <div className="health">HP: {this.props.user.hp}/{this.props.user.maxhp}</div>
                     <div className="healthBarBorder">
                     <div className="healthBar"></div>
                     </div>
 
-                    <div className="mana">Mana</div>
+                    <div className="mana">Mana: {this.props.user.mana}/{this.props.user.maxmana}</div>
                     <div className="manaBarBorder">
                     <div className="manaBar"></div>
                     </div>
 
-                    <div className="Xp">Xp</div>
+                    <div className="Xp">Xp: {this.props.user.currentexp} / {this.props.user.nextexp}</div>
                     <div className="XpBarBorder">
                     <div className="XpBar"></div>
                     </div>
