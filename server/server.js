@@ -14,9 +14,34 @@ const express = require('express')
 app.use(bodyParser.json());
 app.use(cors());
 
+//cron
 cron.schedule('0 0 0 * * *', function(){
-    //check dailies
-  });
+    const db=app.get('db');
+
+    db.cron().then(lists=>{
+        var dailies = lists.filter(list=>list.daily_todo==='daily');
+
+            dailies.map(daily=>{
+                if (daily.completed!=true){
+                    db.getUser([daily.userid]).then(user=>{
+                        let {hp, gold, userid} = user[0];
+                        hp-=5;
+                        gold-=1;
+
+                        db.cronUpdate([hp, gold, userid]).then(user=>{
+                            return user[0]
+                        }).catch(e=>console.log(e))
+                    })
+                }
+                else {
+                    db.cronUpdateList([daily.id]).then(results=>{
+                        return results;
+                    }).catch(e=>console.log(e))
+                }
+            })
+    }).catch(e=>console.log(e))
+});
+//end of cron
 
 app.use(session({
     secret: process.env.SECRET, 
@@ -87,7 +112,7 @@ app.get('/api/getUser', controller.getUser);
 app.put('/api/taskComp', controller.updateXPGold);
 app.put('/api/avatar', controller.avatar);
 
-//End user endpoints
+//End endpoints
 
 
 massive(process.env.CONNECTION).then(db => {
