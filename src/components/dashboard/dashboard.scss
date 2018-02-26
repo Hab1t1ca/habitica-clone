@@ -1,8 +1,9 @@
 .previewWindow {
-    border: solid 1px green; 
+    border: solid 1px black; 
     border-radius: 200px;
     width: 50px;
     height: 50px;
+    margin-top: 40px;
 }
 .stickman {
 margin-top: -4px;
@@ -18,4 +19,46 @@ margin-top: -4px;
 .backgroundDashboard {
     height: 100vh;
     background-color: white;
+}
+.buttonModal {
+width: 40vw;
+color: white;
+background: #3D315B;
+border: none;
+border-radius: 10px;
+padding: 8px;
+margin-top: 10px;
+}
+
+.inputModal {
+height: 25px;
+width: 50vw;
+text-align: center;
+background: rgba(61, 49, 91, 0.194);
+}
+
+.outerDropzone {
+    display: flex;
+    justify-content: center;
+}
+.dropzone {
+    border: 2px dashed #3D315B;
+    height: 100px;
+    width: 200px;
+    margin-bottom: 40px;
+}
+
+.outerouterDiv {
+    height: 200px;
+    width: 200px;
+}
+.off {
+height: 150px;
+width: 150px;
+opacity: 0;
+}
+
+.on {
+    opacity: 1;
+    transition: 3s;
 }
