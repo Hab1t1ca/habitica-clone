@@ -10,7 +10,8 @@ import './dashboard.css';
 import stickman from './stickmanTemplate.png';
 import { connect } from 'react-redux';
 import { createChar, addClass } from '../../ducks/reducer';
-// import UserIcon from '../userIcon/UserIcon';
+import Dailies from '../lists/Dailies';
+import Todos from '../lists/Todos';
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'zj5sgnrc';
@@ -143,6 +144,9 @@ class Dashboard extends Component {
                 <Nav />
                 <h1>Dashboard</h1>
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
+
+                <Dailies/>
+                <Todos/>
 
                 {/* <UserIcon/> */}
 

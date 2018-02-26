@@ -56,7 +56,7 @@ passport.serializeUser((user, done)=>{
 })
 
 passport.deserializeUser((user, done)=>{
-    console.log('deserial', user)
+    console.log('deserial', user.userid)
     return done(null, user.userid)
 })
 
@@ -65,17 +65,21 @@ app.get('/api/login', passport.authenticate('auth0', {
     successRedirect: process.env.SUCCESSREDIRECT,
     failureRedirect: process.env.FAILUREREDIRECT
 }));
-
+//list endpoints
 app.get('/api/getitems', controller.getitems);
 app.post('/api/buyitem', controller.buyItem);
 app.post('/api/addDaily', controller.addDaily);
 app.post('/api/addTodo', controller.addTodo);
 app.get('/api/getLists', controller.getLists);
+app.delete('/api/deleteTask/:listid', controller.deleteTask);
+app.put('/api/streak/:listid', controller.streak);
+app.put('/api/complete/:listid', controller.complete);
 
 //user endpoints
 app.post('/api/createChar', controller.createName);
 app.post('/api/addClass', controller.addClass);
 app.get('/api/getUser', controller.getUser);
+app.put('/api/taskComp', controller.updateXPGold);
 
 //End user endpoints
 

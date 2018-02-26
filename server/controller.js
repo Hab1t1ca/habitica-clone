@@ -1,4 +1,4 @@
-
+const lvlFns = require('./onLvl.js');
 
 module.exports = {
 
@@ -52,21 +52,28 @@ module.exports = {
         }).catch(e=>console.log(e))
     },
 
-    addDaily: (req,res)=>{
-        const userid = req.session.passport.user.userid;
+    addDaily: (req, res)=>{
+        // console.log('request', req);
+        
+        let userid = req.user;
+        // let userid = 13;
         let db = req.app.get('db');
         let {daily} = req.body;
         let d = new Date();
         let age = d.toString().substring(0,15)
+
+        console.log('hitting add Daily', daily, userid, age)
         // let userid = 1; this one is for doing the unit tests
 
         db.addDaily([daily, userid, age]).then(dailies=>{
+            console.log('daily added to db', dailies)
             res.send(dailies);//returns an array of an object. NOTE: THIS ONLY RETURNS THE DAILY YOU JUST POSTED, NOT THE ENTIRE DB. 
         }).catch(e=>console.log(e))
     },
 
     getLists: (req,res)=>{
-        let userid = req.session.passport.user.userid;
+        let userid = req.user;
+        console.log('get lists userid', userid)
         let db = req.app.get('db');
         // let userid = 1; //this is for testing purposes
 
@@ -86,5 +93,61 @@ module.exports = {
         db.addTodo([todo, userid, age]).then(todos=>{
             res.send(todos)
         }).catch(e=>console.log(e))
+    },
+
+    deleteTask: (req,res)=>{
+        let db = req.app.get('db');
+        let listid = req.params.listid;
+        let userid = req.session.passport.user.userid;
+
+        db.deleteTask([listid]).then(results=>{
+            db.getLists([userid]).then(lists=>{
+                res.send(lists);
+            })
+        }).catch(e=>console.log(e))
+    },
+
+    updateXPGold: (req,res)=>{
+        let {XP, Gold} = req.body;
+        let userid = req.session.passport.user.userid;
+        let db = req.app.get('db');
+
+        db.updateXPGold([Gold,XP,userid]).then(user=>{
+            checkLvl(user[0]);
+        })
+    },
+
+    streak: (req,res)=>{
+        //pull streak number off of the req.body. and we will need list item number. 
+
+        req.app.get('db').updateStreak([/*streak*/]).then(user=>{
+            res.send(user[0]);
+        })
+    },
+
+    complete: (req,res)=>{
+        let listid = req.params.listid;
+
+        req.app.get('db').completeDaily([listid]).then(daily=>{
+            res.send(daily);
+        })
+    },
+
+    checkLvl: (req,res, user)=>{//this function runs inside of updateXPGold
+        if (user.currentexp===user.nextexp){
+            let {lvl, nextexp, currentexp, gold, mana, userid, hp} = user;
+            lvl+=1;
+            currentexp = 0;
+            gold+=lvlFns.goldCalc(lvl);
+            hp = lvlFns.generalHealthCalc(lvl);
+            mana = lvlFns.generalMana(lvl);
+            nextexp = 200; //don't have function right now. This is a placeholder. 
+            db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user=>{
+                res.send(user[0]);
+            })
+        }
+        else{
+            res.send(user[0]);
+        }
     }
 }
