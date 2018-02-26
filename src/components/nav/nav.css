@@ -74,9 +74,12 @@
     justify-content: center;
     width: 100vw;
     height: 25vh;
-    background-color: #A8D37A;
-    transition: .3s;
-    overflow: hidden; }
+    background-color: #444B6E;
+    transition: 1s;
+    overflow: hidden;
+    z-index: 5;
+    opacity: 0.9;
+    text-align: center; }
   .on {
     position: absolute;
     right: 0; }

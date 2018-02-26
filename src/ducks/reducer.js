@@ -13,7 +13,11 @@ const initialState = {
     user: {},
     daily: {},
     todo: {},
-    lists: []
+    lists: [],
+    maxhp: 50,
+    maxmana: 50,
+    baseexp: 100,
+    completed: false
 };
 
 const NAME = 'NAME';
@@ -23,6 +27,14 @@ const CLASS = 'CLASS';
 const ADD_DAILY = 'ADD_DAILY';
 const ADD_TODO = 'ADD_TODO';
 const GET_LISTS = 'ADD_LISTS';
+const SHOW_MAX_HEALTH = "SHOW_MAX_HEALTH";
+const SHOW_MAX_MANA = "SHOW_MAX_MANA";
+const SHOW_BASE_EXP = "SHOW_BASE_EXP";
+const DELETE_TASK = "DELETE_TASK";
+const UPDATE_GOEXP = "UPDATE_GOEXP";
+const COMPLETE_DAILY = "COMPLETE_DAILY";
+const COMPLETED = "COMPLETED"
+
 
 //Create Character function
 export function createChar(value) {
@@ -89,12 +101,12 @@ export function addDailies(daily) {
     let body = {
         daily
     }
-    let addDaily = axios.post('http://localhost:3020/api/addDaily', body).then(res => {
+    let dailies = axios.post('/api/addDaily', body).then(res => {
         return res.data
     })
     return {
         type: ADD_DAILY,
-        payload: addDaily.data
+        payload: dailies
     }
 }
 
@@ -103,12 +115,12 @@ export function addTodos(todo) {
     let body = {
         todo
     }
-    let addTodo = axios.post(`http://localhost:3020/api/addTodo`, body).then(res => {
+    let addTodo = axios.post(`api/addTodo`, body).then(res => {
         return res.data
     })
     return {
         type: ADD_TODO,
-        payload: addTodo.data
+        payload: addTodo
     }
 }
 
@@ -120,6 +132,85 @@ export function getLists() {
     return {
         type: GET_LISTS,
         payload: lists
+    }
+}
+
+//delete task
+export function deleteTask(id) {
+    let listid = id;
+    let lists = axios.delete(`/api/deleteTask/${listid}`).then(res => {
+        return res.data
+    })
+    return {
+        type: DELETE_TASK,
+        payload: lists
+    }
+}
+
+//update gold and exp on task completion
+export function goldExpTask(xp, gold) {
+    let body = {
+        "XP": xp,
+        "Gold": gold
+    }
+    let taskComp = axios.put('/api/taskComp', body).then(res => {
+        return res.data
+    })
+    return {
+        type: UPDATE_GOEXP,
+        payload: taskComp
+    }
+}
+
+//show max health
+export function showMaxHp(maxhp) {
+    return {
+        type: SHOW_MAX_HEALTH,
+        payload: maxhp
+    }
+}
+
+//show max mana
+export function showMaxMana(maxmana) {
+    return {
+        type: SHOW_MAX_MANA,
+        payload: maxmana
+    }
+}
+
+//Show base exp
+export function showBaseExp(baseexp) {
+    return {
+        type: SHOW_BASE_EXP,
+        payload: baseexp
+    }
+}
+
+//Complete a daily
+// export function compDaily(comp, listid) {
+//     let body = {
+//         "completed": comp,
+
+//     }
+//     if (!comp) {
+//         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
+//             return res.data
+//         })
+//     } else { streak = 0 }
+//     return {
+//         type: COMPLETE_DAILY,
+//         payload: streak
+//     }
+// }
+
+//Complete
+export function complete(listid) {
+    let complete = axios.put(`/api/complete/${listid}`).then(res => {
+        return res.data
+    })
+    return {
+        type: COMPLETED,
+        payload: complete
     }
 }
 
@@ -146,6 +237,27 @@ function reducer(state = initialState, action) {
 
         case GET_LISTS + '_FULFILLED':
             return Object.assign({}, state, { lists: action.payload })
+
+        case SHOW_MAX_HEALTH + '_FULFILLED':
+            return Object.assign({}, state, { maxhp: action.payload })
+
+        case SHOW_MAX_MANA + '_FULFILLED':
+            return Object.assign({}, state, { maxmana: action.payload })
+
+        case SHOW_BASE_EXP + '_FULFILLED':
+            return Object.assign({}, state, { baseexp: action.payload })
+
+        case DELETE_TASK + '_FULFILLED':
+            return Object.assign({}, state, { lists: action.payload })
+
+        case UPDATE_GOEXP + '_FULFILLED':
+            return Object.assign({}, state, { user: action.payload })
+
+        case COMPLETE_DAILY + 'FULFILLED':
+            return Object.assign({}, state, { completed: action.payload })
+
+        case COMPLETED + 'FULFILLED':
+            return Object.assign({}, state, { completed: action.payload })
 
         default: return state;
     }
