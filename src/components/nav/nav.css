@@ -27,8 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
-  overflow: hidden; }
+  z-index: 2; }
 
 .main-header {
   background-color: #9AB87A;

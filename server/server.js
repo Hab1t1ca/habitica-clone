@@ -67,6 +67,7 @@ app.get('/api/login', passport.authenticate('auth0', {
 }));
 //list endpoints
 app.get('/api/getitems', controller.getitems);
+app.post('/api/buyitem', controller.buyItem);
 app.post('/api/addDaily', controller.addDaily);
 app.post('/api/addTodo', controller.addTodo);
 app.get('/api/getLists', controller.getLists);
