@@ -45,7 +45,7 @@ class UserIcon extends Component {
 
                     <div className="health">HP</div>
                     <div className="healthBarBorder">
-                    <div className="healthBar"></div>
+                    <div style={{width: `${this.props.user.hp}%`}} className="healthBar"></div>
                     </div>
 
                     <div className="mana">Mana</div>
