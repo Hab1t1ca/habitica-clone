@@ -23,8 +23,7 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/rigrater/image/up
 const styles = {
     headline: {
       fontSize: 24,
-      paddingTop: 1,
-      marginBottom: 12,
+      borderTop: "solid 1px white",
       fontWeight: 400,
       backgroundColor: '#3D315B'
     },
@@ -191,6 +190,7 @@ class Dashboard extends Component {
           onChange={this.handleChange}
           value={this.state.slideIndex}
           inkBarStyle={styles.inkBar}
+          style={styles.headline}
         //   tabItemContainerStyle={styles.headline}          
         >
           <Tab label="Daily" value={0} style={styles.color}/>
