@@ -37,7 +37,9 @@ class UserIcon extends Component {
         return (
 
             <div className="mainHeader">
-                <div className="avatarBox">box</div>
+                <div className="avatarBox">
+                <img src={this.props.avatar}/>
+                </div>
 
 
                 <div className="stats">
@@ -71,7 +73,8 @@ class UserIcon extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        avatar: state.avatar
     }
 }
 

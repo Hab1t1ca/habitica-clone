@@ -136,8 +136,17 @@ class Dashboard extends Component {
 
     }
 
+    moveOn2(){
+        createAvatar(this.state.uploadedFileCloudinaryUrl);
+        this.setState({
+           thirdModal: false
+        })
+
+    }
+
     render() {
         let createChar = this.props.createChar;
+        let createAvatar = this.props.createAvatar;
 
         console.log(this.state.class)
         return (
@@ -230,13 +239,17 @@ class Dashboard extends Component {
 
                     
         <button onClick={() => this.onClickSave()} className="buttonModal">Crop</button>
-    
+                    
+                <div className={!this.state.uploadedFileCloudinaryUrl ? "stickmanClosed" : "stickmanOpen"}>
                     <br/>
                     <img src={this.state.uploadedFileCloudinaryUrl} className= "previewWindow"/>
                     <br/>
                     <img src={stickman} className="stickman"/>
+                </div>
 
-        <button onClick={() => this.props.createAvatar(this.state.uploadedFileCloudinaryUrl)} className="buttonModal">Submit</button>
+            <br/>
+
+        <button onClick={() => this.moveOn2()} className="buttonModal">Submit</button>
                     
                 
                 
