@@ -7,16 +7,37 @@ import request from 'superagent';
 import AvatarEditor from 'react-avatar-editor';
 import Slider from 'material-ui/Slider';
 import './dashboard.css';
-import stickman from './stickmanTemplate.png';
+import stickman from './stickmanTemplateV2.png';
 import { connect } from 'react-redux';
 import { createChar, addClass, createAvatar } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import SwipeableViews from 'react-swipeable-views';
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'zj5sgnrc';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/rigrater/image/upload';
 
+
+const styles = {
+    headline: {
+      fontSize: 24,
+      borderTop: "solid 1px white",
+      fontWeight: 400,
+      backgroundColor: '#3D315B'
+    },
+    slide: {
+      padding: 5,
+    },
+    color: {
+        backgroundColor: "#3D315B"
+    },
+    inkBar: {
+        backgroundColor: 'white'
+    }
+  };
+  
 class Dashboard extends Component {
     constructor() {
         super()
@@ -31,10 +52,19 @@ class Dashboard extends Component {
             image: null,
             preview: null,
             
-            scaleSlider: 1.8
+            scaleSlider: 1.8,
+            slideIndex: 0
         }
         this.onClickSave = this.onClickSave.bind(this);
     }
+
+
+
+    handleChange = (value) => {
+        this.setState({
+          slideIndex: value,
+        });
+      };
 
 
     onClickSave = () => {
@@ -136,20 +166,57 @@ class Dashboard extends Component {
 
     }
 
+    moveOn2(){
+        createAvatar(this.state.uploadedFileCloudinaryUrl);
+        this.setState({
+           thirdModal: false
+        })
+
+    }
+
     render() {
         let createChar = this.props.createChar;
+        let createAvatar = this.props.createAvatar;
 
         console.log(this.state.class)
         return (
             <div className="backgroundDashboard">
                 <Nav />
 
-                <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
+
+
+                <Tabs
+          onChange={this.handleChange}
+          value={this.state.slideIndex}
+          inkBarStyle={styles.inkBar}
+          style={styles.headline}
+        //   tabItemContainerStyle={styles.headline}          
+        >
+          <Tab label="Daily" value={0} style={styles.color}/>
+          <Tab label="To Do" value={1}  style={styles.color}/>
+        </Tabs>
+        <SwipeableViews
+          index={this.state.slideIndex}
+          onChangeIndex={this.handleChange}
+        >
+          <div className="tabsStuff" style={styles.slide}>
                 <Dailies/>
+          </div>
+          <div  className="tabsStuff" style={styles.slide}>
                 <Todos/>
+          </div>
+        </SwipeableViews>
+
+            
+
+
+
+
+
 
                 {/* <UserIcon/> */}
+                <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
                 {/* first modal */}
                 <Dialog
@@ -230,13 +297,17 @@ class Dashboard extends Component {
 
                     
         <button onClick={() => this.onClickSave()} className="buttonModal">Crop</button>
-    
+                    
+                <div className={!this.state.uploadedFileCloudinaryUrl ? "stickmanClosed" : "stickmanOpen"}>
                     <br/>
                     <img src={this.state.uploadedFileCloudinaryUrl} className= "previewWindow"/>
                     <br/>
                     <img src={stickman} className="stickman"/>
+                </div>
 
-        <button onClick={() => this.props.createAvatar(this.state.uploadedFileCloudinaryUrl)} className="buttonModal">Submit</button>
+            <br/>
+
+        <button onClick={() => this.moveOn2()} className="buttonModal">Submit</button>
                     
                 
                 

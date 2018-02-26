@@ -163,6 +163,4 @@ module.exports = {
             res.send(user[0]);
         }).catch(e=>console.log(e))
     }
-
-
 }

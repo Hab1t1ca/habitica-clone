@@ -32,7 +32,7 @@ class Dailies extends Component {
 
         setTimeout(()=>{
             window.location.reload()
-        }, 1500)
+        }, 1000)
     }
 
     render(){

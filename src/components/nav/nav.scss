@@ -17,7 +17,8 @@
 .logoText {
     display: flex;
     justify-content: center;
-    margin-right: 10px;
+    font-size: 25px;
+    // margin-right: 10px;
     color: #e9e7e7;
 }
 
@@ -25,7 +26,7 @@
     position: relative;
     background-color: #3D315B;
     width: 100%;
-    height: 10vh;
+    height: 7vh;
     box-shadow: 0 0 10px 3px #040F0F;
     display: flex;
     justify-content: space-between;
@@ -92,19 +93,19 @@
         width: 100vw;
         height: 25vh;
         background-color: #444B6E;
-        transition: 1s;
+        transition: 0.5s;
         overflow: hidden;
-        z-index: 5;
+        z-index: 999;
         opacity: 0.9;
         text-align: center;
     }
 
-    .on {
+    .mediaNavOn {
         position: absolute;
         right: 0;
     }
 
-.off {
+.mediaNavOff {
     position: absolute;
     right: 0px;
     width: 0px;
@@ -118,7 +119,6 @@
     display: inline-block;
     text-decoration: none;
     // text-align: center;
-    padding: 20px;
     box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.385);
 }
 
