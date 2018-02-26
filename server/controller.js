@@ -33,6 +33,15 @@ module.exports = {
             res.send(items)//returning an array of items
         }).catch(e=>console.log(e))
     },
+
+    buyItem: (req,res) =>{
+        let db = req.app.get('db');
+        db.buyItem([req.body.itemid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
+
+    ,
     
     getUser: (req,res)=>{
         console.log("session", req.session.passport.user.userid)
@@ -154,6 +163,4 @@ module.exports = {
             res.send(user[0]);
         }).catch(e=>console.log(e))
     }
-
-
 }

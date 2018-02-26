@@ -54,7 +54,7 @@ class Todo extends Component {
                     this.setState({content:''});
                     setTimeout(()=>{
                         window.location.reload()
-                    }, 1500)
+                    }, 1000)
                     }}>
                 <input className="addTask" placeholder="Add a to-do here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
