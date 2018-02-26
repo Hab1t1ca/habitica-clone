@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Dailies extends Component {
+export default class Dailies extends Component {
     constructor(){
         super()
     }

@@ -10,6 +10,8 @@ import './dashboard.css';
 import stickman from './stickmanTemplate.png';
 import { connect } from 'react-redux';
 import { createChar, addClass } from '../../ducks/reducer';
+import Dailies from "../lists/Dailies";
+import Todos from "../lists/Todos";
 // import UserIcon from '../userIcon/UserIcon';
 
 
@@ -141,8 +143,16 @@ class Dashboard extends Component {
         return (
             <div className="backgroundDashboard">
                 <Nav />
-                <h1>Dashboard</h1>
+
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
+
+                <h1>Dashboard</h1>
+               <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
+
+               <Dailies/>
+               <Todos/>
+
+
 
                 {/* <UserIcon/> */}
 
