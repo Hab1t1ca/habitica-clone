@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {addTodos, goldExpTask, deleteTask} from '../../ducks/reducer';
 
-export default class Todo extends Component {
+class Todo extends Component {
     constructor(){
         super()
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {getLists, addDailies, goldExpTask, deleteTask} from '../../ducks/reducer';
 import { connect } from 'react-redux';
 
-export default class Dailies extends Component {
+class Dailies extends Component {
     constructor(){
         super()
         this.state={
