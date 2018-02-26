@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../nav/nav';
 import { connect } from 'react-redux';
-import { shop } from '../../ducks/reducer';
+import { shop, buy } from '../../ducks/reducer';
 import "./shop.css";
 
 class Shop extends Component {
@@ -10,10 +10,16 @@ class Shop extends Component {
         this.props.shop()
     }
 
+    buyitem(thing) {
+        console.log(thing)
+        this.props.buy(thing)
+    }
+
     displayItems() {
         let items = this.props.items.map(item => {
             return (
                 <div className="itemCard" key={item.itemid}>
+                    <button className="buybutton" onClick={() => this.buyitem(item.itemid)}>buy</button>
                     <h4>{item.name}</h4>
                     <img src={item.image} />
                     <p>Lvl: {item.lvlavailable}</p>
@@ -65,4 +71,4 @@ function mapStateToProps(state) {
         items: state.shop
     }
 }
-export default connect(mapStateToProps, { shop })(Shop)
+export default connect(mapStateToProps, { shop, buy })(Shop)
