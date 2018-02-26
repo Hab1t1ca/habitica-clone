@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {getLists, addDailies, goldExpTask, deleteTask} from '../../ducks/reducer';
+import {getLists, addDailies, goldExpTask, deleteTask, complete} from '../../ducks/reducer';
 import { connect } from 'react-redux';
+import './lists.css';
 
 class Dailies extends Component {
     constructor(){
@@ -27,7 +28,7 @@ class Dailies extends Component {
         currentexp+=10;
 
         this.props.goldExpTask(currentexp, gold);
-        this.props.deleteTask(listid);
+        this.props.complete(listid);
 
         setTimeout(()=>{
             window.location.reload()
@@ -39,16 +40,20 @@ class Dailies extends Component {
         let dailies = this.props.lists.map(item=>{
             if (item.daily_todo==="daily"){
                 return (
-                    <div key={item.id}>
+                    <div key={item.id} className="daily">
+                    <div className='checkbox'>
                     <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
+                    </div>
+                    <div className='taskLabel'>
                     <label htmlFor={item.content}>{item.content}</label>
+                    </div>
                     </div>
                 )
             }
         })
 
         return(
-            <div>
+            <div className='Dailies'>
                 <form onSubmit={(e)=>{
                     e.preventDefault();
                     this.props.addDailies(this.state.content)
@@ -57,10 +62,10 @@ class Dailies extends Component {
                         window.location.reload()
                     }, 1500)
                     }}>
-                <input placeholder="Add a daily here" value={this.state.content} onChange={e=> {
+                <input className="addTask" placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
-                <button type="submit">Submit</button>
+                <button className='submitButton' type="submit">Submit</button>
                 </form>
                 {dailies}
             </div>
@@ -75,4 +80,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask})(Dailies)
+export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask, complete})(Dailies)

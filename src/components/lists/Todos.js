@@ -34,16 +34,20 @@ class Todo extends Component {
         let todos = this.props.lists.map(item=>{
             if (item.daily_todo==="todo"){
                 return(
-                    <div key={item.id}>
+                    <div key={item.id} className='todo'>
+                    <div className='checkbox'>
                     <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
+                    </div>
+                    <div className='taskLabel'>
                     <label htmlFor={item.content}>{item.content}</label>
+                    </div>
                     </div>
                 )
             }
         })
 
         return(
-            <div>
+            <div className='todos'>
                 <form onSubmit={(e)=>{
                     e.preventDefault();
                     this.props.addTodos(this.state.content)
@@ -52,10 +56,10 @@ class Todo extends Component {
                         window.location.reload()
                     }, 1500)
                     }}>
-                <input placeholder="Add a to-do here" value={this.state.content} onChange={e=> {
+                <input className="addTask" placeholder="Add a to-do here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
-                <button type="submit">Submit</button>
+                <button className='submitButton'  type="submit">Submit</button>
                 </form>
                 {todos}
             </div>
