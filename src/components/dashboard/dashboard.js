@@ -9,7 +9,7 @@ import Slider from 'material-ui/Slider';
 import './dashboard.css';
 import stickman from './stickmanTemplate.png';
 import { connect } from 'react-redux';
-import { createChar, addClass } from '../../ducks/reducer';
+import { createChar, addClass, createAvatar } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
 
@@ -57,6 +57,7 @@ class Dashboard extends Component {
           })
         //   console.log(canvasScaled, "CoolScaled")
         //   console.log(picture)
+
         }
       }
 
@@ -142,7 +143,7 @@ class Dashboard extends Component {
         return (
             <div className="backgroundDashboard">
                 <Nav />
-                <h1>Dashboard</h1>
+
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
                 <Dailies/>
@@ -156,13 +157,17 @@ class Dashboard extends Component {
                     open={this.state.firstModal}
                     modal={true}
                     paperProps={{
-                        style: { borderRadius: '25px' }
+                        style: { borderRadius: '0px',
+                                width: '100%',
+                                border: '1px solid white',
+                                 }
                     }}
-                    style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px' }}
+                    style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
                 >
                     <p>Please call your stick person something. We don't care what. Just stick it in the box.</p>
-                    <input placeholder="Name thing goes here" onChange={e => this.handleName(e.target.value)} />
-                    <button onClick={() => this.moveOn()}>Submit</button>
+                    <input placeholder="Name thing goes here" onChange={e => this.handleName(e.target.value)} className="inputModal"/>
+                    <br/>
+                    <button onClick={() => this.moveOn()} className="buttonModal">Submit</button>
                 </Dialog>
                 {/* second modal */}
                 <Dialog
@@ -172,7 +177,7 @@ class Dashboard extends Component {
                     paperProps={{
                         style: { borderRadius: '25px' }
                     }}
-                    style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px' }}
+                    style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
 
                     <div onClick={this.class.bind(this, 'mage')}>Mage</div>
@@ -186,19 +191,21 @@ class Dashboard extends Component {
                     modal={true}
                     autoScrollBodyContent={true}
                     paperProps={{
-                        style: { borderRadius: '25px' }
+                        style: { display: 'flex', flexDirection: 'column', justifyContent: 'center' }
                     }}
-                    style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px' }}
+                    style={{ opacity: '0.9', textAlign: "center", background: '#3D315B'}}
                 >
                     <p>...or upload your face.</p>
 
+                <div className="outerDropzone">
                     <Dropzone
                         multiple={false}
                         accept="image/*"
-                        onDrop={this.onImageDrop.bind(this)}>
+                        onDrop={this.onImageDrop.bind(this)}
+                        className="dropzone">
                         <p>Drop an image or click to select a file to upload.</p>
                     </Dropzone>
-
+                </div>
       <AvatarEditor
         ref={this.setEditorRef}
         image={this.state.image}
@@ -206,9 +213,10 @@ class Dashboard extends Component {
         height={150}
         border={200}
         borderRadius={200}
-        color={[66, 244, 69, 0.3]} // RGBA
+        color={[61, 49, 91, 0.3]} // RGBA
         scale={this.state.scaleSlider}
         rotate={0}
+        style={ {width: '200px', height: '200px', border: '1px solid #3D315B'} }
       />
 
 <Slider
@@ -217,15 +225,21 @@ class Dashboard extends Component {
           step={.1}
           value={this.state.scaleSlider}
           onChange={this.handleScaleSlider}
+          sliderStyle={{ trackColor: '#3D315B', selectionColor: '#3D315B'}}
         />
 
-        <button onClick={() => this.onClickSave()}>Crop</button>
                     
+        <button onClick={() => this.onClickSave()} className="buttonModal">Crop</button>
+    
                     <br/>
-                    <img src={this.state.uploadedFileCloudinaryUrl} className="previewWindow"/>
+                    <img src={this.state.uploadedFileCloudinaryUrl} className= "previewWindow"/>
                     <br/>
                     <img src={stickman} className="stickman"/>
 
+        <button onClick={() => this.props.createAvatar(this.state.uploadedFileCloudinaryUrl)} className="buttonModal">Submit</button>
+                    
+                
+                
                 </Dialog>
             </div>
         )
@@ -237,4 +251,4 @@ function mapStateToProps(state) {
         name: state.name
     }
 }
-export default connect(mapStateToProps, { createChar, addClass })(Dashboard)
+export default connect(mapStateToProps, { createChar, addClass, createAvatar })(Dashboard)
