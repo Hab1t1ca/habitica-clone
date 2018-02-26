@@ -79,6 +79,7 @@ app.post('/api/createChar', controller.createName);
 app.post('/api/addClass', controller.addClass);
 app.get('/api/getUser', controller.getUser);
 app.put('/api/taskComp', controller.updateXPGold);
+app.put('/api/avatar', controller.avatar);
 
 //End user endpoints
 

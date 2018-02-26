@@ -98,14 +98,36 @@ module.exports = {
         }).catch(e=>console.log(e))
     },
 
+    checkLvl: (user, db)=>{//this function runs inside of updateXPGold
+        console.log('checking lvl user', user);
+        if (user.currentexp>=user.nextexp){
+            let {lvl, nextexp, currentexp, gold, mana, userid, hp} = user;
+            lvl+=1;
+            currentexp = 0;
+            gold+=lvlFns.goldCalc(lvl);
+            hp = lvlFns.generalHealthCalc(lvl);
+            mana = lvlFns.generalMana(lvl);
+            nextexp = lvlFns.lvlup(lvl);
+            console.log("what up", lvl, nextexp, currentexp, gold, mana, userid, hp);
+            db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user=>{
+                return user;
+            }).catch(e=>console.log(e))
+        }
+        else{
+            return user;
+        }
+    },
+
     updateXPGold: (req,res)=>{
         let {XP, Gold} = req.body;
         let userid = req.session.passport.user.userid;
         let db = req.app.get('db');
 
         db.updateXPGold([Gold,XP,userid]).then(user=>{
-            checkLvl(user[0]);
-        })
+            console.log(user[0], 'update xp user')
+            let response = module.exports.checkLvl(user[0], db)
+            res.send(response);
+        }).catch(e=>console.log(e))
     },
 
     streak: (req,res)=>{
@@ -124,21 +146,14 @@ module.exports = {
         })
     },
 
-    checkLvl: (req,res, user)=>{//this function runs inside of updateXPGold
-        if (user.currentexp===user.nextexp){
-            let {lvl, nextexp, currentexp, gold, mana, userid, hp} = user;
-            lvl+=1;
-            currentexp = 0;
-            gold+=lvlFns.goldCalc(lvl);
-            hp = lvlFns.generalHealthCalc(lvl);
-            mana = lvlFns.generalMana(lvl);
-            nextexp = 200; //don't have function right now. This is a placeholder. 
-            db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user=>{
-                res.send(user[0]);
-            })
-        }
-        else{
+    avatar: (req,res)=>{
+        let {avatar} = req.body;
+        let userid = req.session.passport.user.userid;
+
+        req.app.get('db').addAvatar([avatar, userid]).then(user=>{
             res.send(user[0]);
-        }
+        })
     }
+
+
 }
