@@ -48,11 +48,18 @@
   height: 200px;
   width: 200px; }
 
-.off {
-  height: 150px;
+.stickmanClosed {
+  height: 0px;
   width: 150px;
   opacity: 0; }
 
-.on {
+.stickmanOpen {
+  height: 200px;
+  width: 200px;
   opacity: 1;
-  transition: 3s; }
+  transition: 1s;
+  margin-left: 20px; }
+
+.tabsStuff {
+  background: #3D315B;
+  height: 100%; }
