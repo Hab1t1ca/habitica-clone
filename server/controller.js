@@ -135,7 +135,7 @@ module.exports = {
 
         req.app.get('db').updateStreak([/*streak*/]).then(user=>{
             res.send(user[0]);
-        })
+        }).catch(e=>console.log(e))
     },
 
     complete: (req,res)=>{
@@ -143,7 +143,7 @@ module.exports = {
 
         req.app.get('db').completeDaily([listid]).then(daily=>{
             res.send(daily);
-        })
+        }).catch(e=>console.log(e))
     },
 
     avatar: (req,res)=>{
@@ -152,7 +152,7 @@ module.exports = {
 
         req.app.get('db').addAvatar([avatar, userid]).then(user=>{
             res.send(user[0]);
-        })
+        }).catch(e=>console.log(e))
     }
 
 
