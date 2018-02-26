@@ -57,7 +57,7 @@ export function createChar(value) {
 
     //Avatar
 export function createAvatar(value) {
-    console.log(value)
+    console.log(value, 'url')
     let body = {
         "avatar": value
     }

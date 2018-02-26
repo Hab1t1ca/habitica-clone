@@ -4,6 +4,7 @@ var goldExpo = 0.029;
 var baseMana = 50;
 var mExpo = 0.2;
 var warHealthExpo = 0.41;
+var baseExpforLvl = 100;
 
 
 module.exports = {
@@ -57,6 +58,14 @@ module.exports = {
         var mageManaExpo = 0.36;
         var mana = Math.round(baseMana * (Math.pow(lvl, mageManaExpo)))
         return mana
+    },
+
+    lvlup: function (lvl) {
+        var lvlExpo = 0.3;
+        var nextLvlExp = Math.floor(baseExpforLvl * (Math.pow(lvl, lvlExpo)))
+        baseExpforLvl = nextLvlExp
+        
+        return baseExpforLvl
     }
 
 }
