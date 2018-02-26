@@ -9,7 +9,7 @@ import Slider from 'material-ui/Slider';
 import './dashboard.css';
 import stickman from './stickmanTemplate.png';
 import { connect } from 'react-redux';
-import { createChar, addClass } from '../../ducks/reducer';
+import { createChar, addClass, createAvatar } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
 
@@ -57,6 +57,7 @@ class Dashboard extends Component {
           })
         //   console.log(canvasScaled, "CoolScaled")
         //   console.log(picture)
+
         }
       }
 
@@ -234,6 +235,8 @@ class Dashboard extends Component {
                     <img src={this.state.uploadedFileCloudinaryUrl} className= "previewWindow"/>
                     <br/>
                     <img src={stickman} className="stickman"/>
+
+        <button onClick={() => this.props.createAvatar(this.state.uploadedFileCloudinaryUrl)} className="buttonModal">Submit</button>
                     
                 
                 
@@ -248,4 +251,4 @@ function mapStateToProps(state) {
         name: state.name
     }
 }
-export default connect(mapStateToProps, { createChar, addClass })(Dashboard)
+export default connect(mapStateToProps, { createChar, addClass, createAvatar })(Dashboard)

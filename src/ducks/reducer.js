@@ -17,7 +17,8 @@ const initialState = {
     maxhp: 50,
     maxmana: 50,
     baseexp: 100,
-    completed: false
+    completed: false,
+    avatar: ''
 };
 
 const NAME = 'NAME';
@@ -33,7 +34,8 @@ const SHOW_BASE_EXP = "SHOW_BASE_EXP";
 const DELETE_TASK = "DELETE_TASK";
 const UPDATE_GOEXP = "UPDATE_GOEXP";
 const COMPLETE_DAILY = "COMPLETE_DAILY";
-const COMPLETED = "COMPLETED"
+const COMPLETED = "COMPLETED";
+const AVATAR = "AVATAR";
 
 
 //Create Character function
@@ -50,6 +52,23 @@ export function createChar(value) {
     return {
         type: NAME,
         payload: user.name
+    }
+}
+
+    //Avatar
+export function createAvatar(value) {
+    console.log(value)
+    let body = {
+        "avatar": value
+    }
+    let user = axios.put(`/api/avatar`, body).then(res => {
+        console.log(res.data, "Avatar Cropped");
+        return res.data
+    })
+
+    return {
+        type: AVATAR,
+        payload: body
     }
 }
 
@@ -258,6 +277,9 @@ function reducer(state = initialState, action) {
 
         case COMPLETED + 'FULFILLED':
             return Object.assign({}, state, { completed: action.payload })
+
+        case AVATAR + 'FULFILLED':
+            return Object.assign({}, state, { avatar: action.payload })
 
         default: return state;
     }
