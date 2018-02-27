@@ -41,7 +41,11 @@
       background: #1c751c; }
   #middleAge {
     background-color: lightcoral; }
+    #middleAge .checkbox {
+      background: #974545; }
   #geriatric {
     background-color: darkred; }
+    #geriatric .checkbox {
+      background: #460f0f; }
   .todos {
     background: #F0EBF3; } }
