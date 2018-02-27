@@ -170,5 +170,10 @@ module.exports = {
         req.app.get('db').editTask([content, id]).then(task=>{
             res.send(task);
         })
-    }
+    },
+
+    logout: (req, res) => {
+        req.logOut();
+        res.redirect(process.env.FAILUREREDIRECT)
+      }
 }
