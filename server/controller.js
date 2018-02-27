@@ -162,5 +162,13 @@ module.exports = {
         req.app.get('db').addAvatar([avatar, userid]).then(user=>{
             res.send(user[0]);
         }).catch(e=>console.log(e))
+    },
+
+    editTask: (req,res)=>{
+        let {content, id} = req.body;
+
+        req.app.get('db').editTask([content, id]).then(task=>{
+            res.send(task);
+        })
     }
 }
