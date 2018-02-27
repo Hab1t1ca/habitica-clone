@@ -8,9 +8,14 @@
 }
 
 .buybutton {
-    width: 20px;
-    height: 10px;
+    width: 4em;
+    height: 2em;
     background-color: purple;
+    color: white;
+}
+
+.noBuy {
+    display: none;
 }
 
 .itemCard {

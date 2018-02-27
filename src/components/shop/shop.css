@@ -7,9 +7,13 @@
   flex-wrap: wrap; }
 
 .buybutton {
-  width: 20px;
-  height: 10px;
-  background-color: purple; }
+  width: 4em;
+  height: 2em;
+  background-color: purple;
+  color: white; }
+
+.noBuy {
+  display: none; }
 
 .itemCard {
   width: 150px;

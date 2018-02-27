@@ -11,26 +11,11 @@ class UserIcon extends Component {
         this.state = {
 
         }
-        this.displayUser = this.displayUser.bind(this)
     }
 
     componentWillMount() {
         this.props.getUser()
     }
-
-    displayUser() {
-        // let {user} = this.props
-        console.log(this.props.user.hp, 'props')
-        return (
-            <div>
-                {/* <h1>{user.hp}</h1> */}
-            </div>
-        )
-
-    }
-
-
-
 
 
     render() {
@@ -66,8 +51,6 @@ class UserIcon extends Component {
 
 
                 </div>
-
-                {/* // <div>{this.displayUser()}</div> */}
             </div>
 
 
