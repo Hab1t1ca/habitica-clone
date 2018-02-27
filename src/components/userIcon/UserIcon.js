@@ -52,7 +52,7 @@ class UserIcon extends Component {
 
 
                 <div className="stats">
-
+                    <br/>
                     <div className="Class">
                     
                     {this.props.user.class}
@@ -64,6 +64,7 @@ class UserIcon extends Component {
 
                     </div>
 
+                    <br/>
 
                     <div className="mana"> 
                     <img src={heartIcon} className="manaPic"/>
@@ -84,8 +85,6 @@ class UserIcon extends Component {
                     Xp {this.props.user.currentexp} / {this.props.user.nextexp}</div>
                     <div className="XpBarBorder">
                     <div className="XpBar"></div>
-
-
                     </div>
 
 

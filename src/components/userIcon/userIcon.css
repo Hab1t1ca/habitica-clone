@@ -13,7 +13,7 @@
 
 .avatarBox {
   width: 150px;
-  height: 170px;
+  height: 75%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -41,7 +41,8 @@
   margin-left: 5%;
   display: flex;
   flex-direction: column;
-  margin: auto; }
+  margin: auto;
+  height: 75%; }
 
 .Class {
   display: flex;
@@ -51,7 +52,7 @@
   top: -10px;
   text-align: center;
   vertical-align: middle;
-  line-height: 28px;
+  line-height: 10px;
   font-size: 20px; }
 
 .Golds {
