@@ -5,6 +5,7 @@ import UserIcon from '../userIcon/UserIcon';
 import { getUser } from '../../ducks/reducer';
 import stick from "./stick-512.png"
 import "./nav.css";
+import gold from './Coins.png'
 
 
 class Nav extends Component {
@@ -42,8 +43,14 @@ class Nav extends Component {
                         <img className="logo" src={stick} alt="a stick" />
                     </div>
 
-                    <p className="logoText">{this.props.user.name}</p>
+
+                    <div className="NavBarInfo">
+                        <p className="logoText">{this.props.user.name}</p>
+                        <p className="Level">Lvl: {this.props.user.lvl}</p>
+                    </div>
+
                 
+
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
                     <Link to='/shop' className="nav-link"><div >Shop</div></Link>

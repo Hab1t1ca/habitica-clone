@@ -38,6 +38,7 @@ const UPDATE_GOEXP = "UPDATE_GOEXP";
 const COMPLETE_DAILY = "COMPLETE_DAILY";
 const COMPLETED = "COMPLETED";
 const AVATAR = "AVATAR";
+const EDIT_TASK = "EDIT_TASK";
 
 
 //Create Character function
@@ -57,7 +58,7 @@ export function createChar(value) {
     }
 }
 
-    //Avatar
+//Avatar
 export function createAvatar(value) {
     console.log(value, 'url')
     let body = {
@@ -89,12 +90,12 @@ export function shop() {
 }
 
 //buy shop item
-export function buy(thing){
-    let body ={ itemid: thing }
-    let buy = axios.post(`/api/buyitem`,body).then(res => {
+export function buy(thing) {
+    let body = { itemid: thing }
+    let buy = axios.post(`/api/buyitem`, body).then(res => {
         console.log(body)
         return res.data
-    }).catch(e=>{console.log(e)})
+    }).catch(e => { console.log(e) })
 
     return {
         type: BUY,
@@ -188,6 +189,8 @@ export function deleteTask(id) {
     let lists = axios.delete(`/api/deleteTask/${listid}`).then(res => {
         return res.data
     })
+
+    window.location.reload()
     return {
         type: DELETE_TASK,
         payload: lists
@@ -233,22 +236,22 @@ export function showBaseExp(baseexp) {
     }
 }
 
-//Complete a daily
-// export function compDaily(comp, listid) {
-//     let body = {
-//         "completed": comp,
+//edit task
+export function editTask(content, id) {
+    let body = {
+        "content": content,
+        "id": id
+    }
+    let editTask = axios.put('/api/editTask', body).then(res => {
+        return res.data
+    })
 
-//     }
-//     if (!comp) {
-//         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
-//             return res.data
-//         })
-//     } else { streak = 0 }
-//     return {
-//         type: COMPLETE_DAILY,
-//         payload: streak
-//     }
-// }
+    window.location.reload()
+    return {
+        type: EDIT_TASK,
+        payload: editTask
+    }
+}
 
 //Complete
 export function complete(listid) {
@@ -308,6 +311,9 @@ function reducer(state = initialState, action) {
 
         case AVATAR + 'FULFILLED':
             return Object.assign({}, state, { avatar: action.payload })
+
+        case EDIT_TASK + 'FULFILLED':
+            return Object.assign({}, state, { lists: action.payload })
 
         default: return state;
     }
