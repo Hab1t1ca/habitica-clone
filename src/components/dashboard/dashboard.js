@@ -247,9 +247,9 @@ class Dashboard extends Component {
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
 
-                    <div onClick={this.class.bind(this, 'mage')}>Mage</div>
-                    <div onClick={this.class.bind(this, 'rogue')}>Rogue</div>
-                    <div onClick={this.class.bind(this, 'warrior')}>Warrior</div>
+                    <div onClick={this.class.bind(this, 'Mage')}>Mage</div>
+                    <div onClick={this.class.bind(this, 'Rogue')}>Rogue</div>
+                    <div onClick={this.class.bind(this, 'Warrior')}>Warrior</div>
                 </Dialog>
                 {/* third modal */}
                 <Dialog
