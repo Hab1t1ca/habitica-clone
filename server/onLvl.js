@@ -60,12 +60,14 @@ module.exports = {
         return mana
     },
 
-    lvlup: function (lvl) {
-        var lvlExpo = 0.3;
-        var nextLvlExp = Math.floor(baseExpforLvl * (Math.pow(lvl, lvlExpo)))
-        baseExpforLvl = nextLvlExp
+    //xp for next lvl
+    //Formula not working as designed, disabled to meet deadline.
+    // lvlup: function (lvl) {
+    //     var lvlExpo = 0.3;
+    //     var nextLvlExp = Math.floor(baseExpforLvl * (Math.pow(lvl - 1, lvlExpo)))
+    //     baseExpforLvl = nextLvlExp
         
-        return baseExpforLvl
-    }
+    //     return baseExpforLvl
+    // }
 
 }
