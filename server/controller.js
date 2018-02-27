@@ -139,14 +139,6 @@ module.exports = {
         }).catch(e=>console.log(e))
     },
 
-    streak: (req,res)=>{
-        //pull streak number off of the req.body. and we will need list item number. 
-
-        req.app.get('db').updateStreak([/*streak*/]).then(user=>{
-            res.send(user[0]);
-        }).catch(e=>console.log(e))
-    },
-
     complete: (req,res)=>{
         let listid = req.params.listid;
 
@@ -165,9 +157,9 @@ module.exports = {
     },
 
     editTask: (req,res)=>{
-        let {content, id} = req.body;
+        let {content, id, duedate} = req.body;
 
-        req.app.get('db').editTask([content, id]).then(task=>{
+        req.app.get('db').editTask([content, id, duedate]).then(task=>{
             res.send(task);
         })
     }

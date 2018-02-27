@@ -72,7 +72,7 @@ class Dailies extends Component {
       };
 
     render(){
-
+        console.log('date', this.state.controlledDate)
         let dailies = this.props.lists.map(item=>{
             if (item.daily_todo==="daily"){
                 return (
@@ -107,8 +107,7 @@ class Dailies extends Component {
                 <input className="addTask" placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
-                <br/>
-                <button className='buttonModal' type="submit">Submit</button>
+                <button className='submitButton' type="submit">Submit</button>
                 </form>
                 {dailies}
 {/* edit modal */}
@@ -132,7 +131,7 @@ class Dailies extends Component {
                     />
                     {JSON.stringify(this.state.dueDate)}
 
-                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId)}>Submit</button>
+                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId, this.state.controlledDate)}>Submit</button>
                     <button onClick={()=>this.props.deleteTask(this.state.currentListId)}>Delete Task</button>
                     <button onClick={() => this.openEdit()} className="buttonModal">Cancel</button>
 
