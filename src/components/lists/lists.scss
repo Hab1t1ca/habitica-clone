@@ -3,21 +3,27 @@ $background: #F0EBF3;
 $inputbox: #E4DAEA;
 
 .Dailies{
-    background: $background;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #3D315B;
 }
 
 @media (max-width: 414px){
 
     .addTask{
+        margin-top: 10px;
+        padding: 5px;
         width: 80%;
         height: 20px;
+        border-radius: 40px;
         background: $inputbox;
     }
 
     .daily{
         margin-top:15px;
-        width: 100vw;
-        background: white;
+        width: 100%;
+        background: #3D315B;
         height: 75px;
         display: flex;
         border-radius: 5px;
@@ -25,22 +31,40 @@ $inputbox: #E4DAEA;
         z-index:2;
         box-shadow: 0 6px 12px 0px #474E6A;
         
+
         .checkbox{
-            background: $navbarcolor;
+            background: #3D315B;
             width: 10%;
             height: 48%;
-            padding:20px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             input{
-                width: 25px;
-                height: 25px;
+                width: 15px;
+                height: 15px;
+                background-color: white;
             }
         }
         .taskLabel{
-            margin: 10px;
+            background-color: #3D315B;
+            color: white;
+            // margin: 10px;
             width:80%;
             height:100%;
+            text-align: center;
+            vertical-align: middle;
         }
 
+    }
+
+    .forms{
+        display: flex;
+        background-color: white;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .submitButton{
