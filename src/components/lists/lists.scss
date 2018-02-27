@@ -54,6 +54,15 @@ $inputbox: #E4DAEA;
     .todo{
         @extend .daily;
     }
+    #young{
+        background-color: lightgreen;
+    }
+    #middleAge{
+        background-color: lightcoral;
+    }
+    #geriatric{
+        background-color: darkred;
+    }
 
     .todos{
         background: $background;

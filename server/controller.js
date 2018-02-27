@@ -59,8 +59,8 @@ module.exports = {
         // let userid = 13;
         let db = req.app.get('db');
         let {daily} = req.body;
-        let d = new Date();
-        let age = d.toString().substring(0,15)
+        // let d = new Date();
+        let age = 0;
 
         console.log('hitting add Daily', daily, userid, age)
         // let userid = 1; this one is for doing the unit tests

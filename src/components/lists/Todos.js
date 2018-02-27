@@ -34,7 +34,7 @@ class Todo extends Component {
         let todos = this.props.lists.map(item=>{
             if (item.daily_todo==="todo"){
                 return(
-                    <div key={item.id} className='todo'>
+                    <div key={item.id} className= 'todos' id = {(this.props.lists.age <=1)? 'young': (this.props.lists.age < 3)? 'middleAge': 'geriatric'}>
                     <div className='checkbox'>
                     <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
                     </div>
