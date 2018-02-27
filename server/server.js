@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('0 12 * * *', function () {
+cron.schedule('0 0 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
