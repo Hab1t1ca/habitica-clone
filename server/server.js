@@ -140,7 +140,6 @@ app.post('/api/addDaily', controller.addDaily);
 app.post('/api/addTodo', controller.addTodo);
 app.get('/api/getLists', controller.getLists);
 app.delete('/api/deleteTask/:listid', controller.deleteTask);
-app.put('/api/streak/:listid', controller.streak);
 app.put('/api/complete/:listid', controller.complete);
 app.put('/api/editTask', controller.editTask);
 

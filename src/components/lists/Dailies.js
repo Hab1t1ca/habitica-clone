@@ -13,8 +13,8 @@ class Dailies extends Component {
             openEdit: false,
             currentTask: '',
             currentListId: 0,
-            editedContent: '',
-            controlledDate: null
+            controlledDate: null,
+            taskIndex: null
         }
     }
 
@@ -28,18 +28,19 @@ class Dailies extends Component {
         })
     }
 
-    openEdit(content, id){
+    openEdit(content, id, index){
         this.setState({
             openEdit: !this.state.openEdit,
             currentTask: content, 
-            currentListId: id
+            currentListId: id,
+            taskIndex: index
         })
         //don't need to overwite content and id on state when modal closes because every time a new modal is opened on a task, it will overwrite the current values. 
     }
 
     editTitle(string){
         this.setState({
-            editedContent: string
+            content: string
         })
     }
 
@@ -69,11 +70,18 @@ class Dailies extends Component {
         this.setState({
           controlledDate: date,
         });
-      };
+      }
+
+    submitEdit(){
+        let task = (this.state.content) ? this.state.content : this.props.lists[this.state.taskIndex].content;
+
+        let date = (this.state.controlledDate) ? this.state.controlledDate : this.props.lists[this.state.taskIndex].duedate;
+
+        this.props.editTask(task, this.state.currentListId, this.state.controlledDate)
+    }
 
     render(){
-        console.log('date', this.state.controlledDate)
-        let dailies = this.props.lists.map(item=>{
+        let dailies = this.props.lists.map((item,index)=>{
             if (item.daily_todo==="daily"){
                 return (
                     <div key={item.id} className="daily">
@@ -81,10 +89,12 @@ class Dailies extends Component {
                             <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id, item.completed)}/>
                         </div>
                         <div className='taskLabel'>
-                            <label htmlFor={item.content}>{item.content}</label>
+                            <label htmlFor={item.content}>{item.content}<br/><br/><br/>
+                            {(item.duedate!==null) && item.duedate.substr(0,10)}
+                            </label>
                         </div>
                         <div>
-                            <button onClick={e=>this.openEdit(item.content, item.id)}>Edit</button><br/>
+                            <button onClick={e=>this.openEdit(item.content, item.id, index)}>Edit</button><br/>
                             <span>Streak: {item.streak}</span>
                         </div>
                     </div>
@@ -123,7 +133,7 @@ class Dailies extends Component {
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
                 >
-                    <p>Task: </p><input value={this.state.editedContent} placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
+                    <p>Task: </p><input placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
                     <DatePicker
                         hintText="Add Due Date"
                         value={this.state.controlledDate}
@@ -131,7 +141,7 @@ class Dailies extends Component {
                     />
                     {JSON.stringify(this.state.dueDate)}
 
-                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId, this.state.controlledDate)}>Submit</button>
+                    <button onClick={()=>this.submitEdit()}>Submit</button>
                     <button onClick={()=>this.props.deleteTask(this.state.currentListId)}>Delete Task</button>
                     <button onClick={() => this.openEdit()} className="buttonModal">Cancel</button>
 
