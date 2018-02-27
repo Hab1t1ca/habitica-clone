@@ -1,6 +1,6 @@
 .mainHeader {
     width: 100vh;
-    height: 25vh;
+    height: 30vh;
     display: flex;
     position: relative;
     // background-color: #444B6E;
@@ -18,7 +18,7 @@
 
 .avatarBox {
     width: 150px;
-    height: 150px;
+    height: 170px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -33,8 +33,9 @@
 }
 
 .stickmanInBox {
-    width: 75px;
-    height: 70px;
+    width: 85px;
+    height: 80px;
+    z-index: 10;
 }
 
 .avatarWindow {
@@ -42,7 +43,7 @@
     border-radius: 200px;
     width: 50px;
     height: 50px;
-    margin-bottom: -6px;
+    margin-bottom: -4px;
     z-index: 9;
    }
 
@@ -54,17 +55,23 @@
 }
 
 .Class {
+    display: flex;
+    justify-content: space-around;
    text-align: center;
 position: relative;
-top: -20px; 
+top: -10px;
+text-align: center;
+vertical-align: middle;
+line-height: 28px;
+font-size: 20px;
 }
 
-.lvl {
-    position: relative;
-    
+.Golds {
+    display: flex;
+    justify-content: space-around;
+    width: 50px;
+    align-items: center;
 }
-
-
 
 
 .health {
@@ -90,10 +97,29 @@ padding-top: 5px;
 
 
 .mana {
+    display: flex;
     position: relative;
     text-align: right;
     padding-bottom: 3px;
     padding-top: 5px;
+    justify-content: space-around;
+    // text-align: center;
+    vertical-align: middle;
+    line-height: 36px;
+    align-items: center;  
+    word-spacing: 3px;
+}
+
+.manaPic {
+    width: 20px;
+    height: 20px;
+}
+
+
+.starPic {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
 }
 
 .manaBar {
@@ -131,3 +157,5 @@ padding-top: 5px;
     border: 1px solid white;
     background-color: rgba(175, 255, 47, 0.212);
 }
+
+

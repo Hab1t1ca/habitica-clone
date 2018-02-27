@@ -16,10 +16,9 @@
 
 .logoText {
     display: flex;
-    justify-content: center;
-    font-size: 25px;
-    // margin-right: 10px;
+    justify-content: center; 
     color: #e9e7e7;
+    font-size: 25px;    
 }
 
 .navbar {
@@ -91,7 +90,7 @@
         flex-direction: column;
         justify-content: center;
         width: 100vw;
-        height: 25vh;
+        height: 30vh;
         background-color: #444B6E;
         transition: 0.5s;
         overflow: hidden;
@@ -118,8 +117,34 @@
     color: rgb(214, 214, 214);
     display: inline-block;
     text-decoration: none;
-    // text-align: center;
-    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.385);
+    text-align: center;
+    line-height: 64px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.385);
+}
+
+.GoldDiv {
+    width: 25px;
+    margin-left: 25px;
+}
+.Gold {
+    width: 20px;
+    height: 20px;
+}
+
+.NavBarInfo {
+    // display: flex;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px; 
+    color: white;
+    width: 50%;
+    // justify-content: space-around;
+    margin-top: 5px;
+    // font-size: 25px;    
+}
+
+.Level {
+    font-size: 15px;
 }
 
 }
