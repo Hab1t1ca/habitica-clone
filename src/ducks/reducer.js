@@ -199,6 +199,22 @@ export function goldExpTask(xp, gold) {
     }
 }
 
+//Complete a daily/streak
+// export function compDaily(comp, listid) {
+//     let body = {
+//         "completed": comp,
+//     }
+//     if (!comp) {
+//         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
+//             return res.data
+//         })
+//     } else { streak = 0 }
+//     return {
+//         type: COMPLETE_DAILY,
+//         payload: streak
+//     }
+// }
+
 //show max health
 export function showMaxHp(maxhp) {
     return {
@@ -223,6 +239,18 @@ export function showBaseExp(baseexp) {
     }
 }
 
+
+//Complete
+export function complete(listid) {
+    let complete = axios.put(`/api/complete/${listid}`).then(res => {
+        return res.data
+    })
+    return {
+        type: COMPLETED,
+        payload: complete
+    }
+}
+
 //edit task
 export function editTask(content, id) {
     let body = {
@@ -240,16 +268,6 @@ export function editTask(content, id) {
     }
 }
 
-//Complete
-export function complete(listid) {
-    let complete = axios.put(`/api/complete/${listid}`).then(res => {
-        return res.data
-    })
-    return {
-        type: COMPLETED,
-        payload: complete
-    }
-}
 
 
 function reducer(state = initialState, action) {

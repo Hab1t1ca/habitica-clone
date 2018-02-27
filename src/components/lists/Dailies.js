@@ -96,7 +96,7 @@ class Dailies extends Component {
 
         return(
             <div className='Dailies'>
-                <form onSubmit={(e)=>{
+                <form className="forms" onSubmit={(e)=>{
                     e.preventDefault();
                     this.props.addDailies(this.state.content)
                     this.setState({content:''});
@@ -107,7 +107,8 @@ class Dailies extends Component {
                 <input className="addTask" placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
-                <button className='submitButton' type="submit">Submit</button>
+                <br/>
+                <button className='buttonModal' type="submit">Submit</button>
                 </form>
                 {dailies}
 {/* edit modal */}
