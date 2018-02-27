@@ -252,10 +252,11 @@ export function complete(listid) {
 }
 
 //edit task
-export function editTask(content, id) {
+export function editTask(content, id, duedate) {
     let body = {
         "content": content,
-        "id": id
+        "id": id,
+        "duedate": duedate
     }
     let editTask = axios.put('/api/editTask', body).then(res => {
         return res.data
