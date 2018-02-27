@@ -66,7 +66,6 @@ class Dailies extends Component {
     }
 
     handleChange = (event, date) => {
-        console.log('due date', event, date)
         this.setState({
           controlledDate: date,
         });
