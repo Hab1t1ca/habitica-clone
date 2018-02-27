@@ -1,4 +1,6 @@
 require('dotenv').config();
+const lvlFns = require('./onLvl.js');
+
 
 const express = require('express')
     , session = require('express-session')
@@ -15,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('0 0 0 * * *', function(){
+cron.schedule('0 0 * * *', function(){
     const db=app.get('db');
 
     db.cron().then(lists=>{
@@ -23,17 +25,43 @@ cron.schedule('0 0 0 * * *', function(){
 
             dailies.map(daily=>{
                 if (daily.completed!=true){
+                    //streak = 0,and run updateStreak.
+                    daily.streak = 0;
+                    db.updateStreak([daily.streak, daily.id]).then (daily=>{
+                        return daily;
+                    }).catch(e=>console.log(e)) 
                     db.getUser([daily.userid]).then(user=>{
                         let {hp, gold, userid} = user[0];
                         hp-=5;
                         gold-=1;
-
                         db.cronUpdate([hp, gold, userid]).then(user=>{
-                            return user[0]
+                            console.log('user should lose level', user[0]);
+                            let blob = user[0];
+                            if (blob.hp<=0){
+                                let {lvl, nextexp, currentexp, gold, mana, userid, hp} = blob;
+                                lvl-=1;
+                                currentexp = 0;
+                                gold-=5;
+                                hp = lvlFns.generalHealthCalc(lvl);
+                                mana = lvlFns.generalMana(lvl);
+                                nextexp += 15;
+                                console.log('new values', lvl,hp,mana,nextexp,currentexp,gold,userid)
+                                db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user=>{
+                                    return user;
+                                }).catch(e=>console.log(e))
+                            }
+                            else{
+                                return blob
+                            }
                         }).catch(e=>console.log(e))
                     })
                 }
                 else {
+                    //run updateStreak with streak+=1
+                    daily.streak += 1;
+                    db.updateStreak([daily.streak, daily.id]).then(daily=>{
+                        return daily
+                    })
                     db.cronUpdateList([daily.id]).then(results=>{
                         return results;
                     }).catch(e=>console.log(e))
@@ -69,7 +97,6 @@ passport.use(new Auth0strat({
     db.find_user([user_id]).then(users=>{
         if (!users[0]){
             db.create_auth([user_id]).then(user=>{
-                console.log('hell on wheels', user[0].userid)
                 db.insertID_users([user[0].userid]).then(userdata=>{
                     return done(null, userdata[0])
                 })
@@ -82,12 +109,12 @@ passport.use(new Auth0strat({
 }))
 
 passport.serializeUser((user, done)=>{
-    console.log('serialize', user)
+    // console.log('serialize', user)
     return done(null,user)
 })
 
 passport.deserializeUser((user, done)=>{
-    console.log('deserial', user.userid)
+    // console.log('deserial', user.userid)
     return done(null, user.userid)
 })
 

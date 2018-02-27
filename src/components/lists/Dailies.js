@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getLists, addDailies, goldExpTask, deleteTask, complete} from '../../ducks/reducer';
+import {getLists, addDailies, goldExpTask, deleteTask, complete, editTask} from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import './lists.css';
 import Dialog from 'material-ui/Dialog';
@@ -68,13 +68,16 @@ class Dailies extends Component {
             if (item.daily_todo==="daily"){
                 return (
                     <div key={item.id} className="daily">
-                    <div className='checkbox'>
-                    <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id, item.completed)}/>
-                    </div>
-                    <div className='taskLabel'>
-                    <label htmlFor={item.content}>{item.content}</label>
-                    </div>
-                    <button onClick={e=>this.openEdit(item.content, item.id)}>Edit</button>
+                        <div className='checkbox'>
+                            <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id, item.completed)}/>
+                        </div>
+                        <div className='taskLabel'>
+                            <label htmlFor={item.content}>{item.content}</label>
+                        </div>
+                        <div>
+                            <button onClick={e=>this.openEdit(item.content, item.id)}>Edit</button><br/>
+                            <span>Streak: {item.streak}</span>
+                        </div>
                     </div>
                 )
             }
@@ -110,8 +113,8 @@ class Dailies extends Component {
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
                 >
                     <input value={this.state.editedContent} placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
-                    <button onClick={}>Submit</button>
-                    <button onClick={()=>this.props.deleteTask()}>Delete Task</button>
+                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId)}>Submit</button>
+                    <button onClick={()=>this.props.deleteTask(this.state.currentListId)}>Delete Task</button>
                     <button onClick={() => this.openEdit()} className="buttonModal">Cancel</button>
                 </Dialog>
             </div>
@@ -126,4 +129,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask, complete})(Dailies)
+export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask, complete, editTask})(Dailies)

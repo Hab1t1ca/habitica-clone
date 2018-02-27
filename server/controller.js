@@ -116,8 +116,8 @@ module.exports = {
             gold+=lvlFns.goldCalc(lvl);
             hp = lvlFns.generalHealthCalc(lvl);
             mana = lvlFns.generalMana(lvl);
-            nextexp = lvlFns.lvlup(lvl);
-            console.log("what up", lvl, nextexp, currentexp, gold, mana, userid, hp);
+            nextexp += 15;
+            // console.log("what up", lvl, nextexp, currentexp, gold, mana, userid, hp);
             db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user=>{
                 return user;
             }).catch(e=>console.log(e))
