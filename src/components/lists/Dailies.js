@@ -3,6 +3,7 @@ import {getLists, addDailies, goldExpTask, deleteTask, complete, editTask} from 
 import { connect } from 'react-redux';
 import './lists.css';
 import Dialog from 'material-ui/Dialog';
+import DatePicker from 'material-ui/DatePicker';
 
 class Dailies extends Component {
     constructor(){
@@ -12,7 +13,8 @@ class Dailies extends Component {
             openEdit: false,
             currentTask: '',
             currentListId: 0,
-            editedContent: ''
+            editedContent: '',
+            controlledDate: null
         }
     }
 
@@ -62,8 +64,15 @@ class Dailies extends Component {
         }
     }
 
-    render(){
+    handleChange = (event, date) => {
+        console.log('due date', event, date)
+        this.setState({
+          controlledDate: date,
+        });
+      };
 
+    render(){
+        console.log('date', this.state.controlledDate)
         let dailies = this.props.lists.map(item=>{
             if (item.daily_todo==="daily"){
                 return (
@@ -83,6 +92,8 @@ class Dailies extends Component {
             }
         })
 
+
+
         return(
             <div className='Dailies'>
                 <form className="forms" onSubmit={(e)=>{
@@ -96,8 +107,7 @@ class Dailies extends Component {
                 <input className="addTask" placeholder="Add a daily here" value={this.state.content} onChange={e=> {
                 this.content(e.target.value);
                 }}/>
-                <br/>
-                <button className='buttonModal' type="submit">Submit</button>
+                <button className='submitButton' type="submit">Submit</button>
                 </form>
                 {dailies}
 {/* edit modal */}
@@ -113,12 +123,20 @@ class Dailies extends Component {
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
                 >
-                    <input value={this.state.editedContent} placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
-                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId)}>Submit</button>
+                    <p>Task: </p><input value={this.state.editedContent} placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
+                    <DatePicker
+                        hintText="Add Due Date"
+                        value={this.state.controlledDate}
+                        onChange={this.handleChange}
+                    />
+                    {JSON.stringify(this.state.dueDate)}
+
+                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId, this.state.controlledDate)}>Submit</button>
                     <button onClick={()=>this.props.deleteTask(this.state.currentListId)}>Delete Task</button>
                     <button onClick={() => this.openEdit()} className="buttonModal">Cancel</button>
+
                 </Dialog>
-            </div>
+                </div>
         )
     }
 }

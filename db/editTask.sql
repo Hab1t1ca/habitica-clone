@@ -1,4 +1,4 @@
 UPDATE lists
-SET "content" = $1
+SET ("content", "duedate") = ($1, $3)
 WHERE id = $2
 RETURNING *;
