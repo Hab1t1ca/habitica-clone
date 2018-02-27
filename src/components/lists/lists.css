@@ -54,5 +54,13 @@
     height: 30px;
     border-radius: 5px;
     background-color: #F0EBF3; }
+  #young {
+    background-color: lightgreen; }
+    #young .checkbox {
+      background: #1c751c; }
+  #middleAge {
+    background-color: lightcoral; }
+  #geriatric {
+    background-color: darkred; }
   .todos {
     background: #F0EBF3; } }
