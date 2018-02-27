@@ -86,9 +86,15 @@ $inputbox: #E4DAEA;
     }
     #middleAge{
         background-color: lightcoral;
+        .checkbox{
+            background: rgb(151, 69, 69)
+        }
     }
     #geriatric{
         background-color: darkred;
+        .checkbox{
+            background: rgb(70, 15, 15);
+        }
     }
 
     .todos{
