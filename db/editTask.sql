@@ -1,4 +1,4 @@
 UPDATE lists
-SET "streak" = $1
+SET "content" = $1
 WHERE id = $2
 RETURNING *;
