@@ -176,6 +176,8 @@ export function deleteTask(id) {
     let lists = axios.delete(`/api/deleteTask/${listid}`).then(res => {
         return res.data
     })
+
+    window.location.reload()
     return {
         type: DELETE_TASK,
         payload: lists
@@ -258,6 +260,8 @@ export function editTask(content, id) {
     let editTask = axios.put('/api/editTask', body).then(res => {
         return res.data
     })
+
+    window.location.reload()
     return {
         type: EDIT_TASK,
         payload: editTask

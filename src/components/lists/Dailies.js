@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
-import {getLists, addDailies, goldExpTask, deleteTask, complete} from '../../ducks/reducer';
+import {getLists, addDailies, goldExpTask, deleteTask, complete, editTask} from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import './lists.css';
+import Dialog from 'material-ui/Dialog';
 
 class Dailies extends Component {
     constructor(){
         super()
         this.state={
-            content: ''
+            content: '',
+            openEdit: false,
+            currentTask: '',
+            currentListId: 0,
+            editedContent: ''
         }
     }
 
@@ -21,18 +26,40 @@ class Dailies extends Component {
         })
     }
 
-    completeTask(listid){
-        let {gold, currentexp} = this.props.user
+    openEdit(content, id){
+        this.setState({
+            openEdit: !this.state.openEdit,
+            currentTask: content, 
+            currentListId: id
+        })
+        //don't need to overwite content and id on state when modal closes because every time a new modal is opened on a task, it will overwrite the current values. 
+    }
 
-        gold+=1;
-        currentexp+=10;
+    editTitle(string){
+        this.setState({
+            editedContent: string
+        })
+    }
 
-        this.props.goldExpTask(currentexp, gold);
-        this.props.complete(listid);
+    completeTask(listid, completed){
 
-        setTimeout(()=>{
+        if (completed===true){
             window.location.reload()
-        }, 1000)
+            return "You have already completed this today."
+        }
+        else{
+            let {gold, currentexp} = this.props.user
+    
+            gold+=1;
+            currentexp+=10;
+    
+            this.props.goldExpTask(currentexp, gold);
+            this.props.complete(listid);
+    
+            setTimeout(()=>{
+                window.location.reload()
+            }, 900)
+        }
     }
 
     render(){
@@ -41,12 +68,16 @@ class Dailies extends Component {
             if (item.daily_todo==="daily"){
                 return (
                     <div key={item.id} className="daily">
-                    <div className='checkbox'>
-                    <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id)}/>
-                    </div>
-                    <div className='taskLabel'>
-                    <label htmlFor={item.content}>{item.content}</label>
-                    </div>
+                        <div className='checkbox'>
+                            <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id, item.completed)}/>
+                        </div>
+                        <div className='taskLabel'>
+                            <label htmlFor={item.content}>{item.content}</label>
+                        </div>
+                        <div>
+                            <button onClick={e=>this.openEdit(item.content, item.id)}>Edit</button><br/>
+                            <span>Streak: {item.streak}</span>
+                        </div>
                     </div>
                 )
             }
@@ -68,6 +99,24 @@ class Dailies extends Component {
                 <button className='submitButton' type="submit">Submit</button>
                 </form>
                 {dailies}
+{/* edit modal */}
+                <Dialog
+                    title="Edit Your Task"
+                    open={this.state.openEdit}
+                    modal={true}
+                    paperProps={{
+                        style: { borderRadius: '0px',
+                                width: '100%',
+                                border: '1px solid white',
+                                 }
+                    }}
+                    style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
+                >
+                    <input value={this.state.editedContent} placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
+                    <button onClick={()=>this.props.editTask(this.state.editedContent, this.state.currentListId)}>Submit</button>
+                    <button onClick={()=>this.props.deleteTask(this.state.currentListId)}>Delete Task</button>
+                    <button onClick={() => this.openEdit()} className="buttonModal">Cancel</button>
+                </Dialog>
             </div>
         )
     }
@@ -80,4 +129,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask, complete})(Dailies)
+export default connect(mapStateToProps, {getLists, addDailies, goldExpTask, deleteTask, complete, editTask})(Dailies)
