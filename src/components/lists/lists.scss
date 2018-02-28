@@ -4,8 +4,11 @@ $inputbox: #E4DAEA;
 .Dailies{
     background: $background;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-@media (max-width: 414px){
+@media (max-width: 555px){
     .addTask{
         width: 80%;
         height: 20px;
@@ -72,6 +75,9 @@ $inputbox: #E4DAEA;
     .todos{
         background: $background;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #completed{

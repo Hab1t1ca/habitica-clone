@@ -1,8 +1,11 @@
 .Dailies {
   background: #F0EBF3;
-  height: 100vh; }
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
-@media (max-width: 414px) {
+@media (max-width: 555px) {
   .addTask {
     width: 80%;
     height: 20px;
@@ -50,7 +53,10 @@
       background: #460f0f; }
   .todos {
     background: #F0EBF3;
-    height: 100vh; }
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
   #completed {
     background: #F2EEF5; }
     #completed .checkbox {
