@@ -1,12 +1,12 @@
 .previewWindow {
-  border: solid 1px black;
+  border: solid 1px transparent;
   border-radius: 200px;
   width: 50px;
   height: 50px;
-  margin-top: 40px; }
+  margin-top: 30px; }
 
 .stickman {
-  margin-top: -4px; }
+  margin-top: -6px; }
 
 .center {
   display: flex;

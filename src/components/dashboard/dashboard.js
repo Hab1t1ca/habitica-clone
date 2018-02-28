@@ -7,7 +7,7 @@ import request from 'superagent';
 import AvatarEditor from 'react-avatar-editor';
 import Slider from 'material-ui/Slider';
 import './dashboard.css';
-import stickman from './stickmanTemplateV2.png';
+import stickman from '../userIcon/stickmanTemplateV3.png';
 import { connect } from 'react-redux';
 import { createChar, addClass, createAvatar } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
@@ -102,6 +102,13 @@ class Dashboard extends Component {
         this.setState({
           uploadedFile: files[0],
           image: files[0]
+        });
+
+      }
+
+      onImageDropPreset(files) {
+        this.setState({
+        uploadedFileCloudinaryUrl: "http://res.cloudinary.com/rigrater/image/upload/v1519840784/James_lolknq.png",
         });
 
       }
@@ -254,7 +261,7 @@ class Dashboard extends Component {
                 </Dialog>
                 {/* third modal */}
                 <Dialog
-                    title="Choose a sexy bod..."
+                    title="Choose a sexy preset face"
                     open={this.state.thirdModal}
                     modal={true}
                     autoScrollBodyContent={true}
@@ -263,6 +270,8 @@ class Dashboard extends Component {
                     }}
                     style={{ opacity: '0.9', textAlign: "center", background: '#3D315B'}}
                 >
+
+                    <img src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_50/v1519840784/James_lolknq.png" onClick={this.onImageDropPreset.bind(this)}/>
                     <p>...or upload your face.</p>
 
                 <div className="outerDropzone">
