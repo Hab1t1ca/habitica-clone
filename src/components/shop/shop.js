@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../nav/nav';
 import { connect } from 'react-redux';
-import { shop, buy, inventory } from '../../ducks/reducer';
+import { shop, buy, getInventory } from '../../ducks/reducer';
 import "./shop.css";
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -17,7 +17,7 @@ class Shop extends Component {
 
     componentDidMount() {
         this.props.shop()
-        this.props.inventory()
+        this.props.getInventory()
     }
 
     buyitem(itemid, cost, userGold) {
@@ -33,10 +33,11 @@ class Shop extends Component {
     displayWeapons() {
         let items = this.props.items.map(item => {
             if (item.bodlocation === "hand") {
+                // let thing = this.props.inventory.find( thing => thing[itemid] === item.itemid );
                 return (
                     <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "itemCard noBuy"} key={item.itemid}>
-                    {/* {console.log(this.props.inventory.includes(item.itemid),this.props.inventory, item.itemid)} */}
-                        {this.props.inventory.includes(item.itemid) ? <p>something</p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
+                    {console.log(this.props.inventory.includes(item.itemid.toString()))}
+                        {/* {this.props.inventory.includes(item.itemid) ? <p>something</p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>} */}
                         <h4>{item.name}</h4>
                         <img src={item.image} />
                         <p>Lvl: {item.lvlavailable}</p>
@@ -128,4 +129,4 @@ function mapStateToProps(state) {
         inventory: state.inventory
     }
 }
-export default connect(mapStateToProps, { shop, buy, inventory })(Shop)
+export default connect(mapStateToProps, { shop, buy, getInventory })(Shop)

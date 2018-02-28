@@ -131,7 +131,7 @@ app.get('/api/login', passport.authenticate('auth0', {
     successRedirect: process.env.SUCCESSREDIRECT,
     failureRedirect: process.env.FAILUREREDIRECT
 }));
-app.get('/auth/logout', controller.logout)
+app.get('/api/logout', controller.logout)
 
 //list endpoints
 app.post('/api/addDaily', controller.addDaily);
@@ -147,6 +147,7 @@ app.post('/api/addClass', controller.addClass);
 app.get('/api/getUser', controller.getUser);
 app.put('/api/taskComp', controller.updateXPGold);
 app.put('/api/avatar', controller.avatar);
+app.get('/api/getClasses', controller.getClasses);
 
 //item endpoints
 app.get('/api/getitems', controller.getitems);

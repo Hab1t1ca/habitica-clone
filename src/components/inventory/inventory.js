@@ -3,13 +3,13 @@ import "./inventory.css";
 import Nav from '../nav/nav';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import { inventory } from '../../ducks/reducer';
+import { getInventory } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 
 class Inventory extends Component {
 
     componentDidMount(){
-        this.props.inventory()
+        this.props.getInventory()
     }
 
 
@@ -39,4 +39,4 @@ function mapStateToProps(state) {
         inventory: state.inventory
     }
 }
-export default connect(mapStateToProps, { inventory })(Inventory)
+export default connect(mapStateToProps, { getInventory })(Inventory)

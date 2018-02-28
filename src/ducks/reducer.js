@@ -18,7 +18,8 @@ const initialState = {
     maxmana: 50,
     baseexp: 100,
     completed: false,
-    avatar: ''
+    avatar: '',
+    classes: []
 };
 
 const NAME = 'NAME';
@@ -39,6 +40,7 @@ const COMPLETE_DAILY = "COMPLETE_DAILY";
 const COMPLETED = "COMPLETED";
 const AVATAR = "AVATAR";
 const EDIT_TASK = "EDIT_TASK";
+const CLASSES = "CLASSES";
 
 
 //Create Character function
@@ -91,9 +93,11 @@ export function shop() {
 
 //buy shop item
 export function buy(itemid, cost, userGold) {
-    let body = { itemid: itemid,
-                cost: cost,
-                userGold: userGold }
+    let body = {
+        itemid: itemid,
+        cost: cost,
+        userGold: userGold
+    }
     let buy = axios.post(`/api/buyitem`, body).then(res => {
         // console.log(body)
         return res.data
@@ -106,11 +110,11 @@ export function buy(itemid, cost, userGold) {
 }
 
 //inventory
-export function inventory(){
-    let inventory = axios.get(`/api/inventory`).then(res=>{
-        console.log(res.data)
+export function getInventory() {
+    let inventory = axios.get(`/api/inventory`).then(res => {
+        console.log(res.data,)
         return res.data
-    }).catch(e=>{console.log(e)})
+    }).catch(e => { console.log(e) })
 
     return {
         type: INVENTORY,
@@ -285,6 +289,16 @@ export function editTask(content, id, duedate) {
     }
 }
 
+//classes task
+export function getClasses() {
+    let getClasses = axios.get('/api/getClasses').then(res => {
+        return res.data
+    })
+    return {
+        type: CLASSES,
+        payload: getClasses
+    }
+}
 
 
 function reducer(state = initialState, action) {
@@ -294,6 +308,9 @@ function reducer(state = initialState, action) {
 
         case SHOP + '_FULFILLED':
             return Object.assign({}, state, { shop: action.payload });
+
+        case INVENTORY + '_FULFILLED':
+            return Object.assign({}, state, { inventory: action.payload })
 
         case USER + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload });
@@ -336,6 +353,9 @@ function reducer(state = initialState, action) {
 
         case EDIT_TASK + 'FULFILLED':
             return Object.assign({}, state, { lists: action.payload })
+
+        case CLASSES + 'FULFILLED':
+            return Object.assign({}, state, { classes: action.payload })
 
         default: return state;
     }
