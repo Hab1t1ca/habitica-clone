@@ -27,6 +27,7 @@
 .stickmanInBox {
   width: 85px;
   height: 80px;
+  margin-right: 40px;
   z-index: 10; }
 
 .avatarWindow {
@@ -35,7 +36,13 @@
   width: 50px;
   height: 50px;
   margin-bottom: -4px;
+  margin-left: 13px;
   z-index: 9; }
+
+.Avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; }
 
 .stats {
   margin-left: 5%;
@@ -132,3 +139,20 @@
   height: 15px;
   border: 1px solid white;
   background-color: rgba(175, 255, 47, 0.212); }
+
+.WeaponRightHand {
+  position: absolute;
+  margin-left: 40px;
+  padding-bottom: 37px; }
+
+.chestArmor {
+  position: absolute;
+  padding-bottom: 38px;
+  margin-left: 28px;
+  z-index: 10; }
+
+.hat {
+  position: absolute;
+  padding-bottom: 114px;
+  margin-left: 19px;
+  z-index: 15; }
