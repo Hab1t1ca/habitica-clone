@@ -33,6 +33,7 @@
 .stickmanInBox {
     width: 85px;
     height: 80px;
+    margin-right: 40px;
     z-index: 10;
 }
 
@@ -42,7 +43,15 @@
     width: 50px;
     height: 50px;
     margin-bottom: -4px;
+    margin-left: 13px;
     z-index: 9;
+   }
+
+   .Avatar {
+       display: flex;
+       flex-direction: column;
+       justify-content: flex-end;
+
    }
 
 .stats {
@@ -56,13 +65,13 @@
 .Class {
     display: flex;
     justify-content: space-around;
-   text-align: center;
-position: relative;
-top: -10px;
-text-align: center;
-vertical-align: middle;
-line-height: 10px;
-font-size: 20px;
+    text-align: center;
+    position: relative;
+    top: -10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 10px;
+    font-size: 20px;
 }
 
 .Golds {
@@ -156,5 +165,26 @@ padding-top: 5px;
     border: 1px solid white;
     background-color: rgba(175, 255, 47, 0.212);
 }
+
+.WeaponRightHand {
+    position: absolute;
+    margin-left: 40px;
+    padding-bottom: 37px;  
+}
+
+.chestArmor {
+    position: absolute; 
+    padding-bottom: 38px;
+    margin-left: 28px; 
+    z-index: 10;
+}
+
+.hat {
+    position: absolute;
+    padding-bottom: 114px;
+    margin-left: 19px;
+    z-index: 15;
+}
+
 
 
