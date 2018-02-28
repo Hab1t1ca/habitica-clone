@@ -45,8 +45,14 @@ class UserIcon extends Component {
             <div className="mainHeader">
                 <div className="avatarBox">
 
+                <div className="Avatar">
                 <img  className="avatarWindow" src={this.props.user.avatar}/>
                 <img className="stickmanInBox" src={stickman}/>
+                <img className="WeaponRightHand" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_85/v1519771188/WeaponsNArmor/latest.png"/>
+                <img className="chestArmor" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_30/v1519777195/policeVest.png"/>
+                <img className="hat" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_40/v1519779063/winter-hat-hi_qmir9u.png"/>
+                </div>
+
 
                 </div>
 

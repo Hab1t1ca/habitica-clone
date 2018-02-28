@@ -199,6 +199,7 @@ class Dashboard extends Component {
         <SwipeableViews
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
+          style={styles.color}
         >
           <div className="tabsStuff" style={styles.slide}>
                 <Dailies/>
