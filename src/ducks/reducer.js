@@ -108,6 +108,7 @@ export function buy(itemid, cost, userGold) {
 //inventory
 export function inventory(){
     let inventory = axios.get(`/api/inventory`).then(res=>{
+        console.log(res.data)
         return res.data
     }).catch(e=>{console.log(e)})
 
