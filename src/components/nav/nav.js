@@ -34,8 +34,6 @@ class Nav extends Component {
     }
 
     render() {
-
-        console.log(this.props.user, 'stuff')
         return (
             <div>
                 <div className="navbar">
@@ -78,9 +76,7 @@ class Nav extends Component {
 
                     </div>
                 </div>
-                {/* <div className="main-header"> */}
                     <UserIcon />
-                {/* </div> */}
             </div>
         )
     }

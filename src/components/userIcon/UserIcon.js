@@ -16,26 +16,11 @@ class UserIcon extends Component {
         this.state = {
 
         }
-        this.displayUser = this.displayUser.bind(this)
     }
 
     componentWillMount() {
         this.props.getUser()
     }
-
-    displayUser() {
-        // let {user} = this.props
-        console.log(this.props.user.hp, 'props')
-        return (
-            <div>
-                {/* <h1>{user.hp}</h1> */}
-            </div>
-        )
-
-    }
-
-
-
 
 
     render() {
@@ -76,7 +61,7 @@ class UserIcon extends Component {
                     <img src={heartIcon} className="manaPic"/>
                     Health {this.props.user.hp} / {this.props.user.maxhp}</div>
                     <div className="healthBarBorder">
-                    <div className="healthBar"></div>
+                    <div style={{width: `${this.props.user.hp}%`}} className="healthBar"></div>
                     </div>
 
                     <div className="mana">  
@@ -95,8 +80,6 @@ class UserIcon extends Component {
 
 
                 </div>
-
-                {/* // <div>{this.displayUser()}</div> */}
             </div>
 
 
