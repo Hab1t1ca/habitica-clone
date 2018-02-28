@@ -1,5 +1,6 @@
 .Dailies {
-  background: #F0EBF3; }
+  background: #F0EBF3;
+  height: 100vh; }
 
 @media (max-width: 414px) {
   .addTask {
@@ -48,4 +49,5 @@
     #geriatric .checkbox {
       background: #460f0f; }
   .todos {
-    background: #F0EBF3; } }
+    background: #F0EBF3;
+    height: 100vh; } }
