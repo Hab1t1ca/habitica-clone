@@ -279,6 +279,7 @@ class Dashboard extends Component {
                         </div>
                         </div>}
                     </div>
+                    <br/>
                     <div onClick={this.class.bind(this, 'Rogue')}>Rogue
                     <br/> <br/>
                         {this.state.classes.length>0 && <div>
@@ -299,6 +300,7 @@ class Dashboard extends Component {
                         </div>
                         </div>}
                     </div>
+                    <br/>
                     <div onClick={this.class.bind(this, 'Warrior')}>Warrior
                     <br/> <br/>
                         {this.state.classes.length>0 && <div>
