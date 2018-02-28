@@ -19,8 +19,6 @@ module.exports = {
         let {Class} = req.body;
         let userid = req.session.passport.user.userid;
 
-        console.log('classless like a Marxist Utopia', Class, userid);
-
         db.createClass([Class, userid]).then(user => {
             res.send(user[0])
         }).catch(e=>console.log(e))
@@ -42,8 +40,11 @@ module.exports = {
         db.goldBuyItem([userGold,userid]).then(user=>{
             return user[0]
         })
-        //for gold, see what Mason called it
-        //Mason is checking affordibility on the front end. 
+
+        db.putItemInUserInven([itemid, userid]).then(item=>{
+            return item
+        })
+
         db.buyItem([itemid, userid]).then(item =>{
             res.send(item)
         }).catch(e=>console.log(e))
