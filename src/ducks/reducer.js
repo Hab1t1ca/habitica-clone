@@ -90,8 +90,10 @@ export function shop() {
 }
 
 //buy shop item
-export function buy(thing) {
-    let body = { itemid: thing }
+export function buy(itemid, cost, userGold) {
+    let body = { itemid: itemid,
+                cost: cost,
+                userGold: userGold }
     let buy = axios.post(`/api/buyitem`, body).then(res => {
         // console.log(body)
         return res.data

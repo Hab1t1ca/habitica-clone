@@ -19,18 +19,19 @@ class Shop extends Component {
         this.props.shop()
     }
 
-    buyitem(thing) {
-        this.props.buy(thing)
+    buyitem(itemid, cost, userGold) {
+
+        this.props.buy(itemid, cost, userGold)
     }
 
     handleChange = (event, index, value) => {this.setState({value}), console.log(this.state.value)}
 
     displayWeapons() {
         let items = this.props.items.map(item => {
-            if (item.bodlocation !== "body") {
+            if (item.bodlocation === "hand") {
                 return (
                     <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "noBuy"} key={item.itemid}>
-                        <button className={this.props.user.lvl >= item.lvlavailable ? "buybutton": "noBuy"} onClick={() => this.buyitem(item.itemid)}>buy</button>
+                        <button className={this.props.user.lvl >= item.lvlavailable ? "buybutton": "noBuy"} onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>
                         <h4>{item.name}</h4>
                         <img src={item.image} />
                         <p>Lvl: {item.lvlavailable}</p>
@@ -56,10 +57,10 @@ class Shop extends Component {
 
     displayArmor() {
         let items = this.props.items.map(item => {
-            if (item.bodlocation === "body") {
+            if (item.bodlocation !== "hand") {
                 return (
                     <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "noBuy"} key={item.itemid}>
-                        <button className={this.props.user.lvl >= item.lvlavailable ? "buybutton": "noBuy"} onClick={() => this.buyitem(item.itemid)}>buy</button>
+                        <button className={this.props.user.lvl >= item.lvlavailable ? "buybutton": "noBuy"} onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>
                         <h4>{item.name}</h4>
                         <img src={item.image} />
                         <p>Lvl: {item.lvlavailable}</p>
