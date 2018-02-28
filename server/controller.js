@@ -37,9 +37,9 @@ module.exports = {
     buyItem: (req,res) =>{
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
-        let {gold, itemid, cost} = req.body;
-        gold-=cost;
-        db.goldBuyItem([gold,userid]).then(user=>{
+        let {userGold, itemid, cost} = req.body;
+        userGold-=cost;
+        db.goldBuyItem([userGold,userid]).then(user=>{
             return user[0]
         })
         //for gold, see what Mason called it
