@@ -24,10 +24,17 @@
     // border-radius: 5px;
     background-color: white;
     // box-shadow: 0px 0px 8px 2px black;
-    background-image: url("http://www.extremetech.com/wp-content/uploads/2014/04/windows-xp-default3.jpg");
-    background-size: cover;
+    // background-image: url("http://www.extremetech.com/wp-content/uploads/2014/04/windows-xp-default3.jpg");
+    // background-size: cover;
     align-items: center;
     margin-left: 5%;
+
+
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%239ea0b4'/%3E%3Cstop offset='1' stop-color='%239ea0b4' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%239ea0b4'/%3E%3Cstop offset='1' stop-color='%239ea0b4' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23444b6e'/%3E%3Cstop offset='1' stop-color='%23444b6e' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='1' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23444b6e'/%3E%3Cstop offset='1' stop-color='%23444b6e' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23444b6e'/%3E%3Cstop offset='1' stop-color='%23444b6e' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
 }
 
 .stickmanInBox {
@@ -168,8 +175,8 @@ padding-top: 5px;
 
 .WeaponRightHand {
     position: absolute;
-    margin-left: 40px;
-    padding-bottom: 37px;  
+    margin-left: 55px;
+    padding-bottom: 55px;  
 }
 
 .chestArmor {
@@ -181,10 +188,12 @@ padding-top: 5px;
 
 .hat {
     position: absolute;
-    padding-bottom: 114px;
-    margin-left: 19px;
+    padding-bottom: 105px;
+    margin-left: 18px;
     z-index: 15;
 }
 
 
 
+
+  
