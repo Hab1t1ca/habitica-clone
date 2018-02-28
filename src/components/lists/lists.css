@@ -9,7 +9,7 @@
     background: #E4DAEA; }
   .daily, .todo {
     margin-top: 15px;
-    width: 100vw;
+    width: 100%;
     background: white;
     height: 75px;
     display: flex;
@@ -50,4 +50,8 @@
       background: #460f0f; }
   .todos {
     background: #F0EBF3;
-    height: 100vh; } }
+    height: 100vh; }
+  #completed {
+    background: #F2EEF5; }
+    #completed .checkbox {
+      background: #D1CFD3; } }

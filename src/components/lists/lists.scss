@@ -13,7 +13,7 @@ $inputbox: #E4DAEA;
     }
     .daily{
         margin-top:15px;
-        width: 100vw;
+        width: 100%;
         background: white;
         height: 75px;
         display: flex;
@@ -72,5 +72,12 @@ $inputbox: #E4DAEA;
     .todos{
         background: $background;
         height: 100vh;
+    }
+
+    #completed{
+        background: #F2EEF5;
+        .checkbox{
+            background: #D1CFD3;
+        }
     }
 }
