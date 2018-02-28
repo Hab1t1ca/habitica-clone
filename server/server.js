@@ -134,8 +134,6 @@ app.get('/api/login', passport.authenticate('auth0', {
 app.get('/api/logout', controller.logout)
 
 //list endpoints
-app.get('/api/getitems', controller.getitems);
-app.post('/api/buyitem', controller.buyItem);
 app.post('/api/addDaily', controller.addDaily);
 app.post('/api/addTodo', controller.addTodo);
 app.get('/api/getLists', controller.getLists);
@@ -149,6 +147,11 @@ app.post('/api/addClass', controller.addClass);
 app.get('/api/getUser', controller.getUser);
 app.put('/api/taskComp', controller.updateXPGold);
 app.put('/api/avatar', controller.avatar);
+
+//item endpoints
+app.get('/api/getitems', controller.getitems);
+app.post('/api/buyitem', controller.buyItem);
+app.get('/api/inventory', controller.pullInventory);
 
 //End endpoints
 

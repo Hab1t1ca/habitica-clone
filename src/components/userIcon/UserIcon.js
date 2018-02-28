@@ -19,10 +19,13 @@ class UserIcon extends Component {
             xpPct: 100
 
         }
+<<<<<<< HEAD
         this.displayUser = this.displayUser.bind(this)
         this.healthPctFun = this.healthPctFun.bind(this)
         this.manaPctFun = this.manaPctFun.bind(this)
         this.xpPctFun = this.xpPctFun.bind(this)
+=======
+>>>>>>> master
     }
 
     componentWillMount() {
@@ -35,6 +38,7 @@ class UserIcon extends Component {
         }, 50)
     }
 
+<<<<<<< HEAD
     displayUser() {
         // let {user} = this.props
         console.log(this.props.user.hp, 'props')
@@ -69,6 +73,8 @@ class UserIcon extends Component {
             xpPct: pct
         })        
     }
+=======
+>>>>>>> master
 
     render() {
         console.log(this.props.user, 'render props')
@@ -127,8 +133,6 @@ class UserIcon extends Component {
 
 
                 </div>
-
-                {/* // <div>{this.displayUser()}</div> */}
             </div>
 
 

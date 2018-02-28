@@ -36,12 +36,18 @@ module.exports = {
 
     buyItem: (req,res) =>{
         let db = req.app.get('db');
-        db.buyItem([req.body.itemid]).then(item =>{
+        let userid = req.session.passport.user.userid;
+        let {userGold, itemid, cost} = req.body;
+        userGold-=cost;
+        db.goldBuyItem([userGold,userid]).then(user=>{
+            return user[0]
+        })
+        //for gold, see what Mason called it
+        //Mason is checking affordibility on the front end. 
+        db.buyItem([itemid, userid]).then(item =>{
             res.send(item)
         }).catch(e=>console.log(e))
-    }
-
-    ,
+    },
     
     getUser: (req,res)=>{
         console.log("session", req.session.passport.user.userid)
@@ -166,6 +172,14 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.redirect('https://sticktoit.auth0.com/v2/logout?federated&returnTo=returnTo=http%3A%2F%2Flocalhost%3A3000%2F')
-      }
+        res.redirect(process.env.FAILUREREDIRECT)
+      },
+
+    pullInventory: (req,res)=>{
+        let userid = req.session.passport.user.userid;
+
+        req.app.get("db").getInventoryInfo([userid]).then(inventory=>{
+            res.send(inventory);
+        })
+    }
 }

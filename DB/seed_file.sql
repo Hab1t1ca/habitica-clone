@@ -60,3 +60,6 @@ id SERIAL PRIMARY KEY,
 itemId TEXT,
 userId SERIAL
 )
+
+-- create classes table
+create table classes (class VARCHAR(50), ability1 json, ability2 json)
