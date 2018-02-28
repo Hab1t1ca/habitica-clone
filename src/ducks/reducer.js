@@ -24,6 +24,7 @@ const initialState = {
 const NAME = 'NAME';
 const SHOP = 'SHOP';
 const BUY = 'BUY';
+const INVENTORY = 'INVENTORY';
 const USER = 'USER';
 const CLASS = 'CLASS';
 const ADD_DAILY = 'ADD_DAILY';
@@ -89,8 +90,10 @@ export function shop() {
 }
 
 //buy shop item
-export function buy(thing) {
-    let body = { itemid: thing }
+export function buy(itemid, cost, userGold) {
+    let body = { itemid: itemid,
+                cost: cost,
+                userGold: userGold }
     let buy = axios.post(`/api/buyitem`, body).then(res => {
         // console.log(body)
         return res.data
@@ -99,6 +102,18 @@ export function buy(thing) {
     return {
         type: BUY,
         payload: buy
+    }
+}
+
+//inventory
+export function inventory(){
+    let inventory = axios.get(`/api/inventory`).then(res=>{
+        return res.data
+    }).catch(e=>{console.log(e)})
+
+    return {
+        type: INVENTORY,
+        payload: inventory
     }
 }
 
