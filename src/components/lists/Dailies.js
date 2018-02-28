@@ -132,17 +132,24 @@ class Dailies extends Component {
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
                 >
-                    <p>Task: </p><input placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
+                    <p style={{color: 'black', textAlign: 'left'}}>Task: </p><input style={{border: 'solid #3D315B', width: '100%'}} placeholder={this.state.currentTask} onChange={(e)=>this.editTitle(e.target.value)}/>
+
+                    <br/><br/>
+
+                    <p style={{color: 'black', textAlign: 'left'}}>Add Due Date:</p>
                     <DatePicker
-                        hintText="Add Due Date"
+                        hintText="Calendar"
                         value={this.state.controlledDate}
                         onChange={this.handleChange}
+                        style={{background: '#E4DAEA', borderRadius: '10px', width: '65%', margin: 'auto', paddingLeft: '37%'}}
                     />
                     {JSON.stringify(this.state.dueDate)}
 
-                    <button onClick={()=>this.submitEdit()}>Submit</button>
+                    <br/>
+
                     <button onClick={()=>this.props.deleteTask(this.state.currentListId)}>Delete Task</button>
-                    <button onClick={() => this.openEdit()} className="buttonModal">Cancel</button>
+                    <button onClick={() => this.openEdit()} >Cancel</button>
+                    <button className='buttonModal' onClick={()=>this.submitEdit()}>Submit</button>
 
                 </Dialog>
                 </div>
