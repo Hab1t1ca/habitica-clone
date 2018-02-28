@@ -3,6 +3,7 @@ $background: #F0EBF3;
 $inputbox: #E4DAEA;
 .Dailies{
     background: $background;
+    height: 100vh;
 }
 @media (max-width: 414px){
     .addTask{
@@ -70,5 +71,6 @@ $inputbox: #E4DAEA;
 
     .todos{
         background: $background;
+        height: 100vh;
     }
 }
