@@ -32,7 +32,7 @@ class UserIcon extends Component {
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-        }, 50)
+        }, 110)
     }
 
     displayUser() {
