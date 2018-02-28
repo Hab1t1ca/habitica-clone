@@ -181,5 +181,11 @@ module.exports = {
         req.app.get("db").getInventoryInfo([userid]).then(inventory=>{
             res.send(inventory);
         })
+    },
+
+    getClasses: (req,res)=>{
+        req.app.get('db').getClasses().then(classes=>{
+            res.send(classes)
+        })
     }
 }
