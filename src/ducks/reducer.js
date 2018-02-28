@@ -292,6 +292,7 @@ export function editTask(content, id, duedate) {
 //classes task
 export function getClasses() {
     let getClasses = axios.get('/api/getClasses').then(res => {
+        console.log('classes in reducer', res.data)
         return res.data
     })
     return {
@@ -342,19 +343,19 @@ function reducer(state = initialState, action) {
         case UPDATE_GOEXP + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload })
 
-        case COMPLETE_DAILY + 'FULFILLED':
+        case COMPLETE_DAILY + '_FULFILLED':
             return Object.assign({}, state, { completed: action.payload })
 
-        case COMPLETED + 'FULFILLED':
+        case COMPLETED + '_FULFILLED':
             return Object.assign({}, state, { completed: action.payload })
 
-        case AVATAR + 'FULFILLED':
+        case AVATAR + '_FULFILLED':
             return Object.assign({}, state, { avatar: action.payload })
 
-        case EDIT_TASK + 'FULFILLED':
+        case EDIT_TASK + '_FULFILLED':
             return Object.assign({}, state, { lists: action.payload })
 
-        case CLASSES + 'FULFILLED':
+        case CLASSES + '_FULFILLED':
             return Object.assign({}, state, { classes: action.payload })
 
         default: return state;
