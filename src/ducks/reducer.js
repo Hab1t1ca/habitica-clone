@@ -42,12 +42,12 @@ const EDIT_TASK = "EDIT_TASK";
 
 //Create Character function
 export function createChar(value) {
-    console.log(value)
+    // console.log(value)
     let body = {
         "name": value
     }
     let user = axios.post(`/api/createChar`, body).then(res => {
-        console.log(res.data, "Character Created");
+        // console.log(res.data, "Character Created");
         return res.data
     })
 
@@ -59,12 +59,12 @@ export function createChar(value) {
 
 //Avatar
 export function createAvatar(value) {
-    console.log(value, 'url')
+    // console.log(value, 'url')
     let body = {
         "avatar": value
     }
     let user = axios.put(`/api/avatar`, body).then(res => {
-        console.log(res.data, "Avatar Cropped");
+        // console.log(res.data, "Avatar Cropped");
         return res.data
     })
 
@@ -78,7 +78,7 @@ export function createAvatar(value) {
 export function shop() {
 
     let shop = axios.get(`/api/getitems`).then(res => {
-        console.log(res.data, "reducer data")
+        // console.log(res.data, "reducer data")
         return res.data
 
     })
@@ -92,7 +92,7 @@ export function shop() {
 export function buy(thing) {
     let body = { itemid: thing }
     let buy = axios.post(`/api/buyitem`, body).then(res => {
-        console.log(body)
+        // console.log(body)
         return res.data
     }).catch(e => { console.log(e) })
 
@@ -106,7 +106,7 @@ export function buy(thing) {
 export function getUser() {
 
     let user = axios.get('/api/getUser').then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
     return {
@@ -199,6 +199,22 @@ export function goldExpTask(xp, gold) {
     }
 }
 
+//Complete a daily/streak
+// export function compDaily(comp, listid) {
+//     let body = {
+//         "completed": comp,
+//     }
+//     if (!comp) {
+//         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
+//             return res.data
+//         })
+//     } else { streak = 0 }
+//     return {
+//         type: COMPLETE_DAILY,
+//         payload: streak
+//     }
+// }
+
 //show max health
 export function showMaxHp(maxhp) {
     return {
@@ -223,11 +239,24 @@ export function showBaseExp(baseexp) {
     }
 }
 
+
+//Complete
+export function complete(listid) {
+    let complete = axios.put(`/api/complete/${listid}`).then(res => {
+        return res.data
+    })
+    return {
+        type: COMPLETED,
+        payload: complete
+    }
+}
+
 //edit task
-export function editTask(content, id) {
+export function editTask(content, id, duedate) {
     let body = {
         "content": content,
-        "id": id
+        "id": id,
+        "duedate": duedate
     }
     let editTask = axios.put('/api/editTask', body).then(res => {
         return res.data
@@ -240,16 +269,6 @@ export function editTask(content, id) {
     }
 }
 
-//Complete
-export function complete(listid) {
-    let complete = axios.put(`/api/complete/${listid}`).then(res => {
-        return res.data
-    })
-    return {
-        type: COMPLETED,
-        payload: complete
-    }
-}
 
 
 function reducer(state = initialState, action) {

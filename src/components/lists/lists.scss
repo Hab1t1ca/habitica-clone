@@ -1,72 +1,44 @@
 $navbarcolor: #3D315B;
 $background: #F0EBF3;
 $inputbox: #E4DAEA;
-
 .Dailies{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #3D315B;
+    background: $background;
+    height: 100vh;
 }
-
 @media (max-width: 414px){
-
     .addTask{
-        margin-top: 10px;
-        padding: 5px;
         width: 80%;
         height: 20px;
-        border-radius: 40px;
         background: $inputbox;
     }
-
     .daily{
         margin-top:15px;
-        width: 100%;
-        background: #3D315B;
+        width: 100vw;
+        background: white;
         height: 75px;
         display: flex;
-        border-radius: 5px;
+        border-radius: 8px;
         position: relative;
         z-index:2;
         box-shadow: 0 6px 12px 0px #474E6A;
         
-
         .checkbox{
-            background: #3D315B;
+            background: $navbarcolor;
             width: 10%;
             height: 48%;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding:20px;
+            border-radius: 5px;
             input{
-                width: 15px;
-                height: 15px;
-                background-color: white;
+                width: 25px;
+                height: 25px;
             }
         }
         .taskLabel{
-            background-color: #3D315B;
-            color: white;
-            // margin: 10px;
+            margin: 10px;
             width:80%;
             height:100%;
-            text-align: center;
-            vertical-align: middle;
         }
-
     }
-
-    .forms{
-        display: flex;
-        background-color: white;
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
     .submitButton{
         box-shadow: inset 0 -1px 5px $navbarcolor;
         width: 68px;
@@ -78,8 +50,27 @@ $inputbox: #E4DAEA;
     .todo{
         @extend .daily;
     }
+    #young{
+        background-color: lightgreen;
+        .checkbox{
+            background: rgb(28, 117, 28);
+        }
+    }
+    #middleAge{
+        background-color: lightcoral;
+        .checkbox{
+            background: rgb(151, 69, 69)
+        }
+    }
+    #geriatric{
+        background-color: darkred;
+        .checkbox{
+            background: rgb(70, 15, 15);
+        }
+    }
 
     .todos{
         background: $background;
+        height: 100vh;
     }
 }
