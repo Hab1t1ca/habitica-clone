@@ -59,8 +59,8 @@ module.exports = {
         // let userid = 13;
         let db = req.app.get('db');
         let {daily} = req.body;
-        let d = new Date();
-        let age = d.toString().substring(0,15)
+        // let d = new Date();
+        let age = 0;
 
         console.log('hitting add Daily', daily, userid, age)
         // let userid = 1; this one is for doing the unit tests
@@ -139,14 +139,6 @@ module.exports = {
         }).catch(e=>console.log(e))
     },
 
-    streak: (req,res)=>{
-        //pull streak number off of the req.body. and we will need list item number. 
-
-        req.app.get('db').updateStreak([/*streak*/]).then(user=>{
-            res.send(user[0]);
-        }).catch(e=>console.log(e))
-    },
-
     complete: (req,res)=>{
         let listid = req.params.listid;
 
@@ -165,10 +157,15 @@ module.exports = {
     },
 
     editTask: (req,res)=>{
-        let {content, id} = req.body;
+        let {content, id, duedate} = req.body;
 
-        req.app.get('db').editTask([content, id]).then(task=>{
+        req.app.get('db').editTask([content, id, duedate]).then(task=>{
             res.send(task);
         })
-    }
+    },
+
+    logout: (req, res) => {
+        req.logOut();
+        res.redirect(process.env.FAILUREREDIRECT)
+      }
 }

@@ -54,6 +54,7 @@ class Nav extends Component {
                     <Link to='/dashboard' className="nav-link"><div >Dashboard</div></Link>
                     <Link to='/inventory' className="nav-link"><div >Inventory</div></Link>
                     <Link to='/shop' className="nav-link"><div >Shop</div></Link>
+                    
                 
 
                     <div className="hammy"
@@ -71,6 +72,8 @@ class Nav extends Component {
                         <Link to='/dashboard' className="media-nav-link"><p>Dashboard</p></Link>
                         <Link to='/inventory' className="media-nav-link"><p>Inventory</p></Link>
                         <Link to='/shop' className="media-nav-link"><p>Shop</p></Link>
+                        <a href ="http://localhost:3000/auth/logout" className="media-nav-link"><button>Logout</button></a>
+
                     </div>
                 </div>
                     <UserIcon />
