@@ -60,3 +60,11 @@ id SERIAL PRIMARY KEY,
 itemId TEXT,
 userId SERIAL
 )
+
+-- create classes table
+create table classes (class VARCHAR(50), ability1 json, ability2 json)
+
+-- create class abilities
+insert into classes (class, ability1, ability2)
+values ('mage', '{"name" : "burst of flames", "manacost" : 20, "description" : "You light the world on fire. You get +5 XP and you do +2 damage to bosses."}', '{"name" : "alchemy", "manacost" : 40, "description" : "You turn Utah tap water into gold! (It is not like you can drink it anyway.) You get +5 gold!"}'
+)

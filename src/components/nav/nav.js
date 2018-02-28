@@ -34,8 +34,6 @@ class Nav extends Component {
     }
 
     render() {
-
-        console.log(this.props.user, 'stuff')
         return (
             <div>
                 <div className="navbar">
@@ -74,13 +72,11 @@ class Nav extends Component {
                         <Link to='/dashboard' className="media-nav-link"><p>Dashboard</p></Link>
                         <Link to='/inventory' className="media-nav-link"><p>Inventory</p></Link>
                         <Link to='/shop' className="media-nav-link"><p>Shop</p></Link>
-                        <a href ="http://localhost:3000/auth/logout" className="media-nav-link">Logout</a>
+                        <a href ="http://localhost:3020/api/logout" className="media-nav-link"><button>Logout</button></a>
 
                     </div>
                 </div>
-                {/* <div className="main-header"> */}
                     <UserIcon />
-                {/* </div> */}
             </div>
         )
     }

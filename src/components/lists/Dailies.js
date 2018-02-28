@@ -83,7 +83,7 @@ class Dailies extends Component {
         let dailies = this.props.lists.map((item,index)=>{
             if (item.daily_todo==="daily"){
                 return (
-                    <div key={item.id} className="daily">
+                    <div key={item.id} className="daily" id={(item.completed) ? "completed" : "notCompleted"}>
                         <div className='checkbox'>
                             <input id={item.id} type='checkbox' value={item.content} onClick={e=>this.completeTask(item.id, item.completed)}/>
                         </div>

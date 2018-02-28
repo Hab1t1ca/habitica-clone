@@ -1,4 +1,5 @@
 
-INSERT INTO inventory(itemid)
+INSERT INTO inventory(itemid, userid)
 VALUES
-($1);
+($1, $2)
+RETURNING *;
