@@ -47,10 +47,10 @@
 .avatarWindow {
     border: solid 2px rgba(0, 0, 0, 0);
     border-radius: 200px;
-    width: 50px;
+    width: 45px;
     height: 50px;
     margin-bottom: -4px;
-    margin-left: 13px;
+    margin-left: 18px;
     z-index: 9;
    }
 
@@ -187,9 +187,14 @@ padding-top: 5px;
 
 .hat {
     position: absolute;
-    padding-bottom: 105px;
+    padding-bottom: 114px;
     margin-left: 18px;
     z-index: 15;
+}
+
+.Vehicle {
+    position: absolute;
+    z-index: 40;
 }
 
 

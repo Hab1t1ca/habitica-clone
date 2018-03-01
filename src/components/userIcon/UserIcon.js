@@ -100,13 +100,13 @@ class UserIcon extends Component {
                 <div className="stats">
                     <br />
                     <div className="Class">
-
-                        {this.props.user.class}
-
-                        <div className="Golds">
-                            <img src={gold} className="Gold" />
-                            {this.props.user.gold}
-                        </div>
+                  
+                    {this.props.user.class}
+                    <br/>
+                <div className="Golds">
+                    <img src={gold} className="Gold"/>
+                    {this.props.user.gold}
+                </div>    
 
                     </div>
 
