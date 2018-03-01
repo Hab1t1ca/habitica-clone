@@ -72,7 +72,8 @@ class Nav extends Component {
                         <Link to='/dashboard' className="media-nav-link"><p>Dashboard</p></Link>
                         <Link to='/inventory' className="media-nav-link"><p>Inventory</p></Link>
                         <Link to='/shop' className="media-nav-link"><p>Shop</p></Link>
-                        <a href ="http://localhost:3020/api/logout" className="media-nav-link">Logout</a>
+                        <Link to='/abilities' className="media-nav-link"><p>Abilities</p></Link>
+                        <a href ="http://localhost:3020/api/logout" className="media-nav-link"><button>Logout</button></a>
 
                     </div>
                 </div>
