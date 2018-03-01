@@ -271,7 +271,7 @@ class Dashboard extends Component {
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
 
-                    <div onClick={this.class.bind(this, 'Mage')}>Mage <br/> <br/>
+                    {/* <div onClick={this.class.bind(this, 'Mage')}>Mage <br/> <br/>
                         {this.state.classes.length>0 && <div>
                             <div>
                             {classes[0].ability1.name} 
@@ -324,16 +324,16 @@ class Dashboard extends Component {
                         </div>
                         <br/>
                         <div>
-                            {classes[2].ability2.name} 
-                            <br/>
+                            {classes[2].ability2.name}  */}
+                            {/* <br/>
                             {classes[2].ability2.description}
                             <br/>
                             {classes[2].ability2.manacost}
                         </div>
                         </div>}
-                    </div>
+                    </div> */}
                 </Dialog>
-                {/* third modal */}
+                 third modal
                 <Dialog
                     title="Choose a sexy preset face"
                     open={this.state.thirdModal}

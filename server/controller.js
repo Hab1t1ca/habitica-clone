@@ -173,7 +173,7 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.redirect(process.env.FAILUREREDIRECT)
+        res.redirect('https://sticktoit.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F')
       },
 
     pullInventory: (req,res)=>{
@@ -188,5 +188,32 @@ module.exports = {
         req.app.get('db').getClasses().then(classes=>{
             res.send(classes)
         })
+    },
+
+    getUserAbilities: (req,res)=>{
+        let userid = req.session.passport.user.userid;
+
+        req.app.get('db').getUserAbilities([userid]).then(results=>{
+            res.send(results[0]);
+        })
+    },
+
+    useAbility: (req,res)=>{
+        let {hp, mana, currentexp, gold, dailies, status} = req.body;
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+
+        db.userAbilityUpdate([hp,mana,gold,currentexp,userid]).then(user=>{
+            return user
+        })
+
+        if (status===true){
+            dailies.forEach(daily=>{
+                let id = daily.id;
+                db.dailyAbility([id]).then(results=>{
+                    return results
+                })
+            })
+        }
     }
 }

@@ -13,6 +13,9 @@
   color: white; }
 
 .noBuy {
+  background-color: grey; }
+
+.button {
   display: none; }
 
 .itemCard {
