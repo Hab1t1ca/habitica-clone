@@ -26,7 +26,7 @@ class Inventory extends Component {
                 </DropDownMenu>
 
                 <div>
-                    {console.log(this.props.inventory)}
+                    {console.log(this.props.user.inventory,"inventory")}
                 </div>
             </div>
         )
