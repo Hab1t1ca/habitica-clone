@@ -173,7 +173,7 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.redirect(process.env.FAILUREREDIRECT)
+        res.redirect('https://sticktoit.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F')
       },
 
     pullInventory: (req,res)=>{
