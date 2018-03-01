@@ -19,7 +19,8 @@ const initialState = {
     baseexp: 100,
     completed: false,
     avatar: '',
-    classes: []
+    classes: [],
+    abilities: []
 };
 
 const NAME = 'NAME';
@@ -41,6 +42,7 @@ const COMPLETED = "COMPLETED";
 const AVATAR = "AVATAR";
 const EDIT_TASK = "EDIT_TASK";
 const CLASSES = "CLASSES";
+const ABILITIES = "ABILITIES";
 
 
 //Create Character function
@@ -300,6 +302,23 @@ export function getClasses() {
     }
 }
 
+//abilities
+export function abilities(xp, mana, gold, completed) {
+    let body = {
+        "xp": xp,
+        "mana": mana,
+        "gold": gold,
+        "completed": completed
+    }
+    let ability = axios.put('/api/ability', body).then(res => {
+        return res.data
+    })
+    return {
+        type: ABILITIES,
+        payload: ability
+    }
+}
+
 
 function reducer(state = initialState, action) {
     switch (action.type) {
@@ -353,6 +372,9 @@ function reducer(state = initialState, action) {
 
         case CLASSES + '_FULFILLED':
             return Object.assign({}, state, { classes: action.payload })
+
+        case ABILITIES + '_FULFILLED':
+            return Object.assign({}, state, { abilities: action.payload })
 
         default: return state;
     }
