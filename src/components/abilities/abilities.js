@@ -11,27 +11,26 @@ class Abilities extends Component {
        
     }
 
-    componentWillMount() {
+    componentWillMount() {   
         this.props.getUser()   
+      
     }
 
-    useAbility(user){
-
+    useAbility(){
     }
 
     displayAbilities() {
-        let {ability1, ability2} = this.props.user.class
+        let {ability1, ability2, description} = this.props.user
         return (
                     <div>
-                        <button className="abilityBtn" onClick={() => this.useAbility()}>{this.props.user.class.ability1}</button>                     
-                        <p>description</p>
+                        <button className="abilityBtn" onClick={() => this.useAbility()}>{this.props.user.ability1}</button>                     
+                        <p>{this.props.user.ability1.description}</p>
                     </div>
                 )
     }
     
 
     render() {
-        // {this.displayAbilities()}
         return (
             <div>
                 <Nav />
