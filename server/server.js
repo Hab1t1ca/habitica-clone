@@ -148,6 +148,8 @@ app.get('/api/getUser', controller.getUser);
 app.put('/api/taskComp', controller.updateXPGold);
 app.put('/api/avatar', controller.avatar);
 app.get('/api/getClasses', controller.getClasses);
+app.get('/api/getUserAbilities', controller.getUserAbilities);
+app.put('/api/ability', controller.useAbility);
 
 //item endpoints
 app.get('/api/getitems', controller.getitems);

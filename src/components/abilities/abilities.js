@@ -1,40 +1,68 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import { getUser } from '../../ducks/reducer';
-import Nav from '../nav/nav';
+import {burstOfFlames, alchemy} from './abilityFns';
+import axios from 'axios';
 
 class Abilities extends Component {
     constructor() {
         super();
 
+        this.state = {
+            tempData: {}
+        }
        
     }
 
     componentWillMount() {   
-        this.props.getUser()   
-      
+        axios.get('/api/getUserAbilities').then(res=>{
+            console.log(res.data)
+            this.setState({
+                tempData : res.data
+            })
+        }
+        )
     }
 
-    useAbility(){
+    useAbility(ability){
+        //need to pass in user
+        let tree = {
+            "burst of flames" : burstOfFlames(this.props.user, this.props.lists),
+            "alchemy" : alchemy(this.props.user, this.props.lists)
+        }
+        console.log(tree[ability]);
+        let body = tree[ability];
+        
+        if (typeof(body)==='string'){
+            return body
+        }
+        else {
+            axios.put('/api/ability', body).then(res=>{
+                return res.data;
+            })
+        }
     }
-
-    displayAbilities() {
-        let {ability1, ability2, description} = this.props.user
-        return (
-                    <div>
-                        <button className="abilityBtn" onClick={() => this.useAbility()}>{this.props.user.ability1}</button>                     
-                        <p>{this.props.user.ability1.description}</p>
-                    </div>
-                )
-    }
-    
 
     render() {
+
         return (
             <div>
-                <Nav />
                <h1>Abilities</h1>
+               {this.state.tempData.class && 
+                    <div>
+                        <button className="abilityBtn" onClick={ 
+                            this.useAbility.bind(this,this.state.tempData.ability1.name)}>{this.state.tempData.ability1.name}</button>                  
+                        <p>{this.state.tempData.ability1.description}</p>
+                        <p>{this.state.tempData.ability1.manacost}</p>    
+                    </div>
+                }
+               {this.state.tempData.class && 
+                    <div>
+                        <button className="abilityBtn" onClick={
+                        this.useAbility.bind(this, this.state.tempData.ability2.name)}>{this.state.tempData.ability2.name}</button>                  
+                        <p>{this.state.tempData.ability2.description}</p>
+                        <p>{this.state.tempData.ability2.manacost}</p>
+                    </div>
+                }
             </div>
         )
     }
@@ -42,7 +70,8 @@ class Abilities extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        lists: state.lists
     }
 }
-export default connect(mapStateToProps, { getUser })(Abilities)
+export default connect(mapStateToProps)(Abilities)
