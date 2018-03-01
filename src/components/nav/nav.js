@@ -69,11 +69,11 @@ class Nav extends Component {
                 
                 <div>
                     <div className={this.state.open ? "media-nav mediaNavOn" : "media-nav mediaNavOff"}>
-                        <Link to='/dashboard' className="media-nav-link"><p>Dashboard</p></Link>
-                        <Link to='/inventory' className="media-nav-link"><p>Inventory</p></Link>
-                        <Link to='/shop' className="media-nav-link"><p>Shop</p></Link>
-                        <Link to='/abilities' className="media-nav-link"><p>Abilities</p></Link>
-                        <a href ="http://localhost:3020/api/logout" className="media-nav-link"><button>Logout</button></a>
+                        <Link to='/dashboard'><span className="media-nav-link">Dashboard</span></Link>
+                        <Link to='/inventory'><span className="media-nav-link">Inventory</span></Link>
+                        <Link to='/shop'><span className="media-nav-link">Shop</span></Link>
+                        <Link to='/abilities'><span className="media-nav-link">Abilities</span></Link>
+                        <a href ="http://localhost:3020/api/logout" className="media-nav-link">Logout</a>
 
                     </div>
                 </div>
