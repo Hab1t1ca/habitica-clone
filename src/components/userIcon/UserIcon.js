@@ -80,9 +80,9 @@ class UserIcon extends Component {
                 <div className="Avatar">
                 <img  className="avatarWindow" src={this.props.user.avatar}/>
                 <img className="stickmanInBox" src={stickman}/>
-                <img className="WeaponRightHand" src="http://res.cloudinary.com/rigrater/image/upload/a_355/v1519841832/EnergySword_sclzal.png"/>
+                <img className="WeaponRightHand" src="http://res.cloudinary.com/rigrater/image/upload/v1519798103/RainbowSword_tfvtkb.png"/>
                 <img className="chestArmor" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_30/v1519777195/policeVest.png"/>
-                <img className="hat" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_35/v1519806733/DevMountainHat_znua1u.png"/>
+                <img className="hat" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_40/v1519806733/DevMountainHat_znua1u.png"/>
                 </div>
 
 
@@ -92,9 +92,9 @@ class UserIcon extends Component {
                 <div className="stats">
                     <br/>
                     <div className="Class">
-                    
+                  
                     {this.props.user.class}
-
+                    <br/>
                 <div className="Golds">
                     <img src={gold} className="Gold"/>
                     {this.props.user.gold}
