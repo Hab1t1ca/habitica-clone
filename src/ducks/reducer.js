@@ -114,6 +114,7 @@ export function buy(itemid, cost, userGold) {
 //inventory
 export function getInventory() {
     let inventory = axios.get(`/api/inventory`).then(res => {
+        console.log(res.data,)
         return res.data
     }).catch(e => { console.log(e) })
 
@@ -322,6 +323,9 @@ function reducer(state = initialState, action) {
 
         case SHOP + '_FULFILLED':
             return Object.assign({}, state, { shop: action.payload });
+
+        case INVENTORY + '_FULFILLED':
+            return Object.assign({}, state, { inventory: action.payload })
 
         case USER + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload });
