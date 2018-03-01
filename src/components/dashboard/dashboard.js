@@ -14,7 +14,11 @@ import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-
+import FontIcon from 'material-ui/FontIcon';
+import dailyIcon from './DailliesIcon.png';
+import toDoIcon from './ToDosIcon.png';
+import abilityIcon from './AbilitiesIcon.png';
+import Abilities from '../abilities/abilities';
 
 const CLOUDINARY_UPLOAD_PRESET = 'zj5sgnrc';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/rigrater/image/upload';
@@ -28,9 +32,10 @@ const styles = {
       backgroundColor: '#3D315B'
     },
     slide: {
-      padding: 5,
+      padding: 20,
     },
     color: {
+        fontSize: 18,
         backgroundColor: "#3D315B"
     },
     inkBar: {
@@ -205,19 +210,25 @@ class Dashboard extends Component {
           style={styles.headline}
         //   tabItemContainerStyle={styles.headline}          
         >
-          <Tab label="Daily" value={0} style={styles.color}/>
-          <Tab label="To Do" value={1}  style={styles.color}/>
+          <Tab label="Daily"  icon={<FontIcon className="material-icons"><img className="icons" src={dailyIcon}/></FontIcon>} value={0} style={styles.color}/>
+          <Tab label="To Do" icon={<FontIcon className="material-icons"><img className="icons" src={toDoIcon}/></FontIcon>} value={1}  style={styles.color}/>
+          <Tab label="Abilities" icon={<FontIcon className="material-icons"><img className="icons" src={abilityIcon}/></FontIcon>} value={2}  style={styles.color}/>
+
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
           style={styles.color}
+          scrollButtons={"off"}
         >
           <div className="tabsStuff" style={styles.slide}>
                 <Dailies/>
           </div>
           <div  className="tabsStuff" style={styles.slide}>
                 <Todos/>
+          </div>
+          <div>
+            <Abilities/>
           </div>
         </SwipeableViews>
 
@@ -334,7 +345,7 @@ class Dashboard extends Component {
                     style={{ opacity: '0.9', textAlign: "center", background: '#3D315B'}}
                 >
 
-                    <img src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_50/v1519840784/James_lolknq.png" onClick={this.onImageDropPreset.bind(this)}/>
+                    <img src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_80/v1519840784/James_lolknq.png" onClick={this.onImageDropPreset.bind(this)}/>
                     <p>...or upload your face.</p>
 
                 <div className="outerDropzone">
