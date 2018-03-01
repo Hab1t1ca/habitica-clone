@@ -303,13 +303,8 @@ export function getClasses() {
 }
 
 //abilities
-export function abilities(xp, mana, gold, completed) {
-    let body = {
-        "xp": xp,
-        "mana": mana,
-        "gold": gold,
-        "completed": completed
-    }
+export function abilities(body) {
+    
     let ability = axios.put('/api/ability', body).then(res => {
         return res.data
     })
