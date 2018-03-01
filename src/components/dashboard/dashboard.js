@@ -9,7 +9,7 @@ import Slider from 'material-ui/Slider';
 import './dashboard.css';
 import stickman from '../userIcon/stickmanTemplateV3.png';
 import { connect } from 'react-redux';
-import { createChar, addClass, createAvatar } from '../../ducks/reducer';
+import { createChar, addClass, createAvatar, getClasses } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -39,8 +39,8 @@ const styles = {
   };
   
 class Dashboard extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             firstModal: false,
             name: '',
@@ -53,13 +53,21 @@ class Dashboard extends Component {
             preview: null,
             
             scaleSlider: 1.8,
-            slideIndex: 0
+            slideIndex: 0,
+            classes: []
         }
         this.onClickSave = this.onClickSave.bind(this);
     }
 
+    componentDidMount(){
+        this.props.getClasses();
+    }
 
-
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            classes: nextProps.classes
+        })
+    }
     handleChange = (value) => {
         this.setState({
           slideIndex: value,
@@ -182,16 +190,13 @@ class Dashboard extends Component {
     }
 
     render() {
+        let classes = this.state.classes;
         let createChar = this.props.createChar;
         let createAvatar = this.props.createAvatar;
 
-        console.log(this.state.class)
         return (
             <div className="backgroundDashboard">
                 <Nav />
-
-
-
 
                 <Tabs
           onChange={this.handleChange}
@@ -255,9 +260,67 @@ class Dashboard extends Component {
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
 
-                    <div onClick={this.class.bind(this, 'Mage')}>Mage</div>
-                    <div onClick={this.class.bind(this, 'Rogue')}>Rogue</div>
-                    <div onClick={this.class.bind(this, 'Warrior')}>Warrior</div>
+                    <div onClick={this.class.bind(this, 'Mage')}>Mage <br/> <br/>
+                        {this.state.classes.length>0 && <div>
+                            <div>
+                            {classes[0].ability1.name} 
+                            <br/>
+                            {classes[0].ability1.description}
+                            <br/>
+                            {classes[0].ability1.manacost}
+                        </div>
+                        <br/>
+                        <div>
+                            {classes[0].ability2.name} 
+                            <br/>
+                            {classes[0].ability2.description}
+                            <br/>
+                            {classes[0].ability2.manacost}
+                        </div>
+                        </div>}
+                    </div>
+                    <br/>
+                    <div onClick={this.class.bind(this, 'Rogue')}>Rogue
+                    <br/> <br/>
+                        {this.state.classes.length>0 && <div>
+                            <div>
+                            {classes[1].ability1.name} 
+                            <br/>
+                            {classes[1].ability1.description}
+                            <br/>
+                            {classes[1].ability1.manacost}
+                        </div>
+                        <br/>
+                        <div>
+                            {classes[1].ability2.name} 
+                            <br/>
+                            {classes[1].ability2.description}
+                            <br/>
+                            {classes[1].ability2.manacost}
+                        </div>
+                        </div>}
+                    </div>
+                    <br/>
+                    <div onClick={this.class.bind(this, 'Warrior')}>Warrior
+                    <br/> <br/>
+                        {this.state.classes.length>0 && <div>
+                            <div>
+                            {classes[2].ability1.name} 
+                            <br/>
+                            {classes[2].ability1.description}
+                            <br/>
+                            {classes[2].ability1.manacost}
+                        </div>
+                        <br/>
+                        <div>
+                            {classes[2].ability2.name} 
+                            <br/>
+                            {classes[2].ability2.description}
+                            <br/>
+                            {classes[2].ability2.manacost}
+                        </div>
+                        </div>}
+                    </div>
                 </Dialog>
                 {/* third modal */}
                 <Dialog
@@ -328,8 +391,10 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('state from store', state.classes)
     return {
-        name: state.name
+        name: state.name,
+        classes: state.classes
     }
 }
-export default connect(mapStateToProps, { createChar, addClass, createAvatar })(Dashboard)
+export default connect(mapStateToProps, { createChar, addClass, createAvatar, getClasses })(Dashboard)
