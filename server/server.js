@@ -24,6 +24,19 @@ cron.schedule('0 0 * * *', function () {
         var dailies = lists.filter(list => list.daily_todo === 'daily');
         var todos = lists.filter(list => list.daily_todo === 'todo');
 
+        //check if user is on quest and do battle. This is hacky because we added it as an afterthought.
+        db.getUser([daily[0].userid]).then(user => {
+            let {damage,quest,userid,hp,bossdmg,bosshp} = user[0];
+            if (quest!==null){
+                return something
+                //map through dailies
+                //if daily is not complete, user.hp-=bossdmg
+                //if daily is complete, bosshp-=user.damage
+                //if bosshp=0, user.quest=null, user.bosshp and  user.bossdmg = null, and user receives rewards
+                //reset user damage if they received an ability boost
+            }
+        })
+
         todos.map(todo => {
             todo.age += 1;
             db.updateAge([todo.age, todo.id]).then(todo => {

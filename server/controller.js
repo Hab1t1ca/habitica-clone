@@ -199,11 +199,11 @@ module.exports = {
     },
 
     useAbility: (req,res)=>{
-        let {hp, mana, currentexp, gold, dailies, status} = req.body;
+        let {hp, mana, currentexp, gold, dailies, status, damage} = req.body;
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
 
-        db.userAbilityUpdate([hp,mana,gold,currentexp,userid]).then(user=>{
+        db.userAbilityUpdate([hp,mana,gold,currentexp,userid,damage]).then(user=>{
             return user
         })
 

@@ -224,7 +224,7 @@ export function goldExpTask(xp, gold) {
 //Complete a daily/streak
 // export function compDaily(comp, listid) {
 //     let body = {
-//         "completed": comp,
+//         "": comp,
 //     }
 //     if (!comp) {
 //         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
@@ -355,7 +355,8 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, { lists: action.payload })
 
         case UPDATE_GOEXP + '_FULFILLED':
-            return Object.assign({}, state, { user: action.payload })
+            // var tempobject = Object.assign({},state.user, action.payload)
+            return Object.assign({}, state, {user : action.payload})
 
         case COMPLETE_DAILY + '_FULFILLED':
             return Object.assign({}, state, { completed: action.payload })
