@@ -214,5 +214,32 @@ module.exports = {
         req.app.get('db').getClasses().then(classes=>{
             res.send(classes)
         })
+    },
+
+    getUserAbilities: (req,res)=>{
+        let userid = req.session.passport.user.userid;
+
+        req.app.get('db').getUserAbilities([userid]).then(results=>{
+            res.send(results[0]);
+        })
+    },
+
+    useAbility: (req,res)=>{
+        let {hp, mana, currentexp, gold, dailies, status} = req.body;
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+
+        db.userAbilityUpdate([hp,mana,gold,currentexp,userid]).then(user=>{
+            return user
+        })
+
+        if (status===true){
+            dailies.forEach(daily=>{
+                let id = daily.id;
+                db.dailyAbility([id]).then(results=>{
+                    return results
+                })
+            })
+        }
     }
 }
