@@ -13,7 +13,8 @@ class Nav extends Component {
         super();
 
         this.state = {
-            open: false
+            open: false,
+            toggle: true
         }
     }
 
@@ -29,6 +30,18 @@ class Nav extends Component {
         } else {
             this.setState({
                 open: false
+            })
+        }
+    }
+    
+    toggleIcon(){
+        if(!this.state.toggle){
+            this.setState({
+                toggle: false
+            })
+        } else {
+            this.setState({
+                toggle: true
             })
         }
     }
@@ -77,7 +90,7 @@ class Nav extends Component {
 
                     </div>
                 </div>
-                    <UserIcon />
+                 {this.state.toggle && <UserIcon />}
             </div>
         )
     }

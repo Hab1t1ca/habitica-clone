@@ -23,17 +23,21 @@ class UserIcon extends Component {
         this.healthPctFun = this.healthPctFun.bind(this)
         this.manaPctFun = this.manaPctFun.bind(this)
         this.xpPctFun = this.xpPctFun.bind(this)
+        
     }
 
     componentWillMount() {
         this.props.getUser();
 
+    
         setTimeout(() => {
-            this.healthPctFun()
-            this.manaPctFun()
-            this.xpPctFun()
+            this.healthPctFun();
+            this.manaPctFun();
+            this.xpPctFun();
         }, 110)
+        
     }
+    
 
     // componentWillRecieveProps()) {
     //     console.log(nextProps, "string so we know what it is")
@@ -146,8 +150,6 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         avatar: state.avatar,
-        daily: state.daily,
-        todo: state.todo
     }
 }
 

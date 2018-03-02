@@ -17,7 +17,6 @@ export default function Router() {
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/inventory" component={Inventory} />
                 <Route path="/shop" component={Shop} />
-                <Route path="/abilities" component={Abilities} />
             </Switch>
 
     )
