@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {burstOfFlames, alchemy} from './abilityFns';
+import {burstOfFlames, alchemy, peoplesElbow, intimidatingGaze, stealth, pickpocket} from './abilityFns';
 import axios from 'axios';
 
 class Abilities extends Component {
@@ -24,10 +24,14 @@ class Abilities extends Component {
     }
 
     useAbility(ability){
-        //need to pass in user
+        
         let tree = {
             "burst of flames" : burstOfFlames(this.props.user, this.props.lists),
-            "alchemy" : alchemy(this.props.user, this.props.lists)
+            "alchemy" : alchemy(this.props.user, this.props.lists),
+            "pickpocket" : pickpocket(this.props.user, this.props.lists),
+            "stealth" : stealth(this.props.user, this.props.lists),
+            "The Peoples Elbow" : peoplesElbow(this.props.user, this.props.lists),
+            "Intimidating Gaze" : intimidatingGaze(this.props.user, this.props.lists)
         }
         console.log(tree[ability]);
         let body = tree[ability];
