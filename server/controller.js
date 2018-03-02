@@ -49,6 +49,32 @@ module.exports = {
             res.send(item)
         }).catch(e=>console.log(e))
     },
+
+    buyPotion: (req,res) =>{
+        let db = req.app.get('db');
+        // let userid = req.session.passport.user.userid;
+        let {userGold, itemid, cost, userid, hp, mp} = req.body;
+        userGold -= cost;
+
+        db.goldBuyItem([userGold,userid]).then(user=>{
+            return user[0]
+        })
+
+        if(itemid === 201){
+            hp += 10
+        db.buyHealth([hp, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
+        if(itemid === 202){
+            mp += 15
+        db.buyMana([mp, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
+    }
+
+    ,
     
     getUser: (req,res)=>{
         console.log("session", req.session.passport.user.userid)

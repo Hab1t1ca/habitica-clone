@@ -26,6 +26,7 @@ const initialState = {
 const NAME = 'NAME';
 const SHOP = 'SHOP';
 const BUY = 'BUY';
+const BUYPOTION = 'BUYPOTION';
 const INVENTORY = 'INVENTORY';
 const USER = 'USER';
 const CLASS = 'CLASS';
@@ -109,6 +110,28 @@ export function buy(itemid, cost, userGold) {
         type: BUY,
         payload: buy
     }
+}
+
+export function buyPotion(itemid, cost, userGold, userid, hp, mp){
+    let body = {
+        itemid: itemid,
+        cost: cost,
+        userGold: userGold,
+        userid: userid,
+        hp: hp,
+        mp: mp
+    }
+
+    let buy = axios.post(`/api/buypotion`, body).then(res => {
+        // console.log(body)
+        return res.data
+    }).catch(e => { console.log(e) })
+
+    return {
+        type: BUYPOTION,
+        payload: buy
+    }
+
 }
 
 //inventory
