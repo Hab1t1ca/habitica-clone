@@ -37,15 +37,6 @@ class UserIcon extends Component {
             this.xpPctFun()
     }
     
-
-    // componentWillRecieveProps()) {
-    //     console.log(nextProps, "string so we know what it is")
-    //     this.healthPctFun()
-    //     this.manaPctFun()
-    //     this.xpPctFun()
-    // }
-
-
     displayUser() {
         // let {user} = this.props
         console.log(this.props.user.hp, 'props')

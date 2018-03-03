@@ -94,7 +94,8 @@
     display: inline-block;
     text-decoration: none;
     line-height: 85px;
-    margin: auto; }
+    position: relative;
+    bottom: 90px; }
   .GoldDiv {
     width: 25px;
     margin-left: 25px; }
