@@ -1,4 +1,4 @@
 
 UPDATE users
-SET mp = $1
+SET mana = $1
 WHERE userid = $2;

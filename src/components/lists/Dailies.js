@@ -93,7 +93,7 @@ class Dailies extends Component {
                             </label>
                         </div>
                         <div>
-                            <button onClick={e=>this.openEdit(item.content, item.id, index)}>Edit</button><br/>
+                            <button onClick={e=>this.openEdit(item.content, item.id, index)} className="editButton">Edit</button><br/>
                             <span>Streak: {item.streak}</span>
                         </div>
                     </div>

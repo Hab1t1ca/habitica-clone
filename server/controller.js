@@ -52,21 +52,23 @@ module.exports = {
 
     buyPotion: (req,res) =>{
         let db = req.app.get('db');
-        // let userid = req.session.passport.user.userid;
-        let {userGold, itemid, cost, userid, hp, mp} = req.body;
+        let userid = req.session.passport.user.userid;
+        let {userGold, itemid, cost, hp, mp} = req.body;
+        console.log(userGold, itemid, cost, userid, hp, mp,"potion stuff")
         userGold -= cost;
 
         db.goldBuyItem([userGold,userid]).then(user=>{
             return user[0]
         })
 
-        if(itemid === 201){
+        if(itemid == 201){
+            console.log('hitting health potion', hp, userid)
             hp += 10
         db.buyHealth([hp, userid]).then(item =>{
             res.send(item)
         }).catch(e=>console.log(e))
     }
-        if(itemid === 202){
+        if(itemid == 202){
             mp += 15
         db.buyMana([mp, userid]).then(item =>{
             res.send(item)
@@ -246,11 +248,11 @@ module.exports = {
     },
 
     useAbility: (req,res)=>{
-        let {hp, mana, currentexp, gold, dailies, status} = req.body;
+        let {hp, mana, currentexp, gold, dailies, status, damage} = req.body;
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
 
-        db.userAbilityUpdate([hp,mana,gold,currentexp,userid]).then(user=>{
+        db.userAbilityUpdate([hp,mana,gold,currentexp,userid,damage]).then(user=>{
             return user
         })
 

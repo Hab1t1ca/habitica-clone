@@ -115,17 +115,16 @@ export function buy(itemid, cost, userGold) {
     }
 }
 
-export function buyPotion(itemid, cost, userGold, userid, hp, mp){
+export function buyPotion(itemid, cost, userGold, hp, mp){
     let body = {
         itemid: itemid,
         cost: cost,
         userGold: userGold,
-        userid: userid,
         hp: hp,
         mp: mp
     }
 
-    let buy = axios.post(`/api/buypotion`, body).then(res => {
+    let buy = axios.put(`/api/buypotion`, body).then(res => {
         // console.log(body)
         return res.data
     }).catch(e => { console.log(e) })
@@ -277,7 +276,7 @@ export function goldExpTask(xp, gold) {
 //Complete a daily/streak
 // export function compDaily(comp, listid) {
 //     let body = {
-//         "completed": comp,
+//         "": comp,
 //     }
 //     if (!comp) {
 //         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
@@ -412,7 +411,8 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, { lists: action.payload })
 
         case UPDATE_GOEXP + '_FULFILLED':
-            return Object.assign({}, state, { user: action.payload })
+            // var tempobject = Object.assign({},state.user, action.payload)
+            return Object.assign({}, state, {user : action.payload})
 
         case COMPLETE_DAILY + '_FULFILLED':
             return Object.assign({}, state, { completed: action.payload })

@@ -39,12 +39,12 @@ class Shop extends Component {
         }
     }
 
-    buyPotion(itemid, cost, userGold, userid, hp, mp){
+    buyPotion(itemid, cost, userGold, hp, mp){
         if (userGold >= cost) {
-            this.props.buyPotion(itemid, cost, userGold)
+            this.props.buyPotion(itemid, cost, userGold, hp, mp)
             setTimeout(function () {
                 window.location.reload()
-            }, 500)
+            }, 1000)
         }else{
             return alert("You don't have enough gold, try again later")
         }
@@ -89,7 +89,7 @@ class Shop extends Component {
                 if (item.bodlocation === "potion") {
                     return (
                         <div className="itemCard" key={item.itemid}>
-                            <button className="buybutton" onClick={() => this.buyPotion(item.itemid,item.cost,this.props.user.gold,this.props.user.userid,this.props.user.hp,this.props.user.mp)}>buy</button>
+                            <button className="buybutton" onClick={() => this.buyPotion(item.itemid,item.cost,this.props.user.gold,this.props.user.hp,this.props.user.mana)}>buy</button>
                             <h4>{item.name}</h4>
                             <img src={item.image} />
                             <p>Lvl: {item.lvlavailable}</p>
@@ -126,7 +126,7 @@ let armor = this.props.items.map(item => {
     if (item.bodlocation === "body" || item.bodlocation === "hat") {
         return (
             <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "noBuy"} key={item.itemid}>
-                 {this.props.user.inventory.includes(Number(item.itemid)) ? <p></p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
+                 {(item.lvlavailable > this.props.user.lvl) || (!this.props.user.inventory.includes(Number(item.itemid))) ? <p>something</p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
                 <h4>{item.name}</h4>
                 <img src={item.image} />
                 <p>Lvl: {item.lvlavailable}</p>

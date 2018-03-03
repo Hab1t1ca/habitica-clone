@@ -27,12 +27,13 @@ class UserIcon extends Component {
 
     componentWillMount() {
         this.props.getUser();
+    }
 
-        setTimeout(()=>{
+    componentWillReceiveProps(nextProps){
+        console.log('running next props', nextProps)
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-        }, 110)
     }
 
     displayUser() {
@@ -78,7 +79,7 @@ class UserIcon extends Component {
                 <div className="avatarBox">
 
                 <div className="Avatar">
-                <img  className="avatarWindow" src={this.props.user.avatar}/>
+                <img className="avatarWindow" src={this.props.user.avatar}/>
                 <img className="stickmanInBox" src={stickman}/>
                 <img className="WeaponRightHand" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_75/v1519943251/BloodBattleAxe_m8aztd.png"/>
                 <img className="chestArmor" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_30/v1519777195/policeVest.png"/>

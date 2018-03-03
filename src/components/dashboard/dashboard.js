@@ -32,7 +32,7 @@ const styles = {
       backgroundColor: '#3D315B'
     },
     slide: {
-      padding: 20,
+      padding: 0,
     },
     color: {
         fontSize: 18,
@@ -220,7 +220,7 @@ class Dashboard extends Component {
           onChangeIndex={this.handleChange}
           style={styles.color}
           scrollButtons={"off"}
-        >
+        >   
           <div className="tabsStuff" style={styles.slide}>
                 <Dailies/>
           </div>
@@ -262,37 +262,33 @@ class Dashboard extends Component {
                 </Dialog>
                 {/* second modal */}
                 <Dialog
-                    title="Choose a character class:"
+                    title="Choose/Click a character class:"
                     open={this.state.secondModal}
                     modal={true}
+                    autoScrollBodyContent={true}
                     paperProps={{
-                        style: { borderRadius: '25px' }
+                        style: {  }
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
 
-                    <div onClick={this.class.bind(this, 'Mage')}>Mage <br/> <br/>
+                    <div onClick={this.class.bind(this, 'Warrior')}> <p className="TwoModalTitle">Warrior</p>
                         {this.state.classes.length>0 && <div>
-                            <div>
-                            {classes[0].ability1.name} 
+                            <div className="TwoModalAbilityDiv">
+                           <p className="TwoModalAbilityName"> {classes[0].ability1.name} </p>
                             <br/>
-                            {classes[0].ability1.description}
-                            <br/>
-                            {classes[0].ability1.manacost}
+                            <p className="TwoModalAbilityDesc"> {classes[0].ability1.description} </p>
                         </div>
                         <br/>
-                        <div>
-                            {classes[0].ability2.name} 
+                        <div className="TwoModalAbilityDiv">
+                            <p className="TwoModalAbilityName"> {classes[0].ability2.name} </p> 
                             <br/>
-                            {classes[0].ability2.description}
-                            <br/>
-                            {classes[0].ability2.manacost}
+                           <p  className="TwoModalAbilityDesc"> {classes[0].ability2.description} </p>
                         </div>
                         </div>}
                     </div>
                     <br/>
-                    <div onClick={this.class.bind(this, 'Rogue')}>Rogue
-                    <br/> <br/>
+                    <div onClick={this.class.bind(this, 'Rogue')}> <p className="TwoModalTitle">Rogue</p>
                         {this.state.classes.length>0 && <div>
                             <div>
                             {classes[1].ability1.name} 
@@ -312,8 +308,7 @@ class Dashboard extends Component {
                         </div>}
                     </div>
                     <br/>
-                    <div onClick={this.class.bind(this, 'Warrior')}>Warrior
-                    <br/> <br/>
+                    <div onClick={this.class.bind(this, 'Mage')}>  <p className="TwoModalTitle">Mage</p>
                         {this.state.classes.length>0 && <div>
                             <div>
                             {classes[2].ability1.name} 
@@ -332,6 +327,8 @@ class Dashboard extends Component {
                         </div>
                         </div>}
                     </div>
+
+
                 </Dialog>
                  third modal
                 <Dialog

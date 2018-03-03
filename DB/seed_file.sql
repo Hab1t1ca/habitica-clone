@@ -17,7 +17,8 @@ inventory TEXT[],
 class TEXT[],
 lvl INTEGER,
 gold INTEGER,
-message TEXT[]
+damage INT, 
+quest invnetory
 )
 
 -- create new user
@@ -68,3 +69,6 @@ create table classes (class VARCHAR(50), ability1 json, ability2 json)
 insert into classes (class, ability1, ability2)
 values ('mage', '{"name" : "burst of flames", "manacost" : 20, "description" : "You light the world on fire. You get +5 XP and you do +2 damage to bosses."}', '{"name" : "alchemy", "manacost" : 40, "description" : "You turn Utah tap water into gold! (It is not like you can drink it anyway.) You get +5 gold!"}'
 )
+
+-- create quests table
+create table quests (name text, avatar text, description text, bosshp int, rewards json, bossdmg int, level int, id serial primary key)
