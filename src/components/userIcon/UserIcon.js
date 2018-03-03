@@ -27,12 +27,13 @@ class UserIcon extends Component {
 
     componentWillMount() {
         this.props.getUser();
+    }
 
-        setTimeout(()=>{
+    componentWillReceiveProps(nextProps){
+        console.log('running next props', nextProps)
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-        }, 110)
     }
 
     displayUser() {
