@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { createChar, addClass, createAvatar, getClasses } from '../../ducks/reducer';
 import Dailies from '../lists/Dailies';
 import Todos from '../lists/Todos';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import FontIcon from 'material-ui/FontIcon';
 import dailyIcon from './DailliesIcon.png';
@@ -26,13 +26,13 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/rigrater/image/up
 
 const styles = {
     headline: {
-      fontSize: 24,
-      borderTop: "solid 1px white",
-      fontWeight: 400,
-      backgroundColor: '#3D315B'
+        fontSize: 24,
+        borderTop: "solid 1px white",
+        fontWeight: 400,
+        backgroundColor: '#3D315B'
     },
     slide: {
-      padding: 0,
+        padding: 0,
     },
     color: {
         fontSize: 18,
@@ -41,8 +41,8 @@ const styles = {
     inkBar: {
         backgroundColor: 'white'
     }
-  };
-  
+};
+
 class Dashboard extends Component {
     constructor(props) {
         super(props)
@@ -56,7 +56,7 @@ class Dashboard extends Component {
             uploadedFileCloudinaryUrl: '',
             image: null,
             preview: null,
-            
+
             scaleSlider: 1.8,
             slideIndex: 0,
             classes: []
@@ -64,85 +64,96 @@ class Dashboard extends Component {
         this.onClickSave = this.onClickSave.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getClasses();
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.setState({
             classes: nextProps.classes
         })
+        console.log(this.props.user.name)
+        // setTimeout(
+        //     function(){
+                if (this.props.user.name === ''){
+                    console.log('hitting if statement', !this.props.user.name)
+                    this.openFirstModal()
+                }
+
+            // },1000
+        // )
+        // this.props.user.name == null ? this.openFirstModal() : null
     }
     handleChange = (value) => {
         this.setState({
-          slideIndex: value,
+            slideIndex: value,
         });
-      };
+    };
 
 
     onClickSave = () => {
         if (this.editor) {
-          // This returns a HTMLCanvasElement, it can be made into a data URL or a blob,
-          // drawn on another canvas, or added to the DOM.
-          const canvas = this.editor.getImage()
-         const picture = this.editor.getImageScaledToCanvas().toDataURL('image/jpeg', 1);
-          
-          // If you want the image resized to the canvas size (also a HTMLCanvasElement)
-        //   const canvas = this.editor.getImageScaledToCanvas()
-        //   const picture = canvas.toDataURL('image/jpeg', 1.0)
-        
+            // This returns a HTMLCanvasElement, it can be made into a data URL or a blob,
+            // drawn on another canvas, or added to the DOM.
+            const canvas = this.editor.getImage()
+            const picture = this.editor.getImageScaledToCanvas().toDataURL('image/jpeg', 1);
 
-          console.log(canvas, "Cool")
-          console.log(picture, "Cool")
-          this.handleImageUpload(picture)
-          this.setState({
-            preview: picture
-          })
-        //   console.log(canvasScaled, "CoolScaled")
-        //   console.log(picture)
+            // If you want the image resized to the canvas size (also a HTMLCanvasElement)
+            //   const canvas = this.editor.getImageScaledToCanvas()
+            //   const picture = canvas.toDataURL('image/jpeg', 1.0)
+
+
+            console.log(canvas, "Cool")
+            console.log(picture, "Cool")
+            this.handleImageUpload(picture)
+            this.setState({
+                preview: picture
+            })
+            //   console.log(canvasScaled, "CoolScaled")
+            //   console.log(picture)
 
         }
-      }
+    }
 
-      setEditorRef = (editor) => this.editor = editor
-      
+    setEditorRef = (editor) => this.editor = editor
+
 
     handleScaleSlider = (event, value) => {
-        this.setState({scaleSlider: value});
-      };
+        this.setState({ scaleSlider: value });
+    };
 
     onImageDrop(files) {
         this.setState({
-          uploadedFile: files[0],
-          image: files[0]
+            uploadedFile: files[0],
+            image: files[0]
         });
 
-      }
+    }
 
-      onImageDropPreset(files) {
+    onImageDropPreset(files) {
         this.setState({
-        uploadedFileCloudinaryUrl: "http://res.cloudinary.com/rigrater/image/upload/v1519840784/James_lolknq.png",
+            uploadedFileCloudinaryUrl: "http://res.cloudinary.com/rigrater/image/upload/v1519840784/James_lolknq.png",
         });
 
-      }
+    }
 
-      handleImageUpload(file) {
+    handleImageUpload(file) {
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                            .field('file', file);
-    
+            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+            .field('file', file);
+
         upload.end((err, response) => {
-          if (err) {
-            console.error(err);
-          }
-    
-          if (response.body.secure_url !== '') {
-            this.setState({
-              uploadedFileCloudinaryUrl: response.body.secure_url
-            });
-          }
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState({
+                    uploadedFileCloudinaryUrl: response.body.secure_url
+                });
+            }
         });
-      }
+    }
 
 
 
@@ -177,7 +188,7 @@ class Dashboard extends Component {
         })
     }
 
-    moveOn(){
+    moveOn() {
         createChar(this.state.name);
         this.setState({
             firstModal: false,
@@ -186,10 +197,10 @@ class Dashboard extends Component {
 
     }
 
-    moveOn2(){
+    moveOn2() {
         createAvatar(this.state.uploadedFileCloudinaryUrl);
         this.setState({
-           thirdModal: false
+            thirdModal: false
         })
 
     }
@@ -204,35 +215,35 @@ class Dashboard extends Component {
                 <Nav />
 
                 <Tabs
-          onChange={this.handleChange}
-          value={this.state.slideIndex}
-          inkBarStyle={styles.inkBar}
-          style={styles.headline}
-        //   tabItemContainerStyle={styles.headline}          
-        >
-          <Tab label="Daily"  icon={<FontIcon className="material-icons"><img className="icons" src={dailyIcon}/></FontIcon>} value={0} style={styles.color}/>
-          <Tab label="To Do" icon={<FontIcon className="material-icons"><img className="icons" src={toDoIcon}/></FontIcon>} value={1}  style={styles.color}/>
-          <Tab label="Abilities" icon={<FontIcon className="material-icons"><img className="icons" src={abilityIcon}/></FontIcon>} value={2}  style={styles.color}/>
+                    onChange={this.handleChange}
+                    value={this.state.slideIndex}
+                    inkBarStyle={styles.inkBar}
+                    style={styles.headline}
+                //   tabItemContainerStyle={styles.headline}          
+                >
+                    <Tab label="Daily" icon={<FontIcon className="material-icons"><img className="icons" src={dailyIcon} /></FontIcon>} value={0} style={styles.color} />
+                    <Tab label="To Do" icon={<FontIcon className="material-icons"><img className="icons" src={toDoIcon} /></FontIcon>} value={1} style={styles.color} />
+                    <Tab label="Abilities" icon={<FontIcon className="material-icons"><img className="icons" src={abilityIcon} /></FontIcon>} value={2} style={styles.color} />
 
-        </Tabs>
-        <SwipeableViews
-          index={this.state.slideIndex}
-          onChangeIndex={this.handleChange}
-          style={styles.color}
-          scrollButtons={"off"}
-        >   
-          <div className="tabsStuff" style={styles.slide}>
-                <Dailies/>
-          </div>
-          <div  className="tabsStuff" style={styles.slide}>
-                <Todos/>
-          </div>
-          <div>
-            <Abilities/>
-          </div>
-        </SwipeableViews>
+                </Tabs>
+                <SwipeableViews
+                    index={this.state.slideIndex}
+                    onChangeIndex={this.handleChange}
+                    style={styles.color}
+                    scrollButtons={"off"}
+                >
+                    <div className="tabsStuff" style={styles.slide}>
+                        <Dailies />
+                    </div>
+                    <div className="tabsStuff" style={styles.slide}>
+                        <Todos />
+                    </div>
+                    <div>
+                        <Abilities />
+                    </div>
+                </SwipeableViews>
 
-            
+
 
 
 
@@ -240,6 +251,7 @@ class Dashboard extends Component {
 
 
                 {/* <UserIcon/> */}
+                {console.log(this.props.user.name, "Is your name")}
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
                 {/* first modal */}
@@ -248,16 +260,17 @@ class Dashboard extends Component {
                     open={this.state.firstModal}
                     modal={true}
                     paperProps={{
-                        style: { borderRadius: '0px',
-                                width: '100%',
-                                border: '1px solid white',
-                                 }
+                        style: {
+                            borderRadius: '0px',
+                            width: '100%',
+                            border: '1px solid white',
+                        }
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B', }}
                 >
                     <p>Please call your stick person something. We don't care what. Just stick it in the box.</p>
-                    <input placeholder="Name thing goes here" onChange={e => this.handleName(e.target.value)} className="inputModal"/>
-                    <br/>
+                    <input placeholder="Name thing goes here" onChange={e => this.handleName(e.target.value)} className="inputModal" />
+                    <br />
                     <button onClick={() => this.moveOn()} className="buttonModal">Submit</button>
                 </Dialog>
                 {/* second modal */}
@@ -267,70 +280,70 @@ class Dashboard extends Component {
                     modal={true}
                     autoScrollBodyContent={true}
                     paperProps={{
-                        style: {  }
+                        style: {}
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
 
                     <div onClick={this.class.bind(this, 'Warrior')}> <p className="TwoModalTitle">Warrior</p>
-                        {this.state.classes.length>0 && <div>
+                        {this.state.classes.length > 0 && <div>
                             <div className="TwoModalAbilityDiv">
-                           <p className="TwoModalAbilityName"> {classes[0].ability1.name} </p>
-                            <br/>
-                            <p className="TwoModalAbilityDesc"> {classes[0].ability1.description} </p>
-                        </div>
-                        <br/>
-                        <div className="TwoModalAbilityDiv">
-                            <p className="TwoModalAbilityName"> {classes[0].ability2.name} </p> 
-                            <br/>
-                           <p  className="TwoModalAbilityDesc"> {classes[0].ability2.description} </p>
-                        </div>
+                                <p className="TwoModalAbilityName"> {classes[0].ability1.name} </p>
+                                <br />
+                                <p className="TwoModalAbilityDesc"> {classes[0].ability1.description} </p>
+                            </div>
+                            <br />
+                            <div className="TwoModalAbilityDiv">
+                                <p className="TwoModalAbilityName"> {classes[0].ability2.name} </p>
+                                <br />
+                                <p className="TwoModalAbilityDesc"> {classes[0].ability2.description} </p>
+                            </div>
                         </div>}
                     </div>
-                    <br/>
+                    <br />
                     <div onClick={this.class.bind(this, 'Rogue')}> <p className="TwoModalTitle">Rogue</p>
-                        {this.state.classes.length>0 && <div>
+                        {this.state.classes.length > 0 && <div>
                             <div>
-                            {classes[1].ability1.name} 
-                            <br/>
-                            {classes[1].ability1.description}
-                            <br/>
-                            {classes[1].ability1.manacost}
-                        </div>
-                        <br/>
-                        <div>
-                            {classes[1].ability2.name} 
-                            <br/>
-                            {classes[1].ability2.description}
-                            <br/>
-                            {classes[1].ability2.manacost}
-                        </div>
+                                {classes[1].ability1.name}
+                                <br />
+                                {classes[1].ability1.description}
+                                <br />
+                                {classes[1].ability1.manacost}
+                            </div>
+                            <br />
+                            <div>
+                                {classes[1].ability2.name}
+                                <br />
+                                {classes[1].ability2.description}
+                                <br />
+                                {classes[1].ability2.manacost}
+                            </div>
                         </div>}
                     </div>
-                    <br/>
+                    <br />
                     <div onClick={this.class.bind(this, 'Mage')}>  <p className="TwoModalTitle">Mage</p>
-                        {this.state.classes.length>0 && <div>
+                        {this.state.classes.length > 0 && <div>
                             <div>
-                            {classes[2].ability1.name} 
-                            <br/>
-                            {classes[2].ability1.description}
-                            <br/>
-                            {classes[2].ability1.manacost}
-                        </div>
-                        <br/>
-                        <div>
-                            {classes[2].ability2.name} 
-                            <br/>
-                            {classes[2].ability2.description}
-                            <br/>
-                            {classes[2].ability2.manacost}
-                        </div>
+                                {classes[2].ability1.name}
+                                <br />
+                                {classes[2].ability1.description}
+                                <br />
+                                {classes[2].ability1.manacost}
+                            </div>
+                            <br />
+                            <div>
+                                {classes[2].ability2.name}
+                                <br />
+                                {classes[2].ability2.description}
+                                <br />
+                                {classes[2].ability2.manacost}
+                            </div>
                         </div>}
                     </div>
 
 
                 </Dialog>
-                 third modal
+                third modal
                 <Dialog
                     title="Choose a sexy preset face"
                     open={this.state.thirdModal}
@@ -339,59 +352,59 @@ class Dashboard extends Component {
                     paperProps={{
                         style: { display: 'flex', flexDirection: 'column', justifyContent: 'center' }
                     }}
-                    style={{ opacity: '0.9', textAlign: "center", background: '#3D315B'}}
+                    style={{ opacity: '0.9', textAlign: "center", background: '#3D315B' }}
                 >
 
-                    <img src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_80/v1519840784/James_lolknq.png" onClick={this.onImageDropPreset.bind(this)}/>
+                    <img src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_80/v1519840784/James_lolknq.png" onClick={this.onImageDropPreset.bind(this)} />
                     <p>...or upload your face.</p>
 
-                <div className="outerDropzone">
-                    <Dropzone
-                        multiple={false}
-                        accept="image/*"
-                        onDrop={this.onImageDrop.bind(this)}
-                        className="dropzone">
-                        <p>Drop an image or click to select a file to upload.</p>
-                    </Dropzone>
-                </div>
-      <AvatarEditor
-        ref={this.setEditorRef}
-        image={this.state.image}
-        width={150}
-        height={150}
-        border={200}
-        borderRadius={200}
-        color={[61, 49, 91, 0.3]} // RGBA
-        scale={this.state.scaleSlider}
-        rotate={0}
-        style={ {width: '200px', height: '200px', border: '1px solid #3D315B'} }
-      />
+                    <div className="outerDropzone">
+                        <Dropzone
+                            multiple={false}
+                            accept="image/*"
+                            onDrop={this.onImageDrop.bind(this)}
+                            className="dropzone">
+                            <p>Drop an image or click to select a file to upload.</p>
+                        </Dropzone>
+                    </div>
+                    <AvatarEditor
+                        ref={this.setEditorRef}
+                        image={this.state.image}
+                        width={150}
+                        height={150}
+                        border={200}
+                        borderRadius={200}
+                        color={[61, 49, 91, 0.3]} // RGBA
+                        scale={this.state.scaleSlider}
+                        rotate={0}
+                        style={{ width: '200px', height: '200px', border: '1px solid #3D315B' }}
+                    />
 
-<Slider
-          min={0.1}
-          max={4.5}
-          step={.1}
-          value={this.state.scaleSlider}
-          onChange={this.handleScaleSlider}
-          sliderStyle={{ trackColor: '#3D315B', selectionColor: '#3D315B'}}
-        />
+                    <Slider
+                        min={0.1}
+                        max={4.5}
+                        step={.1}
+                        value={this.state.scaleSlider}
+                        onChange={this.handleScaleSlider}
+                        sliderStyle={{ trackColor: '#3D315B', selectionColor: '#3D315B' }}
+                    />
 
-                    
-        <button onClick={() => this.onClickSave()} className="buttonModal">Crop</button>
-                    
-                <div className={!this.state.uploadedFileCloudinaryUrl ? "stickmanClosed" : "stickmanOpen"}>
-                    <br/>
-                    <img src={this.state.uploadedFileCloudinaryUrl} className= "previewWindow"/>
-                    <br/>
-                    <img src={stickman} className="stickman"/>
-                </div>
 
-            <br/>
+                    <button onClick={() => this.onClickSave()} className="buttonModal">Crop</button>
 
-        <button onClick={() => this.moveOn2()} className="buttonModal">Submit</button>
-                    
-                
-                
+                    <div className={!this.state.uploadedFileCloudinaryUrl ? "stickmanClosed" : "stickmanOpen"}>
+                        <br />
+                        <img src={this.state.uploadedFileCloudinaryUrl} className="previewWindow" />
+                        <br />
+                        <img src={stickman} className="stickman" />
+                    </div>
+
+                    <br />
+
+                    <button onClick={() => this.moveOn2()} className="buttonModal">Submit</button>
+
+
+
                 </Dialog>
             </div>
         )
@@ -402,7 +415,8 @@ function mapStateToProps(state) {
     console.log('state from store', state.classes)
     return {
         name: state.name,
-        classes: state.classes
+        classes: state.classes,
+        user: state.user
     }
 }
 export default connect(mapStateToProps, { createChar, addClass, createAvatar, getClasses })(Dashboard)

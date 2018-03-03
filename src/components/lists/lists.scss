@@ -25,9 +25,9 @@ $inputbox: #E4DAEA;
         z-index:2;
         border-top: solid 1px #3D315B;
         border-bottom: solid 1px #3D315B;
-        padding-top: 10px;
+        // padding-top: 10px;
         padding-bottom: 10px;
-        // box-shadow: 0 6px 12px 0px #474E6A;
+        box-shadow: 0 6px 12px 0px #474E6A;
         .editButton {
             width: 25px;
             height: 25px;
@@ -36,12 +36,13 @@ $inputbox: #E4DAEA;
         .checkbox{
             background: $navbarcolor;
             width: 10%;
-            height: 48%;
+            height: 60%;
             padding:20px;
-            // border-radius: 5px;
             input{
                 width: 25px;
                 height: 25px;
+                position: relative;
+                top: 7px;
             }
         }
         .taskLabel{
@@ -62,19 +63,19 @@ $inputbox: #E4DAEA;
         @extend .daily;
     }
     #young{
-        background-color: lightgreen;
+        background-color: white;
         .checkbox{
             background: rgb(28, 117, 28);
         }
     }
     #middleAge{
-        background-color: lightcoral;
+        background-color: white;
         .checkbox{
             background: rgb(151, 69, 69)
         }
     }
     #geriatric{
-        background-color: darkred;
+        background-color: white;
         .checkbox{
             background: rgb(70, 15, 15);
         }

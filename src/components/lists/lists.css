@@ -20,8 +20,8 @@
     z-index: 2;
     border-top: solid 1px #3D315B;
     border-bottom: solid 1px #3D315B;
-    padding-top: 10px;
-    padding-bottom: 10px; }
+    padding-bottom: 10px;
+    box-shadow: 0 6px 12px 0px #474E6A; }
     .daily .editButton, .todo .editButton {
       width: 25px;
       height: 25px;
@@ -29,11 +29,13 @@
     .daily .checkbox, .todo .checkbox {
       background: #3D315B;
       width: 10%;
-      height: 48%;
+      height: 60%;
       padding: 20px; }
       .daily .checkbox input, .todo .checkbox input {
         width: 25px;
-        height: 25px; }
+        height: 25px;
+        position: relative;
+        top: 7px; }
     .daily .taskLabel, .todo .taskLabel {
       margin: 10px;
       width: 80%;
@@ -45,15 +47,15 @@
     border-radius: 5px;
     background-color: #F0EBF3; }
   #young {
-    background-color: lightgreen; }
+    background-color: white; }
     #young .checkbox {
       background: #1c751c; }
   #middleAge {
-    background-color: lightcoral; }
+    background-color: white; }
     #middleAge .checkbox {
       background: #974545; }
   #geriatric {
-    background-color: darkred; }
+    background-color: white; }
     #geriatric .checkbox {
       background: #460f0f; }
   .todos {
