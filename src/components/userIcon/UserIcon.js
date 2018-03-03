@@ -23,6 +23,7 @@ class UserIcon extends Component {
         this.healthPctFun = this.healthPctFun.bind(this)
         this.manaPctFun = this.manaPctFun.bind(this)
         this.xpPctFun = this.xpPctFun.bind(this)
+        
     }
 
     componentWillMount() {
@@ -35,7 +36,7 @@ class UserIcon extends Component {
             this.manaPctFun()
             this.xpPctFun()
     }
-
+    
     displayUser() {
         // let {user} = this.props
         console.log(this.props.user.hp, 'props')
@@ -47,28 +48,28 @@ class UserIcon extends Component {
 
     }
 
-    healthPctFun(){
-        let{hp, maxhp} = this.props.user      
+    healthPctFun() {
+        let { hp, maxhp } = this.props.user
         var pct = (hp / maxhp) * 100;
         this.setState({
             healthPct: pct
-        })        
+        })
     }
-    manaPctFun(){
-        let{mana, maxmana} = this.props.user;
-        var pct = mana/maxmana * 100;
+    manaPctFun() {
+        let { mana, maxmana } = this.props.user;
+        var pct = mana / maxmana * 100;
 
         this.setState({
             manaPct: pct
-        })        
+        })
     }
-    xpPctFun(){
-        let{currentexp, nextexp} = this.props.user;
-        var pct = currentexp/nextexp * 100;
+    xpPctFun() {
+        let { currentexp, nextexp } = this.props.user;
+        var pct = currentexp / nextexp * 100;
 
         this.setState({
             xpPct: pct
-        })        
+        })
     }
 
     render() {
@@ -91,7 +92,7 @@ class UserIcon extends Component {
 
 
                 <div className="stats">
-                    <br/>
+                    <br />
                     <div className="Class">
                   
                     {this.props.user.class}
@@ -103,27 +104,27 @@ class UserIcon extends Component {
 
                     </div>
 
-                    <br/>
+                    <br />
 
-                    <div className="mana"> 
-                    <img src={heartIcon} className="manaPic"/>
-                    Health {this.props.user.hp} / {this.props.user.maxhp}</div>
+                    <div className="mana">
+                        <img src={heartIcon} className="manaPic" />
+                        Health {this.props.user.hp} / {this.props.user.maxhp}</div>
                     <div className="healthBarBorder">
-                    <div className="healthBar" style={{width: `${this.state.healthPct}%`}}></div>
+                        <div className="healthBar" style={{ width: `${this.state.healthPct}%` }}></div>
                     </div>
 
-                    <div className="mana">  
-                    <img src={mana} className="manaPic"/> 
-                    Mana {this.props.user.mana} / {this.props.user.maxmana}</div>
+                    <div className="mana">
+                        <img src={mana} className="manaPic" />
+                        Mana {this.props.user.mana} / {this.props.user.maxmana}</div>
                     <div className="manaBarBorder">
-                    <div className="manaBar" style={{width: `${this.state.manaPct}%`}}></div>
+                        <div className="manaBar" style={{ width: `${this.state.manaPct}%` }}></div>
                     </div>
 
-                    <div className="mana"> 
-                    <img src={star} className="starPic"/>
-                    Xp {this.props.user.currentexp} / {this.props.user.nextexp}</div>
+                    <div className="mana">
+                        <img src={star} className="starPic" />
+                        Xp {this.props.user.currentexp} / {this.props.user.nextexp}</div>
                     <div className="XpBarBorder">
-                    <div className="XpBar" style={{width: `${this.state.xpPct}%`}}></div>
+                        <div className="XpBar" style={{ width: `${this.state.xpPct}%` }}></div>
                     </div>
 
 
@@ -138,7 +139,7 @@ class UserIcon extends Component {
 function mapStateToProps(state) {
     return {
         user: state.user,
-        avatar: state.avatar
+        avatar: state.avatar,
     }
 }
 

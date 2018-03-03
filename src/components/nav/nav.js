@@ -13,7 +13,8 @@ class Nav extends Component {
         super();
 
         this.state = {
-            open: false
+            open: false,
+            toggle: true
         }
     }
 
@@ -29,6 +30,18 @@ class Nav extends Component {
         } else {
             this.setState({
                 open: false
+            })
+        }
+    }
+    
+    toggleIcon(){
+        if(!this.state.toggle){
+            this.setState({
+                toggle: false
+            })
+        } else {
+            this.setState({
+                toggle: true
             })
         }
     }
@@ -72,12 +85,12 @@ class Nav extends Component {
                         <Link to='/dashboard'><span className="media-nav-link">Dashboard</span></Link>
                         <Link to='/inventory'><span className="media-nav-link">Inventory</span></Link>
                         <Link to='/shop'><span className="media-nav-link">Shop</span></Link>
-                        <Link to='/abilities'><span className="media-nav-link">Abilities</span></Link>
+                        {/* <Link to='/abilities'><span className="media-nav-link">Abilities</span></Link> */}
                         <a href ="http://localhost:3020/api/logout" className="media-nav-link">Logout</a>
 
                     </div>
                 </div>
-                    <UserIcon />
+                 {this.state.toggle && <UserIcon />}
             </div>
         )
     }

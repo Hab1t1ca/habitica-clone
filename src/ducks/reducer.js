@@ -273,22 +273,6 @@ export function goldExpTask(xp, gold) {
     }
 }
 
-//Complete a daily/streak
-// export function compDaily(comp, listid) {
-//     let body = {
-//         "": comp,
-//     }
-//     if (!comp) {
-//         let streak = axios.put(`/api/streak/${listid}`, body).then(res => {
-//             return res.data
-//         })
-//     } else { streak = 0 }
-//     return {
-//         type: COMPLETE_DAILY,
-//         payload: streak
-//     }
-// }
-
 //show max health
 export function showMaxHp(maxhp) {
     return {
