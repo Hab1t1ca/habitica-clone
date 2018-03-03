@@ -111,7 +111,7 @@ class Shop extends Component {
             return (
                 <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "itemCard noBuy"} key={item.itemid}>
                 {console.log(this.props.user.inventory, item.itemid)}
-                    {this.props.user.inventory.includes(Number(item.itemid)) ? <p></p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
+                    {(item.lvlavailable > this.props.user.lvl) || (this.props.user.inventory.includes(Number(item.itemid))) ? <p></p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
                     <h4>{item.name}</h4>
                     <img src={item.image} />
                     <p>Lvl: {item.lvlavailable}</p>
@@ -126,7 +126,7 @@ let armor = this.props.items.map(item => {
     if (item.bodlocation === "body" || item.bodlocation === "hat") {
         return (
             <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "noBuy"} key={item.itemid}>
-                 {(item.lvlavailable > this.props.user.lvl) || (!this.props.user.inventory.includes(Number(item.itemid))) ? <p>something</p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
+                 {(item.lvlavailable > this.props.user.lvl) || (this.props.user.inventory.includes(Number(item.itemid))) ? <p>something</p>:<button className="buybutton" onClick={() => this.buyitem(item.itemid,item.cost,this.props.user.gold)}>buy</button>}
                 <h4>{item.name}</h4>
                 <img src={item.image} />
                 <p>Lvl: {item.lvlavailable}</p>
