@@ -55,9 +55,6 @@ class Dailies extends Component {
     
             gold+=1;
             currentexp+=10;
-
-            // let nugold = gold+1;
-            // let nuxp = currentexp+10;
     
             this.props.goldExpTask(currentexp, gold);
             this.props.complete(listid);
