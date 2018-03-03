@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {burstOfFlames, alchemy, peoplesElbow, intimidatingGaze, stealth, pickpocket} from './abilityFns';
 import axios from 'axios';
+import abilityIcon from './AbilitiesIcon.png';
+import burstOfFlamesIcon from './BurstOfFlamesIcon.png';
+import TapIcon from './TapIcon.png';
+import './abilities.css';
 
 class Abilities extends Component {
     constructor() {
@@ -49,22 +53,37 @@ class Abilities extends Component {
     render() {
 
         return (
-            <div>
-               <h1>Abilities</h1>
+            <div className="abilitiesDiv">
+                 <img className="abilityIcon" src={abilityIcon}/>
+               <h1 className="abilitiesTitle">Abilities</h1>
+
+               
                {this.state.tempData.class && 
-                    <div>
+                    <div className="abilitiesInnerDiv">
+                        <div className="flex">
+                        <p className="abilityName">{this.state.tempData.ability1.name}</p>
                         <button className="abilityBtn" onClick={ 
-                            this.useAbility.bind(this,this.state.tempData.ability1.name)}>{this.state.tempData.ability1.name}</button>                  
+                            this.useAbility.bind(this,this.state.tempData.ability1.name)}>
+                            
+                            <img  className="abilityIcons" src={burstOfFlamesIcon}/>
+                            </button> 
+                        </div>                 
                         <p>{this.state.tempData.ability1.description}</p>
-                        <p>{this.state.tempData.ability1.manacost}</p>    
+                        <p>Mana: {this.state.tempData.ability1.manacost}</p>    
                     </div>
                 }
                {this.state.tempData.class && 
-                    <div>
+                    <div className="abilitiesInnerDiv">
+                        <div className="flex">
+                        <p className="abilityName">{this.state.tempData.ability2.name}</p>
                         <button className="abilityBtn" onClick={
-                        this.useAbility.bind(this, this.state.tempData.ability2.name)}>{this.state.tempData.ability2.name}</button>                  
+                        this.useAbility.bind(this, this.state.tempData.ability2.name)}>
+                        
+                        <img  className="abilityIcons" src={TapIcon}/>
+                        </button>   
+                        </div>               
                         <p>{this.state.tempData.ability2.description}</p>
-                        <p>{this.state.tempData.ability2.manacost}</p>
+                        <p>Mana: {this.state.tempData.ability2.manacost}</p>
                     </div>
                 }
             </div>
