@@ -49,7 +49,56 @@ module.exports = {
             res.send(item)
         }).catch(e=>console.log(e))
     },
+
+    buyPotion: (req,res) =>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+        let {userGold, itemid, cost, hp, mp} = req.body;
+        console.log(userGold, itemid, cost, userid, hp, mp,"potion stuff")
+        userGold -= cost;
+
+        db.goldBuyItem([userGold,userid]).then(user=>{
+            return user[0]
+        })
+
+        if(itemid == 201){
+            console.log('hitting health potion', hp, userid)
+            hp += 10
+        db.buyHealth([hp, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
+        if(itemid == 202){
+            mp += 15
+        db.buyMana([mp, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
+    }
+    ,
+
+    getEquipped: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+
+        db.getEquipped([userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
+    ,
     
+    equipItem: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+        let {itemid} = req.body;
+
+        db.equipItem([itemid, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+
+    }
+
+    ,
     getUser: (req,res)=>{
         console.log("session", req.session.passport.user.userid)
         const userid = req.session.passport.user.userid;
