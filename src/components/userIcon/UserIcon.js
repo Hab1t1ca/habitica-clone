@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser } from '../../ducks/reducer';
+import { getUser, getInventory, getEquipped } from '../../ducks/reducer';
 import "./userIcon.css";
 import stickman from './stickmanTemplateV3.png';
 import gold from '../nav/Coins.png';
@@ -16,18 +16,30 @@ class UserIcon extends Component {
         this.state = {
             healthPct: 100,
             manaPct: 100,
-            xpPct: 100
+            xpPct: 100,
+
+            temp: []
+            
 
         }
-        this.displayUser = this.displayUser.bind(this)
+
+        this.updateTemp = this.updateTemp.bind(this)
+
         this.healthPctFun = this.healthPctFun.bind(this)
         this.manaPctFun = this.manaPctFun.bind(this)
         this.xpPctFun = this.xpPctFun.bind(this)
-        
     }
 
     componentWillMount() {
         this.props.getUser();
+        this.props.getInventory();
+        this.props.getEquipped();
+    }
+
+    componentDidMount(){
+        setTimeout(()=>{
+            this.updateTemp()
+        }, 1000)
     }
 
     componentWillReceiveProps(nextProps){
@@ -35,45 +47,93 @@ class UserIcon extends Component {
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-    }
-    
-    displayUser() {
-        // let {user} = this.props
-        console.log(this.props.user.hp, 'props')
-        return (
-            <div>
-                {/* <h1>{user.hp}</h1> */}
-            </div>
-        )
-
+            // this.updateTemp()
     }
 
-    healthPctFun() {
-        let { hp, maxhp } = this.props.user
+
+    healthPctFun(){
+        let{hp, maxhp} = this.props.user      
         var pct = (hp / maxhp) * 100;
         this.setState({
             healthPct: pct
-        })
+        })        
     }
-    manaPctFun() {
-        let { mana, maxmana } = this.props.user;
-        var pct = mana / maxmana * 100;
+    manaPctFun(){
+        let{mana, maxmana} = this.props.user;
+        var pct = mana/maxmana * 100;
 
         this.setState({
             manaPct: pct
-        })
+        })        
     }
-    xpPctFun() {
-        let { currentexp, nextexp } = this.props.user;
-        var pct = currentexp / nextexp * 100;
+    xpPctFun(){
+        let{currentexp, nextexp} = this.props.user;
+        var pct = currentexp/nextexp * 100;
 
         this.setState({
             xpPct: pct
+        })        
+    }
+
+    updateTemp(){
+        let temp = []
+        let {equipped, inventory} = this.props
+        console.log(equipped, inventory)
+        for(let i = 0; i < equipped.length; i++){
+            for(let k = 0; k < inventory.length;k++){
+                if(inventory[k].itemid = equipped[i]){
+                    temp.push(inventory[k])
+                }
+            }
+        }
+        this.setState({
+            temp: temp
         })
+    }
+
+    addWeapon(thing){
+        let hand = "";
+        let body = "";
+        let hat = "";
+        let things = this.state.temp.map((item)=>{
+            if(item.bodlocation === "hand"){
+                hand = item.image
+
+            }
+            if(item.bodlocation === "body"){
+                body = item.image
+            }
+            if(item.bodlocation === "hat"){
+                hat = item.image
+            }
+        // switch (item.bodlocation) {
+        //     case hand:
+        //         image = item.image;
+        //         break; 
+        //     case body:
+        //         image = item.image;
+        //         break;
+        //     case hat:
+        //         image = item.image;
+        //         break; 
+        //     default: 
+        //         text = "stuff";
+        // }
+        })
+        if(thing === "hand"){
+            return hand
+        }
+        if(thing === "body"){
+            return body
+        }
+        if(thing === "hat"){
+            return hat
+        }
     }
 
     render() {
         console.log(this.props.user, 'render props')
+        console.log(this.state.temp)
         return (
 
             <div className="mainHeader">
@@ -82,9 +142,9 @@ class UserIcon extends Component {
                 <div className="Avatar">
                 <img className="avatarWindow" src={this.props.user.avatar}/>
                 <img className="stickmanInBox" src={stickman}/>
-                <img className="WeaponRightHand" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_75/v1519943251/BloodBattleAxe_m8aztd.png"/>
-                <img className="chestArmor" src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_30/v1519777195/policeVest.png"/>
-                <img className="hat" src="http://res.cloudinary.com/rigrater/image/upload/v1519947302/MushroomHatSmaller_etey8g.png"/>
+                <img className="WeaponRightHand" src={this.addWeapon("hand")}/>
+                <img className="chestArmor" src={this.addWeapon("body")}/>
+                <img className="hat" src={this.addWeapon("hat")}/>
                 </div>
 
 
@@ -92,7 +152,7 @@ class UserIcon extends Component {
 
 
                 <div className="stats">
-                    <br />
+                    <br/>
                     <div className="Class">
                   
                     {this.props.user.class}
@@ -104,27 +164,27 @@ class UserIcon extends Component {
 
                     </div>
 
-                    <br />
+                    <br/>
 
-                    <div className="mana">
-                        <img src={heartIcon} className="manaPic" />
-                        Health {this.props.user.hp} / {this.props.user.maxhp}</div>
+                    <div className="mana"> 
+                    <img src={heartIcon} className="manaPic"/>
+                    Health {this.props.user.hp} / {this.props.user.maxhp}</div>
                     <div className="healthBarBorder">
-                        <div className="healthBar" style={{ width: `${this.state.healthPct}%` }}></div>
+                    <div className="healthBar" style={{width: `${this.state.healthPct}%`}}></div>
                     </div>
 
-                    <div className="mana">
-                        <img src={mana} className="manaPic" />
-                        Mana {this.props.user.mana} / {this.props.user.maxmana}</div>
+                    <div className="mana">  
+                    <img src={mana} className="manaPic"/> 
+                    Mana {this.props.user.mana} / {this.props.user.maxmana}</div>
                     <div className="manaBarBorder">
-                        <div className="manaBar" style={{ width: `${this.state.manaPct}%` }}></div>
+                    <div className="manaBar" style={{width: `${this.state.manaPct}%`}}></div>
                     </div>
 
-                    <div className="mana">
-                        <img src={star} className="starPic" />
-                        Xp {this.props.user.currentexp} / {this.props.user.nextexp}</div>
+                    <div className="mana"> 
+                    <img src={star} className="starPic"/>
+                    Xp {this.props.user.currentexp} / {this.props.user.nextexp}</div>
                     <div className="XpBarBorder">
-                        <div className="XpBar" style={{ width: `${this.state.xpPct}%` }}></div>
+                    <div className="XpBar" style={{width: `${this.state.xpPct}%`}}></div>
                     </div>
 
 
@@ -140,7 +200,9 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         avatar: state.avatar,
+        inventory: state.inventory,
+        equipped: state.equipped
     }
 }
 
-export default connect(mapStateToProps, { getUser })(UserIcon)
+export default connect(mapStateToProps, { getUser, getInventory, getEquipped })(UserIcon)
