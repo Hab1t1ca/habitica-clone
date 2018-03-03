@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('31 16 * * *', function () {
+cron.schedule('58 16 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
@@ -79,17 +79,21 @@ cron.schedule('31 16 * * *', function () {
                     hp -= 5;
                     gold -= 1;
                     db.cronUpdate([hp, gold, userid]).then(user => {
-                        // console.log('user should lose level', user[0]);
                         let blob = user[0];
                         if (blob.hp <= 0) {
                             let { lvl, nextexp, currentexp, gold, mana, userid, hp } = blob;
-                            lvl -= 1;
+                            if (lvl<=1){
+                                lvl=1
+                            }
+                            else {
+                                lvl -= 1;
+                            }
                             currentexp = 0;
                             gold -= 5;
                             hp = lvlFns.generalHealthCalc(lvl);
                             mana = lvlFns.generalMana(lvl);
                             nextexp += 15;
-                            // console.log('new values', lvl, hp, mana, nextexp, currentexp, gold, userid)
+                            console.log('new values', lvl, hp, mana, nextexp, currentexp, gold, userid)
                             db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user => {
                                 return user;
                             }).catch(e => console.log(e))
