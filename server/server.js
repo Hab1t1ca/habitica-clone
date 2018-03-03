@@ -156,6 +156,8 @@ app.get('/api/getitems', controller.getitems);
 app.post('/api/buyitem', controller.buyItem);
 app.put(`/api/buypotion`,controller.buyPotion);
 app.get('/api/inventory', controller.pullInventory);
+app.get('/api/equipped', controller.getEquipped);
+app.put(`/api/equip`, controller.equipItem);
 
 //End endpoints
 

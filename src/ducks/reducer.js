@@ -8,6 +8,7 @@ const initialState = {
     Gold: 0,
     list_items: [],
     inventory: [],
+    equipped: [],
     avatar: '',
     shop: [],
     user: {},
@@ -28,6 +29,8 @@ const SHOP = 'SHOP';
 const BUY = 'BUY';
 const BUYPOTION = 'BUYPOTION';
 const INVENTORY = 'INVENTORY';
+const EQUIP = 'EQUIP';
+const GETEQUIPPED = 'GETEQUIPPED';
 const USER = 'USER';
 const CLASS = 'CLASS';
 const ADD_DAILY = 'ADD_DAILY';
@@ -144,6 +147,33 @@ export function getInventory() {
     return {
         type: INVENTORY,
         payload: inventory
+    }
+}
+
+export function getEquipped(){
+    let equipped = axios.get(`/api/equipped`).then(res => {
+        console.log(res.data[0].equipped)
+        return res.data[0].equipped
+    }).catch(e => { console.log(e) })
+
+    return {
+        type: GETEQUIPPED,
+        payload: equipped
+    }
+}
+
+export function equipItem(id){
+    let body = {
+        itemid: id
+    }
+    let equip = axios.put(`/api/equip`, body).then(res => {
+        console.log(res.data,)
+        return res.data
+    }).catch(e => { console.log(e) })
+
+    return {
+        type: EQUIP,
+        payload: equip
     }
 }
 
@@ -349,6 +379,10 @@ function reducer(state = initialState, action) {
 
         case INVENTORY + '_FULFILLED':
             return Object.assign({}, state, { inventory: action.payload })
+
+        case GETEQUIPPED + '_FULFILLED':
+        console.log(action.payload)
+            return Object.assign({}, state, { equipped: action.payload })
 
         case USER + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload });

@@ -165,7 +165,7 @@ let armor = this.props.items.map(item => {
                 <div className="armor">
                     <h2>Armor</h2>
                     <div className="items">
-                        {armor}
+                        {this.props.user.inventory && armor}
                     </div>
                 </div>
             </div>

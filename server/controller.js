@@ -73,9 +73,30 @@ module.exports = {
         }).catch(e=>console.log(e))
     }
     }
+    ,
 
+    getEquipped: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+
+        db.getEquipped([userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+    }
     ,
     
+    equipItem: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+        let {itemid} = req.body;
+
+        db.equipItem([itemid, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+
+    }
+
+    ,
     getUser: (req,res)=>{
         console.log("session", req.session.passport.user.userid)
         const userid = req.session.passport.user.userid;
