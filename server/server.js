@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('58 16 * * *', function () {
+cron.schedule('4 17 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
@@ -25,41 +25,40 @@ cron.schedule('58 16 * * *', function () {
         var todos = lists.filter(list => list.daily_todo === 'todo');
 
         //check if user is on quest and do battle. This is hacky because we added it as an afterthought.
-        // db.getAllUsers().then(users => {
-        //     users.forEach(user=>{
-        //         //get all users and then map through them
-        //             console.log('cron fucking user', user)
-        //             var {quest} = user;
-        //             if (quest!=null){
-        //                 var {bossdmg,bosshp, hp, damage, userid} = user;
-        //                 let nudailies = dailies.filter(daily => daily.userid===userid);
-        //                 console.log('dealing damage and taking names', damage,quest,userid,hp,bossdmg,bosshp)
-        //                 nudailies.map(daily=>{
-        //                     if (daily.completed===false){
-        //                         hp-=bossdmg;
-        //                     }
-        //                     else {
-        //                         bosshp-=damage;
-        //                         if (bosshp<=0){
-        //                             quest = null;
-        //                             bosshp = null;
-        //                             bossdmg = null;
-        //                             //user receives rewards
-        //                         }
-        //                     }
-        //                 damage = 1
-        //                 db.questUpdate(hp,damage,quest,bossdmg,bosshp,userid).then(user=>{
-        //                     return user[0]
-        //                 }).catch(e=>console.log(e))
-        //                 })
-        //             }
-        //             else {
-        //                 return user
-        //             }
-        //         })
-        //     })
+        db.getAllUsers().then(users => {
+            users.forEach(user=>{
+                //get all users and then map through them
+                    console.log('cron fucking user', user)
+                    var {quest} = user;
+                    if (quest!=null){
+                        var {bossdmg,bosshp, hp, damage, userid} = user;
+                        let nudailies = dailies.filter(daily => daily.userid===userid);
+                        console.log('dealing damage and taking names', damage,quest,userid,hp,bossdmg,bosshp)
+                        nudailies.map(daily=>{
+                            if (daily.completed===false){
+                                hp-=bossdmg;
+                            }
+                            else {
+                                bosshp-=damage;
+                                if (bosshp<=0){
+                                    quest = null;
+                                    bosshp = null;
+                                    bossdmg = null;
+                                    //user receives rewards
+                                }
+                            }
+                        damage = 1
+                        db.questUpdate(hp,damage,quest,bossdmg,bosshp,userid).then(user=>{
+                            return user[0]
+                        }).catch(e=>console.log(e))
+                        })
+                    }
+                    else {
+                        return user
+                    }
+                })
+            })
             
-
         todos.map(todo => {
             todo.age += 1;
             db.updateAge([todo.age, todo.id]).then(todo => {
