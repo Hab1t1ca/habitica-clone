@@ -15,7 +15,7 @@ class Inventory extends Component {
 
     equipItem(id){
         this.props.equipItem(id)
-        setTimeout(function () {
+        setTimeout(()=> {
             window.location.reload()
         }, 1000)
     }
@@ -23,7 +23,7 @@ class Inventory extends Component {
     render() {
         let inventory = this.props.inventory.map(item => {
                 return (
-                    <div className="itemCard" key={item.itemid}>
+                    <div className="itemCard" key={item.id}>
                     {this.props.equipped.includes(Number(item.itemid)) ? <button>Unequip</button>:<button className="buybutton" onClick={()=>equipItem(item.itemid)}>Equip</button>}
                     {console.log(this.props.equipped, item.itemid)}
                         <h4>{item.name}</h4>
