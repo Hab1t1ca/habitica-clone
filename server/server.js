@@ -189,7 +189,7 @@ app.put('/api/avatar', controller.avatar);
 app.get('/api/getClasses', controller.getClasses);
 app.get('/api/getUserAbilities', controller.getUserAbilities);
 app.put('/api/ability', controller.useAbility);
-app.get('/api/getQuests', function(){console.log(temp)});//will be controller.getQuests
+app.get('/api/getQuests', controller.getQuests);//will be controller.getQuests
 
 //item endpoints
 app.get('/api/getitems', controller.getitems);

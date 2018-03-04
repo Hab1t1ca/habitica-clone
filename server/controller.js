@@ -267,5 +267,14 @@ module.exports = {
                 })
             })
         }
+    },
+
+    getQuests: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+
+        db.getQuests([userid]).then(quest =>{
+            res.send(quest)
+        }).catch(e=>console.log(e))
     }
 }
