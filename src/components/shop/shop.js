@@ -39,9 +39,9 @@ class Shop extends Component {
         }
     }
 
-    buyPotion(itemid, cost, userGold, hp, mp){
+    buyPotion(itemid, cost, userGold, hp, mp, maxhp, maxmana){
         if (userGold >= cost) {
-            this.props.buyPotion(itemid, cost, userGold, hp, mp)
+            this.props.buyPotion(itemid, cost, userGold, hp, mp, maxhp, maxmana )
             setTimeout(function () {
                 window.location.reload()
             }, 1000)
@@ -89,7 +89,7 @@ class Shop extends Component {
                 if (item.bodlocation === "potion") {
                     return (
                         <div className="itemCard" key={item.itemid}>
-                            <button className="buybutton" onClick={() => this.buyPotion(item.itemid,item.cost,this.props.user.gold,this.props.user.hp,this.props.user.mana)}>buy</button>
+                            <button className="buybutton" onClick={() => this.buyPotion(item.itemid,item.cost,this.props.user.gold,this.props.user.hp,this.props.user.mana, this.props.user.maxhp, this.props.user.maxmana)}>buy</button>
                             <h4>{item.name}</h4>
                             <img src={item.image} />
                             <p>Lvl: {item.lvlavailable}</p>
