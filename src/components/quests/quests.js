@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {quests} from '../../ducks/reducer'
+import {quests, equipQuest} from '../../ducks/reducer'
 import axios from 'axios';
 import Nav from '../nav/nav';
 import './quests.css';
@@ -17,17 +17,17 @@ class Quests extends Component {
 
     componentDidMount() {
         axios.get('/api/getQuests').then(res => {
-            console.log(res.data)
+            console.log(res.data, "Your quest data")
             this.setState({
                 questData: res.data
             })
         })
     }
 
-    // equipQuest(id){
-    //     this.props.equipQuest(id)
-    // }
-    // ()=>equipQuest(quest.id) 
+    equipQuest(id){
+        this.props.equipQuest(id)
+    }
+     
 
     render() {
         let quests = this.state.questData.map(quest =>
@@ -37,7 +37,7 @@ class Quests extends Component {
                 <p className="questP">Boss HP: {quest.bosshp}</p>
                 <p className="questP">Boss Damage: {quest.bossdmg}</p>
                 <p className="questP">Required Level: {quest.lvl}</p>
-                <button className="questBtn">Start Quest!</button>
+                <button className="questBtn" onClick={()=>equipQuest(quest.id)}>Start Quest!</button>
             </div>
         )
 
@@ -56,8 +56,8 @@ class Quests extends Component {
 function mapStateToProps(state) {
     return {
         user: state.user,
-        // quest: state.questData
+        quest: state.id
 
     }
 }
-export default connect(mapStateToProps)(Quests)
+export default connect(mapStateToProps, {quests, equipQuest})(Quests)

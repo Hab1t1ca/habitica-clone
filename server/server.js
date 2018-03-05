@@ -190,7 +190,7 @@ app.get('/api/getClasses', controller.getClasses);
 app.get('/api/getUserAbilities', controller.getUserAbilities);
 app.put('/api/ability', controller.useAbility);
 app.get('/api/getQuests', controller.getQuests);
-// app.put('/api/equipQuest', controller.equipQuest);
+app.put('/api/equipQuest', controller.equipQuest);
 
 //item endpoints
 app.get('/api/getitems', controller.getitems);
@@ -198,7 +198,7 @@ app.post('/api/buyitem', controller.buyItem);
 app.put(`/api/buypotion`,controller.buyPotion);
 app.get('/api/inventory', controller.pullInventory);
 app.get('/api/equipped', controller.getEquipped);
-// app.put(`/api/equip`, controller.equipItem);
+app.put(`/api/equip`, controller.equipItem);
 
 
 //End endpoints

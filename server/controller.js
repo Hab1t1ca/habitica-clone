@@ -299,5 +299,15 @@ module.exports = {
         db.getQuests([userid]).then(quest =>{
             res.send(quest)
         }).catch(e=>console.log(e))
+    },
+
+    equipQuest: (req, res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+        let {id} = req.body;
+
+        db.equipQuest([id, userid]).then(quest =>{
+            res.send(quest)
+        }).catch(e=>console.log(e))
     }
 }
