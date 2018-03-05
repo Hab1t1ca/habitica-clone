@@ -18,8 +18,10 @@ class UserIcon extends Component {
             manaPct: 100,
             xpPct: 100,
 
-            temp: []
-            
+            temp: [],
+            hat: "",
+            hand: "",
+            body: ""
 
         }
 
@@ -47,7 +49,7 @@ class UserIcon extends Component {
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-            // this.updateTemp()
+            this.addWeapon()
     }
 
 
@@ -91,20 +93,26 @@ class UserIcon extends Component {
         })
     }
 
-    addWeapon(thing){
+    addWeapon(){
         let hand = "";
         let body = "";
         let hat = "";
         let things = this.state.temp.map((item)=>{
             if(item.bodlocation === "hand"){
-                hand = item.image
+                this.setState({
+                    hand: item.image
+                })
 
             }
             if(item.bodlocation === "body"){
-                body = item.image
+                this.setState({
+                    body: item.image
+                })
             }
             if(item.bodlocation === "hat"){
-                hat = item.image
+                this.setState({
+                    hat: item.image
+                })
             }
         // switch (item.bodlocation) {
         //     case hand:
@@ -120,15 +128,7 @@ class UserIcon extends Component {
         //         text = "stuff";
         // }
         })
-        if(thing === "hand"){
-            return hand
-        }
-        if(thing === "body"){
-            return body
-        }
-        if(thing === "hat"){
-            return hat
-        }
+
     }
 
     render() {
@@ -142,9 +142,9 @@ class UserIcon extends Component {
                 <div className="Avatar">
                 <img className="avatarWindow" src={this.props.user.avatar}/>
                 <img className="stickmanInBox" src={stickman}/>
-                <img className="WeaponRightHand" src={this.addWeapon("hand")}/>
-                <img className="chestArmor" src={this.addWeapon("body")}/>
-                <img className="hat" src={this.addWeapon("hat")}/>
+                <img className="WeaponRightHand" src={this.state.hand}/>
+                <img className="chestArmor" src={this.state.body}/>
+                <img className="hat" src={this.state.hat}/>
                 </div>
 
 
