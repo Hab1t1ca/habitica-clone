@@ -51,7 +51,7 @@
     height: 50px;
     margin-bottom: -4px;
     margin-left: 18px;
-    z-index: 9;
+    z-index: 14;
    }
 
    .Avatar {
@@ -174,21 +174,21 @@ padding-top: 5px;
 
 .WeaponRightHand {
     position: absolute;
-    margin-left: 55px;
-    padding-bottom: 55px;  
+    margin-left: -17px;
+    padding-bottom: 5px;  
 }
 
 .chestArmor {
     position: absolute; 
-    padding-bottom: 38px;
-    margin-left: 28px; 
-    z-index: 10;
+    padding-bottom: 4px;
+    margin-left: -17px; 
+    z-index: 13;
 }
 
 .hat {
     position: absolute;
-    padding-bottom: 114px;
-    margin-left: 18px;
+    padding-bottom: 45px;
+    margin-left: -18px;
     z-index: 15;
 }
 
