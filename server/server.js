@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('58 16 * * *', function () {
+cron.schedule('4 17 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
@@ -59,7 +59,6 @@ cron.schedule('58 16 * * *', function () {
                 })
             })
             
-
         todos.map(todo => {
             todo.age += 1;
             db.updateAge([todo.age, todo.id]).then(todo => {
