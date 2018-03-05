@@ -21,7 +21,7 @@ module.exports = {
         // }
     },
 
-    addDaily: (daily) => {
+    addDaily: (daily) => {//Tiarra
 
         let body = {
             daily
@@ -35,7 +35,7 @@ module.exports = {
         //add action creator when putting this into the reducer. 
     },
 
-    addTodos: (todo) => {
+    addTodos: (todo) => {//Tiarra
         let body = {
             todo
         }
@@ -46,14 +46,14 @@ module.exports = {
         })
     },
 
-    getLists: () => {
+    getLists: () => {//Tiarra
         return axios.get('http://localhost:3020/api/getLists').then(res => {
             console.log(res.data);
             return res.data;
         }).catch(e => console.log(e))
     },
 
-    deleteTask: (id) => {
+    deleteTask: (id) => {//Tiarra
         let itemid = id;
         return axios.delete(`http://localhost:3020/api/deleteTask/${itemid}`).then(res => {
             return res.data;
@@ -72,6 +72,23 @@ module.exports = {
             return res.data
         }).catch(e => console.log(e))
         return taskComp
+    },
+
+    bossdmg: (nudailies, bossdmg, hp, bosshp)=>{//Tiarra
+        nudailies.map(daily=>{
+            if (daily.completed===false){
+                hp-=bossdmg;
+            }
+            else {
+                bosshp-=damage;
+                if (bosshp<=0){
+                    let quest = null;
+                    bosshp = null;
+                    bossdmg = null;
+                }
+            }
+        })
+        return hp
     }
 
 }
