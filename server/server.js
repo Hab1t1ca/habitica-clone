@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('58 16 * * *', function () {
+cron.schedule('4 17 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
@@ -25,41 +25,40 @@ cron.schedule('58 16 * * *', function () {
         var todos = lists.filter(list => list.daily_todo === 'todo');
 
         //check if user is on quest and do battle. This is hacky because we added it as an afterthought.
-        // db.getAllUsers().then(users => {
-        //     users.forEach(user=>{
-        //         //get all users and then map through them
-        //             console.log('cron fucking user', user)
-        //             var {quest} = user;
-        //             if (quest!=null){
-        //                 var {bossdmg,bosshp, hp, damage, userid} = user;
-        //                 let nudailies = dailies.filter(daily => daily.userid===userid);
-        //                 console.log('dealing damage and taking names', damage,quest,userid,hp,bossdmg,bosshp)
-        //                 nudailies.map(daily=>{
-        //                     if (daily.completed===false){
-        //                         hp-=bossdmg;
-        //                     }
-        //                     else {
-        //                         bosshp-=damage;
-        //                         if (bosshp<=0){
-        //                             quest = null;
-        //                             bosshp = null;
-        //                             bossdmg = null;
-        //                             //user receives rewards
-        //                         }
-        //                     }
-        //                 damage = 1
-        //                 db.questUpdate(hp,damage,quest,bossdmg,bosshp,userid).then(user=>{
-        //                     return user[0]
-        //                 }).catch(e=>console.log(e))
-        //                 })
-        //             }
-        //             else {
-        //                 return user
-        //             }
-        //         })
-        //     })
+        db.getAllUsers().then(users => {
+            users.forEach(user=>{
+                //get all users and then map through them
+                    
+                    var {quest} = user;
+                    if (quest!=null){
+                        var {bossdmg,bosshp, hp, damage, userid} = user;
+                        let nudailies = dailies.filter(daily => daily.userid===userid);
+                        
+                        nudailies.map(daily=>{
+                            if (daily.completed===false){
+                                hp-=bossdmg;
+                            }
+                            else {
+                                bosshp-=damage;
+                                if (bosshp<=0){
+                                    quest = null;
+                                    bosshp = null;
+                                    bossdmg = null;
+                                    //user receives rewards
+                                }
+                            }
+                        damage = 1
+                        db.questUpdate(hp,damage,quest,bossdmg,bosshp,userid).then(user=>{
+                            return user[0]
+                        }).catch(e=>console.log(e))
+                        })
+                    }
+                    else {
+                        return user
+                    }
+                })
+            })
             
-
         todos.map(todo => {
             todo.age += 1;
             db.updateAge([todo.age, todo.id]).then(todo => {
@@ -93,7 +92,7 @@ cron.schedule('58 16 * * *', function () {
                             hp = lvlFns.generalHealthCalc(lvl);
                             mana = lvlFns.generalMana(lvl);
                             nextexp += 15;
-                            console.log('new values', lvl, hp, mana, nextexp, currentexp, gold, userid)
+                            
                             db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user => {
                                 return user;
                             }).catch(e => console.log(e))
@@ -190,7 +189,8 @@ app.put('/api/avatar', controller.avatar);
 app.get('/api/getClasses', controller.getClasses);
 app.get('/api/getUserAbilities', controller.getUserAbilities);
 app.put('/api/ability', controller.useAbility);
-app.get('/api/getQuests', controller.getQuests);//will be controller.getQuests
+app.get('/api/getQuests', controller.getQuests);
+app.put('/api/equipQuest', controller.equipQuest);
 
 //item endpoints
 app.get('/api/getitems', controller.getitems);
@@ -199,6 +199,7 @@ app.put(`/api/buypotion`,controller.buyPotion);
 app.get('/api/inventory', controller.pullInventory);
 app.get('/api/equipped', controller.getEquipped);
 app.put(`/api/equip`, controller.equipItem);
+
 
 //End endpoints
 

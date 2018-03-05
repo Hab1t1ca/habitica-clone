@@ -145,7 +145,8 @@
 .WeaponRightHand {
   position: absolute;
   margin-left: -17px;
-  padding-bottom: 5px; }
+  padding-bottom: 4px;
+  z-index: 13; }
 
 .chestArmor {
   position: absolute;
