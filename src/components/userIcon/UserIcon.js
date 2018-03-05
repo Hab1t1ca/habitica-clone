@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, getInventory, getEquipped } from '../../ducks/reducer';
 import "./userIcon.css";
-import stickman from './stickmanTemplateV3.png';
+import stickman from './stickmanTemplateV4.png';
 import gold from '../nav/Coins.png';
 import mana from './mana_potion.png';
 import heartIcon from './HeartIcon.svg.svg';
