@@ -115,13 +115,15 @@ export function buy(itemid, cost, userGold) {
     }
 }
 
-export function buyPotion(itemid, cost, userGold, hp, mp){
+export function buyPotion(itemid, cost, userGold, hp, mp ,maxhp, maxmana){
     let body = {
         itemid: itemid,
         cost: cost,
         userGold: userGold,
         hp: hp,
-        mp: mp
+        mp: mp,
+        maxhp: maxhp,
+        maxmana: maxmana
     }
 
     let buy = axios.put(`/api/buypotion`, body).then(res => {
