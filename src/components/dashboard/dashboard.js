@@ -72,17 +72,14 @@ class Dashboard extends Component {
         this.setState({
             classes: nextProps.classes
         })
-        console.log(this.props.user.name)
-        // setTimeout(
-        //     function(){
+        
+       
                 if (this.props.user.name === ''){
-                    console.log('hitting if statement', !this.props.user.name)
+                    
                     this.openFirstModal()
                 }
 
-            // },1000
-        // )
-        // this.props.user.name == null ? this.openFirstModal() : null
+       
     }
     handleChange = (value) => {
         this.setState({
@@ -109,8 +106,7 @@ class Dashboard extends Component {
             this.setState({
                 preview: picture
             })
-            //   console.log(canvasScaled, "CoolScaled")
-            //   console.log(picture)
+            
 
         }
     }
@@ -174,7 +170,7 @@ class Dashboard extends Component {
             firstModal: false,
             secondModal: true
         })
-        //query to DB
+       
     }
 
 
@@ -218,8 +214,7 @@ class Dashboard extends Component {
                     onChange={this.handleChange}
                     value={this.state.slideIndex}
                     inkBarStyle={styles.inkBar}
-                    style={styles.headline}
-                //   tabItemContainerStyle={styles.headline}          
+                    style={styles.headline}          
                 >
                     <Tab label="Daily" icon={<FontIcon className="material-icons"><img className="icons" src={dailyIcon} /></FontIcon>} value={0} style={styles.color} />
                     <Tab label="To Do" icon={<FontIcon className="material-icons"><img className="icons" src={toDoIcon} /></FontIcon>} value={1} style={styles.color} />
@@ -250,9 +245,7 @@ class Dashboard extends Component {
 
 
 
-                {/* <UserIcon/> */}
-                {console.log(this.props.user.name, "Is your name")}
-                <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
+                
 
                 {/* first modal */}
                 <Dialog
@@ -343,7 +336,7 @@ class Dashboard extends Component {
 
 
                 </Dialog>
-                third modal
+                
                 <Dialog
                     title="Choose a sexy preset face"
                     open={this.state.thirdModal}
@@ -412,7 +405,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('state from store', state.classes)
+    
     return {
         name: state.name,
         classes: state.classes,
