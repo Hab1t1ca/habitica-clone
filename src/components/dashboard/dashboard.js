@@ -72,17 +72,10 @@ class Dashboard extends Component {
         this.setState({
             classes: nextProps.classes
         })
-        console.log(this.props.user.name)
-        // setTimeout(
-        //     function(){
                 if (this.props.user.name === ''){
                     console.log('hitting if statement', !this.props.user.name)
                     this.openFirstModal()
                 }
-
-            // },1000
-        // )
-        // this.props.user.name == null ? this.openFirstModal() : null
     }
     handleChange = (value) => {
         this.setState({
@@ -99,9 +92,6 @@ class Dashboard extends Component {
             const picture = this.editor.getImageScaledToCanvas().toDataURL('image/jpeg', 1);
 
             // If you want the image resized to the canvas size (also a HTMLCanvasElement)
-            //   const canvas = this.editor.getImageScaledToCanvas()
-            //   const picture = canvas.toDataURL('image/jpeg', 1.0)
-
 
             console.log(canvas, "Cool")
             console.log(picture, "Cool")
@@ -109,9 +99,6 @@ class Dashboard extends Component {
             this.setState({
                 preview: picture
             })
-            //   console.log(canvasScaled, "CoolScaled")
-            //   console.log(picture)
-
         }
     }
 
@@ -174,7 +161,6 @@ class Dashboard extends Component {
             firstModal: false,
             secondModal: true
         })
-        //query to DB
     }
 
 
@@ -203,6 +189,8 @@ class Dashboard extends Component {
             thirdModal: false
         })
 
+        setTimeout(function(){
+            window.location.reload()},900)
     }
 
     render() {
@@ -218,8 +206,7 @@ class Dashboard extends Component {
                     onChange={this.handleChange}
                     value={this.state.slideIndex}
                     inkBarStyle={styles.inkBar}
-                    style={styles.headline}
-                //   tabItemContainerStyle={styles.headline}          
+                    style={styles.headline}         
                 >
                     <Tab label="Daily" icon={<FontIcon className="material-icons"><img className="icons" src={dailyIcon} /></FontIcon>} value={0} style={styles.color} />
                     <Tab label="To Do" icon={<FontIcon className="material-icons"><img className="icons" src={toDoIcon} /></FontIcon>} value={1} style={styles.color} />
@@ -243,18 +230,11 @@ class Dashboard extends Component {
                     </div>
                 </SwipeableViews>
 
-
-
-
-
-
-
-
-                {/* <UserIcon/> */}
+{/* <UserIcon/> */}
                 {console.log(this.props.user.name, "Is your name")}
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 
-                {/* first modal */}
+{/* first modal */}
                 <Dialog
                     title="Welcome to Stick To It!"
                     open={this.state.firstModal}
@@ -273,7 +253,7 @@ class Dashboard extends Component {
                     <br />
                     <button onClick={() => this.moveOn()} className="buttonModal">Submit</button>
                 </Dialog>
-                {/* second modal */}
+{/* second modal */}
                 <Dialog
                     title="Choose/Click a character class:"
                     open={this.state.secondModal}
@@ -284,7 +264,6 @@ class Dashboard extends Component {
                     }}
                     style={{ opacity: '0.9', textAlign: "center", borderRadius: '25px', background: '#3D315B' }}
                 >
-
                     <div onClick={this.class.bind(this, 'Warrior')}> <p className="TwoModalTitle">Warrior</p>
                         {this.state.classes.length > 0 && <div>
                             <div className="TwoModalAbilityDiv">
@@ -301,49 +280,41 @@ class Dashboard extends Component {
                         </div>}
                     </div>
                     <br />
-                    <div onClick={this.class.bind(this, 'Rogue')}> <p className="TwoModalTitle">Rogue</p>
+                    <div onClick={this.class.bind(this, 'Rogue')}> <p className="TwoModalTitle">Rogue</p><br/>
                         {this.state.classes.length > 0 && <div>
-                            <div>
-                                {classes[1].ability1.name}
+                            <div className="TwoModalAbilityDiv">
+                                <p className="TwoModalAbilityName">{classes[1].ability1.name}</p>
                                 <br />
-                                {classes[1].ability1.description}
-                                <br />
-                                {classes[1].ability1.manacost}
+                                <p className="TwoModalAbilityDesc"> {classes[1].ability1.description} </p>
                             </div>
                             <br />
-                            <div>
-                                {classes[1].ability2.name}
+                            <div className="TwoModalAbilityDiv">
+                            <p className="TwoModalAbilityName">{classes[1].ability2.name}</p>
                                 <br />
-                                {classes[1].ability2.description}
-                                <br />
-                                {classes[1].ability2.manacost}
+                                <p className="TwoModalAbilityDesc"> {classes[1].ability2.description} </p>
                             </div>
                         </div>}
                     </div>
                     <br />
-                    <div onClick={this.class.bind(this, 'Mage')}>  <p className="TwoModalTitle">Mage</p>
+                    <div onClick={this.class.bind(this, 'Mage')}>  <p className="TwoModalTitle">Mage</p><br/>
                         {this.state.classes.length > 0 && <div>
-                            <div>
-                                {classes[2].ability1.name}
+                            <div className="TwoModalAbilityDiv">
+                            <p className="TwoModalAbilityName">{classes[2].ability1.name}</p>
                                 <br />
-                                {classes[2].ability1.description}
-                                <br />
-                                {classes[2].ability1.manacost}
+                                <p className="TwoModalAbilityDesc"> {classes[2].ability1.description} </p>
                             </div>
                             <br />
-                            <div>
-                                {classes[2].ability2.name}
+                            <div className="TwoModalAbilityDiv">
+                            <p className="TwoModalAbilityName">{classes[2].ability2.name}</p>
                                 <br />
-                                {classes[2].ability2.description}
-                                <br />
-                                {classes[2].ability2.manacost}
+                                <p className="TwoModalAbilityDesc"> {classes[2].ability2.description} </p>
                             </div>
                         </div>}
                     </div>
 
 
                 </Dialog>
-                third modal
+{/* third modal */}
                 <Dialog
                     title="Choose a sexy preset face"
                     open={this.state.thirdModal}
@@ -354,7 +325,6 @@ class Dashboard extends Component {
                     }}
                     style={{ opacity: '0.9', textAlign: "center", background: '#3D315B' }}
                 >
-
                     <img src="http://res.cloudinary.com/rigrater/image/upload/c_scale,w_80/v1519840784/James_lolknq.png" onClick={this.onImageDropPreset.bind(this)} />
                     <p>...or upload your face.</p>
 
@@ -402,9 +372,6 @@ class Dashboard extends Component {
                     <br />
 
                     <button onClick={() => this.moveOn2()} className="buttonModal">Submit</button>
-
-
-
                 </Dialog>
             </div>
         )
