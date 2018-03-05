@@ -22,7 +22,8 @@ const initialState = {
     avatar: '',
     classes: [],
     abilities: [],
-    quests: []
+    quests: [],
+    quest: ''
 };
 
 const NAME = 'NAME';
@@ -49,6 +50,7 @@ const EDIT_TASK = "EDIT_TASK";
 const CLASSES = "CLASSES";
 const ABILITIES = "ABILITIES";
 const QUESTS = "QUESTS";
+const QUEST = "QUEST";
 
 
 //Create Character function
@@ -303,8 +305,12 @@ export function showBaseExp(baseexp) {
 
 
 //Complete
-export function complete(listid) {
-    let complete = axios.put(`/api/complete/${listid}`).then(res => {
+export function complete(listid, damage) {
+    console.log("damage", damage)
+    let body = {
+        damage
+    }
+    let complete = axios.put(`/api/complete/${listid}`, body).then(res => {
         return res.data
     })
     return {
@@ -366,9 +372,28 @@ export function quests() {
     }
 }
 
+export function equipQuest(id){
+    let body = {
+        id
+    }
+
+    let quest = axios.put('/api/equipQuest', body).then(res=>{
+        return res.data
+    })
+
+    return {
+        type: QUEST, 
+        payload: quest
+    }
+
+}
+
 
 function reducer(state = initialState, action) {
     switch (action.type) {
+        case QUEST + '_FULFILLED':
+            return Object.assign({}, state, { name: action.payload});
+
         case NAME + '_FULFILLED':
             return Object.assign({}, state, { name: action.payload });
 
