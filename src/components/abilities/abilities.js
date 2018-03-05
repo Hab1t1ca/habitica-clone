@@ -30,14 +30,13 @@ class Abilities extends Component {
     useAbility(ability){
         
         let tree = {
-            "burst of flames" : burstOfFlames(this.props.user, this.props.lists),
-            "alchemy" : alchemy(this.props.user, this.props.lists),
-            "pickpocket" : pickpocket(this.props.user, this.props.lists),
-            "stealth" : stealth(this.props.user, this.props.lists),
+            "Burst of Flames" : burstOfFlames(this.props.user, this.props.lists),
+            "Alchemy" : alchemy(this.props.user, this.props.lists),
+            "Pickpocket" : pickpocket(this.props.user, this.props.lists),
+            "Stealth" : stealth(this.props.user, this.props.lists),
             "The Peoples Elbow" : peoplesElbow(this.props.user, this.props.lists),
             "Intimidating Gaze" : intimidatingGaze(this.props.user, this.props.lists)
         }
-        console.log(tree[ability]);
         let body = tree[ability];
         
         if (typeof(body)==='string'){
