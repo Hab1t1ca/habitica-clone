@@ -28,12 +28,12 @@ cron.schedule('4 17 * * *', function () {
         db.getAllUsers().then(users => {
             users.forEach(user=>{
                 //get all users and then map through them
-                    console.log('cron fucking user', user)
+                    
                     var {quest} = user;
                     if (quest!=null){
                         var {bossdmg,bosshp, hp, damage, userid} = user;
                         let nudailies = dailies.filter(daily => daily.userid===userid);
-                        console.log('dealing damage and taking names', damage,quest,userid,hp,bossdmg,bosshp)
+                        
                         nudailies.map(daily=>{
                             if (daily.completed===false){
                                 hp-=bossdmg;
@@ -92,7 +92,7 @@ cron.schedule('4 17 * * *', function () {
                             hp = lvlFns.generalHealthCalc(lvl);
                             mana = lvlFns.generalMana(lvl);
                             nextexp += 15;
-                            console.log('new values', lvl, hp, mana, nextexp, currentexp, gold, userid)
+                            
                             db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user => {
                                 return user;
                             }).catch(e => console.log(e))
@@ -189,7 +189,8 @@ app.put('/api/avatar', controller.avatar);
 app.get('/api/getClasses', controller.getClasses);
 app.get('/api/getUserAbilities', controller.getUserAbilities);
 app.put('/api/ability', controller.useAbility);
-app.get('/api/getQuests', controller.getQuests);//will be controller.getQuests
+app.get('/api/getQuests', controller.getQuests);
+app.put('/api/equipQuest', controller.equipQuest);
 
 //item endpoints
 app.get('/api/getitems', controller.getitems);
@@ -198,6 +199,7 @@ app.put(`/api/buypotion`,controller.buyPotion);
 app.get('/api/inventory', controller.pullInventory);
 app.get('/api/equipped', controller.getEquipped);
 app.put(`/api/equip`, controller.equipItem);
+
 
 //End endpoints
 

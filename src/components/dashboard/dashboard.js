@@ -72,8 +72,9 @@ class Dashboard extends Component {
         this.setState({
             classes: nextProps.classes
         })
+
                 if (this.props.user.name === ''){
-                    console.log('hitting if statement', !this.props.user.name)
+                    
                     this.openFirstModal()
                 }
     }
@@ -161,6 +162,7 @@ class Dashboard extends Component {
             firstModal: false,
             secondModal: true
         })
+
     }
 
 
@@ -229,11 +231,9 @@ class Dashboard extends Component {
                         <Abilities />
                     </div>
                 </SwipeableViews>
-
 {/* <UserIcon/> */}
                 {console.log(this.props.user.name, "Is your name")}
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
-
 {/* first modal */}
                 <Dialog
                     title="Welcome to Stick To It!"
@@ -379,7 +379,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('state from store', state.classes)
+    
     return {
         name: state.name,
         classes: state.classes,

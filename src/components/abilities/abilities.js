@@ -19,7 +19,7 @@ class Abilities extends Component {
 
     componentWillMount() {   
         axios.get('/api/getUserAbilities').then(res=>{
-            console.log(res.data)
+            
             this.setState({
                 tempData : res.data
             })
@@ -37,6 +37,7 @@ class Abilities extends Component {
             "The Peoples Elbow" : peoplesElbow(this.props.user, this.props.lists),
             "Intimidating Gaze" : intimidatingGaze(this.props.user, this.props.lists)
         }
+
         let body = tree[ability];
         
         if (typeof(body)==='string'){
