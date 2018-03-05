@@ -9,17 +9,20 @@ module.exports = {
         console.log('name me', name)
 
         db.createName([name, userid]).then(user => {
-            console.log('i am within you', user)
             res.send(user[0])
         }).catch(e=>console.log(e))
     },
 
-    addClass: (req,res) =>{
+    addClass: (req,res) =>{//and add default items
         const db = req.app.get('db');
         let {Class} = req.body;
         let userid = req.session.passport.user.userid;
 
-        db.createClass([Class, userid]).then(user => {
+        db.addDefaultItem([Class,userid]).then(results=>{//adds DevMountain Hat
+            return results
+        })
+
+        db.createClass([Class, userid]).then(user => {//add Stick. Had to do multiple queries because postgreSQL didn't like multiple inserts into the array
             res.send(user[0])
         }).catch(e=>console.log(e))
     },
@@ -271,5 +274,14 @@ module.exports = {
                 })
             })
         }
+    },
+
+    getQuests: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+
+        db.getQuests([userid]).then(quest =>{
+            res.send(quest)
+        }).catch(e=>console.log(e))
     }
 }

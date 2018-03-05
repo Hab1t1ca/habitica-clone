@@ -21,7 +21,8 @@ const initialState = {
     completed: false,
     avatar: '',
     classes: [],
-    abilities: []
+    abilities: [],
+    quests: []
 };
 
 const NAME = 'NAME';
@@ -47,6 +48,7 @@ const AVATAR = "AVATAR";
 const EDIT_TASK = "EDIT_TASK";
 const CLASSES = "CLASSES";
 const ABILITIES = "ABILITIES";
+const QUESTS = "QUESTS";
 
 
 //Create Character function
@@ -141,7 +143,7 @@ export function buyPotion(itemid, cost, userGold, hp, mp ,maxhp, maxmana){
 //inventory
 export function getInventory() {
     let inventory = axios.get(`/api/inventory`).then(res => {
-        console.log(res.data,)
+        console.log(res.data, )
         return res.data
     }).catch(e => { console.log(e) })
 
@@ -151,7 +153,7 @@ export function getInventory() {
     }
 }
 
-export function getEquipped(){
+export function getEquipped() {
     let equipped = axios.get(`/api/equipped`).then(res => {
         console.log(res.data[0].equipped)
         return res.data[0].equipped
@@ -163,12 +165,12 @@ export function getEquipped(){
     }
 }
 
-export function equipItem(id){
+export function equipItem(id) {
     let body = {
         itemid: id
     }
     let equip = axios.put(`/api/equip`, body).then(res => {
-        console.log(res.data,)
+        console.log(res.data, )
         return res.data
     }).catch(e => { console.log(e) })
 
@@ -343,13 +345,24 @@ export function getClasses() {
 
 //abilities
 export function abilities(body) {
-    
+
     let ability = axios.put('/api/ability', body).then(res => {
         return res.data
     })
     return {
         type: ABILITIES,
         payload: ability
+    }
+}
+
+//quests
+export function quests() {
+    let getQuests = axios.get('api/getQuests').then(res => {
+        return res.data
+    })
+    return {
+        type: QUESTS,
+        payload: getQuests
     }
 }
 
@@ -366,7 +379,7 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, { inventory: action.payload })
 
         case GETEQUIPPED + '_FULFILLED':
-        console.log(action.payload)
+            console.log(action.payload)
             return Object.assign({}, state, { equipped: action.payload })
 
         case USER + '_FULFILLED':
@@ -398,7 +411,7 @@ function reducer(state = initialState, action) {
 
         case UPDATE_GOEXP + '_FULFILLED':
             // var tempobject = Object.assign({},state.user, action.payload)
-            return Object.assign({}, state, {user : action.payload})
+            return Object.assign({}, state, { user: action.payload })
 
         case COMPLETE_DAILY + '_FULFILLED':
             return Object.assign({}, state, { completed: action.payload })
@@ -417,6 +430,9 @@ function reducer(state = initialState, action) {
 
         case ABILITIES + '_FULFILLED':
             return Object.assign({}, state, { abilities: action.payload })
+
+        case QUESTS + '_FULFILLED':
+            return Object.assign({}, state, { quests: action.payload })
 
         default: return state;
     }

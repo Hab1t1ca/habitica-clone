@@ -7,7 +7,7 @@ import Home from './components/home/home';
 import Dashboard from './components/dashboard/dashboard';
 import Inventory from './components/inventory/inventory';
 import Shop from './components/shop/shop';
-import Abilities from './components/abilities/abilities';
+import Quests from './components/quests/quests';
 
 export default function Router() {
     return (
@@ -17,6 +17,7 @@ export default function Router() {
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/inventory" component={Inventory} />
                 <Route path="/shop" component={Shop} />
+                <Route path="/quests" component={Quests} />
             </Switch>
 
     )
