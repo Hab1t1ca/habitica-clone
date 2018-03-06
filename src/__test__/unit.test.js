@@ -20,7 +20,7 @@ describe('items', () => {
 })
 
 describe('lists', () => {
-    test.skip('add daily', () => {//works as long as you hard code in a userid
+    test.skip('add daily', () => {//works as long as you hard code in a userid - Tiarra
         return fns.addDaily('something to do').then(response => {
             
             expect(Array.isArray(response)).toBeTruthy;
@@ -28,7 +28,7 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
-    test.skip('add todo', () => {//works as long as you hard code in a userid
+    test.skip('add todo', () => {//works as long as you hard code in a userid - Tiarra
         return fns.addTodos('chew bubble gum and kick ass').then(response => {
             
             expect(Array.isArray(response)).toBeTruthy;
@@ -36,7 +36,7 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
-    test.skip('receiving lists from DB', () => {//must hard code userid when testing. This works.
+    test.skip('receiving lists from DB', () => {//must hard code userid when testing. This works. - Tiarra
         return fns.getLists().then(response => {
             
             expect(Array.isArray(response)).toBeTruthy;
@@ -44,15 +44,12 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
-    test.skip('can delete task from DB', () => {//this works
+    test.skip('can delete task from DB', () => {//this works - Tiarra
         return fns.deleteTask(1).then(response => {
             
             expect(response).toBe('task has been deleted');
         }).catch(e => console.log(e))
     })
-
-    
-})
 
 describe('lvling', ()=>{ //unit testing
     
@@ -64,7 +61,7 @@ describe('lvling', ()=>{ //unit testing
         })
     })
     
-    test('HP increase on lvl', ()=>{
+    test.skip('HP increase on lvl', ()=>{
         var baseHealth = 50;
         var hExpo = 0.3;
         var lvl =2;
@@ -72,12 +69,13 @@ describe('lvling', ()=>{ //unit testing
         expect(newHealth).toEqual(63)               
     })
 
-    test('User gets a certain amount of gold when they lvl up', ()=>{
+    test.skip('User gets a certain amount of gold when they lvl up', ()=>{
         var goldExpo = 0.029;
         var lvl = 15;
         var gold = Math.floor(Math.pow(lvl, (lvl * goldExpo)))
         expect(gold).toEqual(3)
     })
+
 
     test('Mana increase on lvl', ()=>{
         var baseMana = 50;
@@ -94,5 +92,17 @@ describe('lvling', ()=>{ //unit testing
      expect(pct).toEqual(75)
     })
 
+
+
+})
+
+describe('quests', () => {
+
+    test('boss does damage if daily incomplete', () => {//works - Tiarra
+        var nudailies = [{"name": 'Snake', "completed": false}];
+
+        console.log(fns.bossdmg(nudailies,6,50,50));
+        expect(fns.bossdmg(nudailies,6,50,50)).toBe(44);
+    })
 
 })
