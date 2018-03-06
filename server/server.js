@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('34 18 * * *', function () {
+cron.schedule('0 0 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
@@ -74,62 +74,62 @@ cron.schedule('34 18 * * *', function () {
                 })
             })
             
-    //     todos.map(todo => {
-    //         todo.age += 1;
-    //         db.updateAge([todo.age, todo.id]).then(todo => {
-    //             return todo;
-    //         })
-    //     })
+        todos.map(todo => {
+            todo.age += 1;
+            db.updateAge([todo.age, todo.id]).then(todo => {
+                return todo;
+            })
+        })
 
-    //     dailies.map(daily => {
-    //         if (daily.completed != true) {
-    //             //streak = 0,and run updateStreak.
-    //             daily.streak = 0;
-    //             db.updateStreak([daily.streak, daily.id]).then(daily => {
-    //                 return daily;
-    //             }).catch(e => console.log(e))
-    //             db.getUser([daily.userid]).then(user => {
-    //                 let { hp, gold, userid } = user[0];
-    //                 hp -= 5;
-    //                 gold -= 1;
-    //                 db.cronUpdate([hp, gold, userid]).then(user => {
-    //                     let blob = user[0];
-    //                     if (blob.hp <= 0) {
-    //                         let { lvl, nextexp, currentexp, gold, mana, userid, hp } = blob;
-    //                         if (lvl<=1){
-    //                             lvl=1;
-    //                             hp=0;
-    //                         }
-    //                         else {
-    //                             lvl -= 1;
-    //                             hp = lvlFns.generalHealthCalc(lvl);
-    //                         }
-    //                         currentexp = 0;
-    //                         gold -= 5;
-    //                         mana = lvlFns.generalMana(lvl);
-    //                         nextexp -= 15;
+        dailies.map(daily => {
+            if (daily.completed != true) {
+                //streak = 0,and run updateStreak.
+                daily.streak = 0;
+                db.updateStreak([daily.streak, daily.id]).then(daily => {
+                    return daily;
+                }).catch(e => console.log(e))
+                db.getUser([daily.userid]).then(user => {
+                    let { hp, gold, userid } = user[0];
+                    hp -= 5;
+                    gold -= 1;
+                    db.cronUpdate([hp, gold, userid]).then(user => {
+                        let blob = user[0];
+                        if (blob.hp <= 0) {
+                            let { lvl, nextexp, currentexp, gold, mana, userid, hp } = blob;
+                            if (lvl<=1){
+                                lvl=1;
+                                hp=0;
+                            }
+                            else {
+                                lvl -= 1;
+                                hp = lvlFns.generalHealthCalc(lvl);
+                            }
+                            currentexp = 0;
+                            gold -= 5;
+                            mana = lvlFns.generalMana(lvl);
+                            nextexp -= 15;
                             
-    //                         db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user => {
-    //                             return user;
-    //                         }).catch(e => console.log(e))
-    //                     }
-    //                     else {
-    //                         return blob
-    //                     }
-    //                 }).catch(e => console.log(e))
-    //             })
-    //         }
-    //         else {
-    //             //run updateStreak with streak+=1
-    //             daily.streak += 1;
-    //             db.updateStreak([daily.streak, daily.id]).then(daily => {
-    //                 return daily
-    //             })
-    //             db.cronUpdateList([daily.id]).then(results => {
-    //                 return results;
-    //             }).catch(e => console.log(e))
-    //         }
-    //     })
+                            db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user => {
+                                return user;
+                            }).catch(e => console.log(e))
+                        }
+                        else {
+                            return blob
+                        }
+                    }).catch(e => console.log(e))
+                })
+            }
+            else {
+                //run updateStreak with streak+=1
+                daily.streak += 1;
+                db.updateStreak([daily.streak, daily.id]).then(daily => {
+                    return daily
+                })
+                db.cronUpdateList([daily.id]).then(results => {
+                    return results;
+                }).catch(e => console.log(e))
+            }
+        })
     }).catch(e => console.log(e))
 });
 //end of cron

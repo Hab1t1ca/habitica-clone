@@ -92,8 +92,6 @@ describe('lvling', ()=>{ //unit testing
      expect(pct).toEqual(75)
     })
 
-
-
 })
 
 describe('quests', () => {
