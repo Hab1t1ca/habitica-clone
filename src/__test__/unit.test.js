@@ -51,6 +51,11 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
+    
+})
+
+describe('lvling', ()=>{ //unit testing
+    
     test('xp and gold test', () => {
         return fns.addGoldandXp(10, 1).then(response => {
             console.log(response, 'response');
@@ -58,10 +63,6 @@ describe('lists', () => {
            
         })
     })
-
-})
-
-describe('lvling', ()=>{
     
     test('HP increase on lvl', ()=>{
         var baseHealth = 50;
@@ -77,4 +78,21 @@ describe('lvling', ()=>{
         var gold = Math.floor(Math.pow(lvl, (lvl * goldExpo)))
         expect(gold).toEqual(3)
     })
+
+    test('Mana increase on lvl', ()=>{
+        var baseMana = 50;
+        var mExpo = 0.2;
+        var lvl = 4;
+        var newMana = Math.floor(baseMana * (Math.pow(lvl, mExpo)))
+        expect(newMana).toEqual(65)
+    })
+
+    test('Convert current Health to a %', ()=>{
+     var currentHP = 75;
+     var maxHP = 100;
+     var pct = (currentHP / maxHP) * 100
+     expect(pct).toEqual(75)
+    })
+
+
 })
