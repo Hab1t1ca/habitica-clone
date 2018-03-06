@@ -44,7 +44,7 @@ cron.schedule('0 0 * * *', function () {
                                 bosshp-=damage;
                                 if (bosshp<=0){
                                     //user receives rewards
-                                    db.getQuests([quest]).then(quest=>{
+                                    db.getQuest([quest]).then(quest=>{
                                         console.log('quest', quest)
                                         let {rewards} = quest[0];
                                         gold += rewards.gold;
