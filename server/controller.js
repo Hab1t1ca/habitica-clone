@@ -78,10 +78,12 @@ module.exports = {
         })
 
         if(itemid == 201){
-            console.log('hitting health potion', hp, userid)
             let add = maxhp - hp
             if(add <= 10){
                 hp += add
+            }
+            else {
+                hp += 10;
             }
             db.buyHealth([hp, userid]).then(item =>{
                 res.send(item)
@@ -93,12 +95,13 @@ module.exports = {
             if(add <= 10){
                 mp += add
             }
+            else {
+                mp += 10;
+            }
         db.buyMana([mp, userid]).then(item =>{
             res.send(item)
         }).catch(e=>console.log(e))
-    }
-    }
-    ,
+    }},
 
     getEquipped: (req,res)=>{
         let db = req.app.get('db');
@@ -116,6 +119,7 @@ module.exports = {
         let {itemid} = req.body;
 
         db.equipItem([itemid, userid]).then(item =>{
+            console.log("equip item worked", item)
             res.send(item)
         }).catch(e=>console.log(e))
 

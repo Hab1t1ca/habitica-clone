@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //cron
-cron.schedule('4 17 * * *', function () {
+cron.schedule('0 0 * * *', function () {
     const db = app.get('db');
 
     db.cron().then(lists => {
@@ -31,20 +31,35 @@ cron.schedule('4 17 * * *', function () {
                     
                     var {quest} = user;
                     if (quest!=null){
-                        var {bossdmg,bosshp, hp, damage, userid} = user;
-                        let nudailies = dailies.filter(daily => daily.userid===userid);
+                        console.log('hitting quest')
+                        var {bossdmg, bosshp, hp, damage, userid, gold, currentexp} = user;
+                        let nudailies = dailies.filter(daily => daily.userid===10);//fix this
                         
                         nudailies.map(daily=>{
+                            console.log('daily', daily)
                             if (daily.completed===false){
                                 hp-=bossdmg;
                             }
                             else {
                                 bosshp-=damage;
                                 if (bosshp<=0){
-                                    quest = null;
-                                    bosshp = null;
-                                    bossdmg = null;
                                     //user receives rewards
+                                    db.getQuests([quest]).then(quest=>{
+                                        console.log('quest', quest)
+                                        let {rewards} = quest[0];
+                                        gold += rewards.gold;
+                                        currentexp += rewards.xp;  
+
+                                        console.log("getting quests", quest, quest[0].rewards, gold, currentexp, userid)
+
+                                        db.updateXPGold([gold, currentexp,userid]).then(user=>{
+                                            console.log('updated user with rewards')
+                                            return user
+                                        }).catch(e=>console.log(e))
+                                    }).catch(e=>console.log(e))
+                                quest = null;
+                                bosshp = null;
+                                bossdmg = null;
                                 }
                             }
                         damage = 1
@@ -82,16 +97,17 @@ cron.schedule('4 17 * * *', function () {
                         if (blob.hp <= 0) {
                             let { lvl, nextexp, currentexp, gold, mana, userid, hp } = blob;
                             if (lvl<=1){
-                                lvl=1
+                                lvl=1;
+                                hp=0;
                             }
                             else {
                                 lvl -= 1;
+                                hp = lvlFns.generalHealthCalc(lvl);
                             }
                             currentexp = 0;
                             gold -= 5;
-                            hp = lvlFns.generalHealthCalc(lvl);
                             mana = lvlFns.generalMana(lvl);
-                            nextexp += 15;
+                            nextexp -= 15;
                             
                             db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user => {
                                 return user;
