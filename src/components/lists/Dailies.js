@@ -51,13 +51,13 @@ class Dailies extends Component {
             return "You have already completed this today."
         }
         else{
-            let {gold, currentexp} = this.props.user
+            let {gold, currentexp, damage} = this.props.user
     
             gold+=1;
             currentexp+=10;
     
             this.props.goldExpTask(currentexp, gold);
-            this.props.complete(listid);
+            this.props.complete(listid, damage);
     
             setTimeout(()=>{
                 window.location.reload()

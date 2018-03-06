@@ -16,13 +16,26 @@ module.exports = {
     addClass: (req,res) =>{//and add default items
         const db = req.app.get('db');
         let {Class} = req.body;
-        let userid = req.session.passport.user.userid;
+        var userid = req.session.passport.user.userid;
 
-        db.addDefaultItem([Class,userid]).then(results=>{//adds DevMountain Hat
-            return results
+        var itemid = 10;
+        db.addDefaultItem([itemid, userid]).then(results=>{//adds DevMountain Hat and Stick
+            itemid = 101;
+            db.addDefaultItem([itemid,userid]).then(resp=>{
+                return results
+            })
         })
+        
+        console.log("adding item to inveotry table", itemid, userid);
 
-        db.createClass([Class, userid]).then(user => {//add Stick. Had to do multiple queries because postgreSQL didn't like multiple inserts into the array
+        db.addDefaultItemToInvenTable([userid,itemid]).then(results=>{
+            itemid = 101;
+            db.addDefaultItemToInvenTable([userid, itemid]).then(resp=>{
+                return resp
+            }).catch(e=>console.log(e))
+        }).catch(e=>console.log(e))
+
+        db.createClass([Class, userid]).then(user => {
             res.send(user[0])
         }).catch(e=>console.log(e))
     },
@@ -129,20 +142,15 @@ module.exports = {
     },
 
     addDaily: (req, res)=>{
-        // console.log('request', req);
         
         let userid = req.user;
-        // let userid = 13;
         let db = req.app.get('db');
         let {daily} = req.body;
-        // let d = new Date();
         let age = 0;
 
-        console.log('hitting add Daily', daily, userid, age)
         // let userid = 1; this one is for doing the unit tests
 
         db.addDaily([daily, userid, age]).then(dailies=>{
-            console.log('daily added to db', dailies)
             res.send(dailies);//returns an array of an object. NOTE: THIS ONLY RETURNS THE DAILY YOU JUST POSTED, NOT THE ENTIRE DB. 
         }).catch(e=>console.log(e))
     },
@@ -217,8 +225,16 @@ module.exports = {
 
     complete: (req,res)=>{
         let listid = req.params.listid;
+        let {damage} = req.body;
+        let userid = req.session.passport.user.userid;
+        let db = req.app.get('db');
+        damage += 1;
+        console.log("completing daily", req.body, damage)
+        db.updateUserDmg([damage,userid]).then(user=>{
+            return user
+        })
 
-        req.app.get('db').completeDaily([listid]).then(daily=>{
+        db.completeDaily([listid]).then(daily=>{
             res.send(daily);
         }).catch(e=>console.log(e))
     },
@@ -291,6 +307,16 @@ module.exports = {
         let userid = req.session.passport.user.userid;
 
         db.getQuests([userid]).then(quest =>{
+            res.send(quest)
+        }).catch(e=>console.log(e))
+    },
+
+    equipQuest: (req, res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+        let {id} = req.body;
+
+        db.equipQuest([id, userid]).then(quest =>{
             res.send(quest)
         }).catch(e=>console.log(e))
     }
