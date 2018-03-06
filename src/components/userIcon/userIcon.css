@@ -163,3 +163,7 @@
 .Vehicle {
   position: absolute;
   z-index: 40; }
+
+@media (min-width: 600px) {
+  .mainHeader {
+    display: none; } }

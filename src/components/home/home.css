@@ -68,6 +68,30 @@ footer {
   width: 100%;
   background-color: #2D3A3A; }
 
+.MobileViewPic {
+  display: none; }
+
+@media (min-width: 600px) {
+  .Rainbow2 {
+    display: none; }
+  .content {
+    display: none; }
+  .MobileView {
+    background-color: white;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    position: absolute; }
+  .MobileViewPic {
+    height: 100vh;
+    width: 100vw;
+    display: inline-block; }
+  .bgImage {
+    display: none; } }
+
 #clouds {
   padding: 100px 0;
   background: #c9dbe9;
