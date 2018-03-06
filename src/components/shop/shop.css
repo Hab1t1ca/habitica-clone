@@ -13,8 +13,8 @@
   color: white; }
 
 .noBuy {
-  background-color: rgba(98, 23, 133, 0.658);
-  filter: blur(12px); }
+  background-color: #5a5a5a;
+  filter: blur(5px); }
 
 .button {
   display: none; }

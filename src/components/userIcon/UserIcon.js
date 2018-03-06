@@ -18,8 +18,10 @@ class UserIcon extends Component {
             manaPct: 100,
             xpPct: 100,
 
-            temp: []
-            
+            temp: [],
+            hat: "",
+            hand: "",
+            body: ""
 
         }
 
@@ -40,6 +42,9 @@ class UserIcon extends Component {
         setTimeout(()=>{
             this.updateTemp()
         }, 1000)
+        setTimeout(()=>{
+            this.addWeapon()
+        }, 1200)
     }
 
     componentWillReceiveProps(nextProps){
@@ -47,7 +52,6 @@ class UserIcon extends Component {
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-            // this.updateTemp()
     }
 
 
@@ -78,10 +82,12 @@ class UserIcon extends Component {
     updateTemp(){
         let temp = []
         let {equipped, inventory} = this.props
+        console.log(inventory, equipped)
         console.log(equipped, inventory)
         for(let i = 0; i < equipped.length; i++){
             for(let k = 0; k < inventory.length;k++){
-                if(inventory[k].itemid = equipped[i]){
+                if(inventory[k].itemid == equipped[i]){
+                    console.log('combining inventory and equipped', inventory[k]);
                     temp.push(inventory[k])
                 }
             }
@@ -91,21 +97,25 @@ class UserIcon extends Component {
         })
     }
 
-    addWeapon(thing){
-        let hand = "";
-        let body = "";
-        let hat = "";
-        let things = this.state.temp.map((item)=>{
-            if(item.bodlocation === "hand"){
-                hand = item.image
-
-            }
-            if(item.bodlocation === "body"){
-                body = item.image
-            }
-            if(item.bodlocation === "hat"){
-                hat = item.image
-            }
+    addWeapon(){
+            let things = this.state.temp.map((item)=>{
+                if(item.bodlocation === "hand"){
+                    this.setState({
+                        hand: item.image
+                    })
+    
+                }
+                if(item.bodlocation === "body"){
+                    this.setState({
+                        body: item.image
+                    })
+                }
+                if(item.bodlocation === "hat"){
+                    this.setState({
+                        hat: item.image
+                    })
+                }})
+            
         // switch (item.bodlocation) {
         //     case hand:
         //         image = item.image;
@@ -119,21 +129,13 @@ class UserIcon extends Component {
         //     default: 
         //         text = "stuff";
         // }
-        })
-        if(thing === "hand"){
-            return hand
-        }
-        if(thing === "body"){
-            return body
-        }
-        if(thing === "hat"){
-            return hat
-        }
+
     }
 
     render() {
         console.log(this.props.user, 'render props')
         console.log(this.state.temp)
+
         return (
 
             <div className="mainHeader">
@@ -142,12 +144,9 @@ class UserIcon extends Component {
                 <div className="Avatar">
                 <img className="avatarWindow" src={this.props.user.avatar}/>
                 <img className="stickmanInBox" src={stickman}/>
-
-                <img className="WeaponRightHand" src={this.addWeapon("hand")}/>
-
-                <img className="chestArmor" src={this.addWeapon("body")}/>
-
-                <img className="hat" src={this.addWeapon("hat")}/>
+                <img className="WeaponRightHand" src={this.state.hand}/>
+                <img className="chestArmor" src={this.state.body}/>
+                <img className="hat" src={this.state.hat}/>
                 </div>
 
 

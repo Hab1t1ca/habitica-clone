@@ -32,6 +32,7 @@ const BUY = 'BUY';
 const BUYPOTION = 'BUYPOTION';
 const INVENTORY = 'INVENTORY';
 const EQUIP = 'EQUIP';
+const UNEQUIP = 'UNEQUIP';
 const GETEQUIPPED = 'GETEQUIPPED';
 const USER = 'USER';
 const CLASS = 'CLASS';
@@ -179,6 +180,21 @@ export function equipItem(id) {
     return {
         type: EQUIP,
         payload: equip
+    }
+}
+
+export function unequipItem(id) {
+    let body = {
+        itemid: id
+    }
+    let unequip = axios.put(`/api/unequip`, body).then(res => {
+        console.log(res.data, )
+        return res.data
+    }).catch(e => { console.log(e) })
+
+    return {
+        type: UNEQUIP,
+        payload: unequip
     }
 }
 
