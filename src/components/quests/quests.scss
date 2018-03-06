@@ -3,3 +3,62 @@
         display: none;
     }
 }
+
+.questBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;   
+}
+
+.questHeader {
+color: white;
+font-size: 24px;
+text-align: center;
+height: 10vh;
+width: 100%;
+text-align: center;
+vertical-align: middle;
+line-height: 10vh; 
+background-color: #3D315B; 
+}
+
+.questName {
+    margin-top: 10px;
+    background-color: white;
+    width: 90%;
+    border-top: solid 2px #3D315B;
+    border-bottom: solid 2px #3D315B;
+    font-size: 20px;
+    height: 7vh;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 7vh; 
+}
+
+.questPic {
+    height: 225px;
+    width: 100%;
+    padding: 10px;
+}
+
+.questDes {
+    line-height: 25px;
+    letter-spacing: 1px;
+    border-top: solid 2px #3D315B;
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.questP {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.questBtn {
+background-color: #3D315B;
+width: 100px;
+height: 25px;
+color: white;
+border-radius: 10px;
+}
