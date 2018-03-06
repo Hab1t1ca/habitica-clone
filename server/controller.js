@@ -135,6 +135,7 @@ module.exports = {
     getUser: (req,res)=>{
         console.log("session", req.session.passport.user.userid)
         const userid = req.session.passport.user.userid;
+        // const userid = 49 //For endpoint test
         let db = req.app.get('db');
         db.getUser([userid]).then(user=>{
             res.send(user[0]) //this sends all the user data. We will need to filter out the data on the front end for what we want in each component. But this will put all user data into the Store. 
@@ -172,7 +173,7 @@ module.exports = {
         let {todo} = req.body;
         let d = new Date();
         let age = d.toString().substring(0,15)
-        // let userid = 1; //for testing purposes
+        // let userid = 49; //for testing purposes
 
         db.addTodo([todo, userid, age]).then(todos=>{
             res.send(todos)
@@ -276,7 +277,8 @@ module.exports = {
     },
 
     getUserAbilities: (req,res)=>{
-        let userid = req.session.passport.user.userid;
+        // let userid = req.session.passport.user.userid;
+        const userid = 49;
 
         req.app.get('db').getUserAbilities([userid]).then(results=>{
             res.send(results[0]);
@@ -305,6 +307,7 @@ module.exports = {
     getQuests: (req,res)=>{
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
+        // let userid = 49;
 
         db.getQuests([userid]).then(quest =>{
             res.send(quest)
@@ -315,6 +318,8 @@ module.exports = {
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
         let {id} = req.body;
+        // const userid = 49
+        // const id = 1
 
         db.equipQuest([id, userid]).then(quest =>{
             res.send(quest)
