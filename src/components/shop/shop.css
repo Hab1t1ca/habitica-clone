@@ -1,16 +1,52 @@
+.shop-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 2rem; }
+
+.shopHeader {
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 20px; }
+
+.shopHeader h1 {
+  font-size: 4.5rem;
+  font-weight: 700; }
+
 .items {
   width: 100%;
   height: auto;
   font-size: .8rem;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap; }
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center; }
+
+.itemtitle {
+  text-align: center;
+  border-bottom: 2px solid #3d315b;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  width: 80%;
+  justify-content: center;
+  margin-top: 20px; }
+
+.cardhead {
+  display: flex;
+  justify-content: space-around; }
 
 .buybutton {
-  width: 4em;
+  width: 6em;
   height: 2em;
-  background-color: purple;
-  color: white; }
+  background-color: #3d315b;
+  border-radius: 5px;
+  color: white;
+  text-align: center; }
 
 .noBuy {
   background-color: #5a5a5a;
@@ -19,14 +55,21 @@
 .button {
   display: none; }
 
+.itemImage {
+  height: 120px; }
+
 .itemCard {
   width: 150px;
   height: 300px;
   padding: 5px;
-  box-shadow: 0 1px 2px 0 #ccc;
-  overflow: scroll;
-  margin-bottom: 2.5em; }
+  box-shadow: 0 1px 5px 0 #a8a8a8;
+  margin-bottom: 2.5em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; }
 
 @media (min-width: 600px) {
-  .shop-main {
+  .shopCont {
     display: none; } }

@@ -41,10 +41,10 @@ class UserIcon extends Component {
     componentDidMount(){
         setTimeout(()=>{
             this.updateTemp()
-        }, 1000)
+        }, 800)
         setTimeout(()=>{
             this.addWeapon()
-        }, 1200)
+        }, 1000)
     }
 
     componentWillReceiveProps(nextProps){

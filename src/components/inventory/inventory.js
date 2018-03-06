@@ -30,7 +30,7 @@ class Inventory extends Component {
                     {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>this.unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>this.equipItem(item.itemid)}>Equip</button>}
                     {console.log(this.props.equipped, item.itemid)}
                         <h4>{item.name}</h4>
-                        <img src={item.image} />
+                        <img className="itemImage" src={item.preview} />
                         <p>Lvl: {item.lvlavailable}</p>
                         <p>Cost: ${item.cost}</p>
                         <p>{item.description}</p>
@@ -40,10 +40,12 @@ class Inventory extends Component {
         return (
             <div>
                 <Nav />
-                <h1>Inventory</h1>
+                <div className="shop-main">
+                <h1 className="itemtitle">Inventory</h1>
 
                 <div className="items">
                     {inventory}
+                </div>
                 </div>
             </div>
         )
