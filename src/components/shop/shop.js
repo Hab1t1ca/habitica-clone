@@ -23,8 +23,6 @@ class Shop extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
-        console.log(nextProps, 'hitting props')
         this.display(nextProps);
     }
 
@@ -57,10 +55,6 @@ class Shop extends Component {
 
     display(props) {
 
-        console.log('hitting display', props.items)
-        // console.log(this.props.items.sort(function (a, b) {
-        //     return a.cost - b.cost
-        // }))
         if (this.state.value === 1) {
             let stuff = []
             stuff.push(...props.items.sort(function (a, b) {
@@ -110,7 +104,6 @@ class Shop extends Component {
             if (item.bodlocation === "hand") {
                 return (
                     <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "itemCard noBuy"} key={item.itemid}>
-                        {console.log(this.props.user.inventory, item.itemid)}
                         {(item.lvlavailable > this.props.user.lvl) || (this.props.user.inventory.includes(Number(item.itemid))) ? <p></p> : <button className="buybutton" onClick={() => this.buyitem(item.itemid, item.cost, this.props.user.gold)}>buy</button>}
                         <h4>{item.name}</h4>
                         <img className="itemImage" src={item.preview} />
@@ -145,7 +138,7 @@ class Shop extends Component {
                     <DropDownMenu
                         value={this.state.value}
                         onChange={this.handleChange}
-                        style={{ width: "150px", margin: "20px 0 0 20px", boxShadow: "0 2px 2px 0 rgb(168, 168, 168)" }}
+                        style={{ fontSize:".2em",backgroundColor: "white",width: "110px", height: "40px", margin: "10px 0 0 20px", boxShadow: "0 2px 2px 0 rgb(168, 168, 168)" }}
                     >
                         <MenuItem value={1} primaryText="Cost ^" />
                         <MenuItem value={2} primaryText="Cost v" />
