@@ -5,7 +5,7 @@ import { getUser, getInventory, getEquipped } from '../../ducks/reducer';
 import "./userIcon.css";
 import stickman from './stickmanTemplateV4.png';
 import gold from '../nav/Coins.png';
-import mana from './mana_potion.png';
+import mana from './ManaPic.png';
 import heartIcon from './HeartIcon.svg.svg';
 import star from './star.png';
 
