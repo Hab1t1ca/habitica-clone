@@ -8,7 +8,18 @@
     font-size: 2rem;
 }
 
+.shopHeader {
+     height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px;
+}
 
+.shopHeader h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+}
 
 .items {
     width: 100%;
@@ -28,6 +39,7 @@
     margin-bottom: 25px;
     width: 80%;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .cardhead {
@@ -36,10 +48,12 @@
 }
 
 .buybutton {
-    width: 4em;
+    width: 6em;
     height: 2em;
     background-color: #3d315b;
+    border-radius: 5px;
     color: white;
+    text-align: center;
 }
 
 .noBuy {
@@ -68,3 +82,8 @@
     text-align: center;
 }
 
+@media (min-width: 600px) {
+	.shopCont {
+        display: none;
+    }
+}

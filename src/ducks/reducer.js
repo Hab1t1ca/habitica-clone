@@ -173,7 +173,7 @@ export function equipItem(id) {
         itemid: id
     }
     let equip = axios.put(`/api/equip`, body).then(res => {
-        console.log(res.data, )
+        console.log(res.data, 'butts')
         return res.data
     }).catch(e => { console.log(e) })
 

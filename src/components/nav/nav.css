@@ -60,7 +60,7 @@
 .media-nav-link {
   display: none; }
 
-@media (max-width: 425px) {
+@media (max-width: 599px) {
   .nav-link {
     display: none; }
   .hammy {
@@ -95,12 +95,6 @@
     text-decoration: none;
     line-height: 85px;
     margin: auto; }
-  .GoldDiv {
-    width: 25px;
-    margin-left: 25px; }
-  .Gold {
-    width: 20px;
-    height: 20px; }
   .NavBarInfo {
     text-align: center;
     vertical-align: middle;
@@ -110,3 +104,15 @@
     margin-top: 5px; }
   .Level {
     font-size: 15px; } }
+
+.GoldDiv {
+  width: 25px;
+  margin-left: 25px; }
+
+.Gold {
+  width: 20px;
+  height: 20px; }
+
+@media (min-width: 600px) {
+  .navbar {
+    display: none; } }

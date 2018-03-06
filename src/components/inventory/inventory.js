@@ -13,35 +13,24 @@ class Inventory extends Component {
         this.props.getEquipped()
     }
 
-    // componentWillReceiveProps(next){
-    //     this.forceUpdate()
-    // }
-
     equipItem(id){
-
         this.props.equipItem(id);
-
-            // console.log("heelllooo");
-            // window.location.reload();
-        this.props.getInventory();
-        this.props.getEquipped();
+        window.location.reload();
     }
 
     unequipItem(id){
             this.props.unequipItem(id);
-            // setTimeout(function () {
             window.location.reload();
-            // }, 1000)
     }
 
     render() {
         let inventory = this.props.inventory.map(item => {
                 return (
                     <div className="itemCard" key={item.id}>
-                    {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>equipItem(item.itemid)}>Equip</button>}
+                    {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>this.unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>this.equipItem(item.itemid)}>Equip</button>}
                     {console.log(this.props.equipped, item.itemid)}
                         <h4>{item.name}</h4>
-                        <img className="itemImage" src={item.image} />
+                        <img className="itemImage" src={item.preview} />
                         <p>Lvl: {item.lvlavailable}</p>
                         <p>Cost: ${item.cost}</p>
                         <p>{item.description}</p>
@@ -51,10 +40,12 @@ class Inventory extends Component {
         return (
             <div>
                 <Nav />
-                <h1>Inventory</h1>
+                <div className="shop-main">
+                <h1 className="itemtitle">Inventory</h1>
 
                 <div className="items">
                     {inventory}
+                </div>
                 </div>
             </div>
         )

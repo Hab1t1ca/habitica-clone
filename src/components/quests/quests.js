@@ -33,6 +33,7 @@ class Quests extends Component {
         let quests = this.state.questData.map(quest =>
             <div className="questBlock" key={quest.id}>
                 <h2 className="questName">{quest.name}</h2>
+                <img className="questPic" src={quest.avatar}/>
                 <p className="questDes">{quest.description}</p>
                 <p className="questP">Boss HP: {quest.bosshp}</p>
                 <p className="questP">Boss Damage: {quest.bossdmg}</p>
@@ -45,7 +46,7 @@ class Quests extends Component {
         return (
             <div className="questsDiv">
                 <Nav />
-                <h1>Available Quests</h1>
+                <h1 className="questHeader">Available Quests</h1>
                 {quests}
 
             </div>

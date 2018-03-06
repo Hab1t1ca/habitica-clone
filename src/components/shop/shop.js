@@ -128,7 +128,7 @@ class Shop extends Component {
                 return (
                     <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "noBuy"} key={item.itemid}>
                         <h4>{item.name}</h4>
-                        {(item.lvlavailable > this.props.user.lvl) || (this.props.user.inventory.includes(Number(item.itemid))) ? <p>something</p> : <button className="buybutton" onClick={() => this.buyitem(item.itemid, item.cost, this.props.user.gold)}>buy</button>}
+                        {(item.lvlavailable > this.props.user.lvl) || (this.props.user.inventory.includes(Number(item.itemid))) ? <p></p> : <button className="buybutton" onClick={() => this.buyitem(item.itemid, item.cost, this.props.user.gold)}>buy</button>}
                         <img className="itemImage" src={item.preview} />
                         <p>Lvl: {item.lvlavailable}</p>
                         <p>Cost: ${item.cost}</p>
@@ -138,14 +138,14 @@ class Shop extends Component {
             }
         })
         return (
-            <div>
+            <div className="shopCont">
                 <Nav />
+                <div className="shopHeader">
                 <h1>Shop</h1>
-                <div>
                     <DropDownMenu
                         value={this.state.value}
                         onChange={this.handleChange}
-                        style={{ backgroundColor: "purple" }}
+                        style={{ width: "150px", margin: "20px 0 0 20px", boxShadow: "0 2px 2px 0 rgb(168, 168, 168)" }}
                     >
                         <MenuItem value={1} primaryText="Cost ^" />
                         <MenuItem value={2} primaryText="Cost v" />
