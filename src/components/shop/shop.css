@@ -3,19 +3,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 2rem; }
 
 .shopHeader {
-  height: 100px;
+  height: 75px;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  margin: 20px; }
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #3d315b;
+  color: white; }
 
 .shopHeader h1 {
-  font-size: 4.5rem;
-  font-weight: 700; }
+  font-size: 3.5rem;
+  font-weight: 400; }
+
 
 .items {
   width: 100%;
@@ -61,7 +65,8 @@
 .itemCard {
   width: 150px;
   height: 300px;
-  padding: 5px;
+  padding: 10px;
+
   box-shadow: 0 1px 5px 0 #a8a8a8;
   margin-bottom: 2.5em;
   display: flex;

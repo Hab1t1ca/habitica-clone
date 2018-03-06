@@ -28,7 +28,6 @@ class Inventory extends Component {
                 return (
                     <div className="itemCard" key={item.id}>
                     {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>this.unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>this.equipItem(item.itemid)}>Equip</button>}
-                    {console.log(this.props.equipped, item.itemid)}
                         <h4>{item.name}</h4>
                         <img className="itemImage" src={item.preview} />
                         <p>Lvl: {item.lvlavailable}</p>
