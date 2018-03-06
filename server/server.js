@@ -199,7 +199,7 @@ app.put(`/api/buypotion`,controller.buyPotion);
 app.get('/api/inventory', controller.pullInventory);
 app.get('/api/equipped', controller.getEquipped);
 app.put(`/api/equip`, controller.equipItem);
-
+app.put(`/api/unequip`, controller.unequipItem);
 //End endpoints
 
 

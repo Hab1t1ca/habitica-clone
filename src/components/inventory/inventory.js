@@ -3,7 +3,7 @@ import "./inventory.css";
 import Nav from '../nav/nav';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import { getInventory, equipItem, getEquipped} from '../../ducks/reducer';
+import { getInventory, equipItem, getEquipped, unequipItem} from '../../ducks/reducer';
 import { connect } from 'react-redux';
 
 class Inventory extends Component {
@@ -13,18 +13,32 @@ class Inventory extends Component {
         this.props.getEquipped()
     }
 
+    // componentWillReceiveProps(next){
+    //     this.forceUpdate()
+    // }
+
     equipItem(id){
-        this.props.equipItem(id)
-        setTimeout(()=> {
-            window.location.reload()
-        }, 1000)
+
+        this.props.equipItem(id);
+
+            // console.log("heelllooo");
+            // window.location.reload();
+        this.props.getInventory();
+        this.props.getEquipped();
+    }
+
+    unequipItem(id){
+            this.props.unequipItem(id);
+            // setTimeout(function () {
+            window.location.reload();
+            // }, 1000)
     }
 
     render() {
         let inventory = this.props.inventory.map(item => {
                 return (
                     <div className="itemCard" key={item.id}>
-                    {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton">Unequip</button>:<button className="buybutton" onClick={()=>equipItem(item.itemid)}>Equip</button>}
+                    {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>equipItem(item.itemid)}>Equip</button>}
                     {console.log(this.props.equipped, item.itemid)}
                         <h4>{item.name}</h4>
                         <img src={item.image} />
@@ -54,4 +68,4 @@ function mapStateToProps(state) {
         equipped: state.equipped
     }
 }
-export default connect(mapStateToProps, { getInventory, equipItem, getEquipped })(Inventory)
+export default connect(mapStateToProps, { getInventory, equipItem, getEquipped, unequipItem })(Inventory)

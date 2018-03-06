@@ -42,6 +42,9 @@ class UserIcon extends Component {
         setTimeout(()=>{
             this.updateTemp()
         }, 1000)
+        setTimeout(()=>{
+            this.addWeapon()
+        }, 1200)
     }
 
     componentWillReceiveProps(nextProps){
@@ -49,7 +52,6 @@ class UserIcon extends Component {
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
-            this.addWeapon()
     }
 
 
@@ -80,10 +82,12 @@ class UserIcon extends Component {
     updateTemp(){
         let temp = []
         let {equipped, inventory} = this.props
+        console.log(inventory, equipped)
         console.log(equipped, inventory)
         for(let i = 0; i < equipped.length; i++){
             for(let k = 0; k < inventory.length;k++){
-                if(inventory[k].itemid = equipped[i]){
+                if(inventory[k].itemid == equipped[i]){
+                    console.log('combining inventory and equipped', inventory[k]);
                     temp.push(inventory[k])
                 }
             }
@@ -94,26 +98,24 @@ class UserIcon extends Component {
     }
 
     addWeapon(){
-        let hand = "";
-        let body = "";
-        let hat = "";
-        let things = this.state.temp.map((item)=>{
-            if(item.bodlocation === "hand"){
-                this.setState({
-                    hand: item.image
-                })
-
-            }
-            if(item.bodlocation === "body"){
-                this.setState({
-                    body: item.image
-                })
-            }
-            if(item.bodlocation === "hat"){
-                this.setState({
-                    hat: item.image
-                })
-            }
+            let things = this.state.temp.map((item)=>{
+                if(item.bodlocation === "hand"){
+                    this.setState({
+                        hand: item.image
+                    })
+    
+                }
+                if(item.bodlocation === "body"){
+                    this.setState({
+                        body: item.image
+                    })
+                }
+                if(item.bodlocation === "hat"){
+                    this.setState({
+                        hat: item.image
+                    })
+                }})
+            
         // switch (item.bodlocation) {
         //     case hand:
         //         image = item.image;
@@ -127,13 +129,13 @@ class UserIcon extends Component {
         //     default: 
         //         text = "stuff";
         // }
-        })
 
     }
 
     render() {
         console.log(this.props.user, 'render props')
         console.log(this.state.temp)
+
         return (
 
             <div className="mainHeader">

@@ -106,6 +106,16 @@ module.exports = {
             res.send(item)
         }).catch(e=>console.log(e))
 
+    },
+    unequipItem: (req,res)=>{
+        let db = req.app.get('db');
+        let userid = req.session.passport.user.userid;
+        let {itemid} = req.body;
+
+        db.unequipItem([itemid, userid]).then(item =>{
+            res.send(item)
+        }).catch(e=>console.log(e))
+
     }
 
     ,
