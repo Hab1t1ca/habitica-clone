@@ -99,3 +99,9 @@ opacity: 0;
 line-height: 20px;
 
 }
+
+@media (min-width: 600px) {
+	.backgroundDashboard {
+        display: none;
+    }
+}

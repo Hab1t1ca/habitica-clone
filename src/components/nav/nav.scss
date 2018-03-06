@@ -72,7 +72,7 @@
 }
 
 
-@media(max-width: 425px){
+@media(max-width: 599px){
     .nav-link {
         display: none;
     }
@@ -125,14 +125,6 @@
     margin: auto;
 }
 
-.GoldDiv {
-    width: 25px;
-    margin-left: 25px;
-}
-.Gold {
-    width: 20px;
-    height: 20px;
-}
 
 .NavBarInfo {
     // display: flex;
@@ -151,3 +143,18 @@
 }
 
 }
+    .GoldDiv {
+        width: 25px;
+        margin-left: 25px;
+    }
+    .Gold {
+        width: 20px;
+        height: 20px;
+    }
+
+    @media (min-width: 600px) {
+        .navbar {
+            display: none;
+        }
+        
+    }
