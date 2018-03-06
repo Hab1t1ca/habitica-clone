@@ -41,7 +41,7 @@ class Inventory extends Component {
                     {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>equipItem(item.itemid)}>Equip</button>}
                     {console.log(this.props.equipped, item.itemid)}
                         <h4>{item.name}</h4>
-                        <img src={item.image} />
+                        <img className="itemImage" src={item.image} />
                         <p>Lvl: {item.lvlavailable}</p>
                         <p>Cost: ${item.cost}</p>
                         <p>{item.description}</p>
