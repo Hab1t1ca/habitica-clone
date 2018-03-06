@@ -20,7 +20,7 @@ describe('items', () => {
 })
 
 describe('lists', () => {
-    test.skip('add daily', () => {//works as long as you hard code in a userid - Tiarra
+    test('add daily', () => {//works as long as you hard code in a userid - Tiarra
         return fns.addDaily('something to do').then(response => {
             
             expect(Array.isArray(response)).toBeTruthy;
@@ -28,7 +28,7 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
-    test.skip('add todo', () => {//works as long as you hard code in a userid - Tiarra
+    test('add todo', () => {//works as long as you hard code in a userid - Tiarra
         return fns.addTodos('chew bubble gum and kick ass').then(response => {
             
             expect(Array.isArray(response)).toBeTruthy;
@@ -36,7 +36,7 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
-    test.skip('receiving lists from DB', () => {//must hard code userid when testing. This works. - Tiarra
+    test('receiving lists from DB', () => {//must hard code userid when testing. This works. - Tiarra
         return fns.getLists().then(response => {
             
             expect(Array.isArray(response)).toBeTruthy;
@@ -44,7 +44,7 @@ describe('lists', () => {
         }).catch(e => console.log(e))
     })
 
-    test.skip('can delete task from DB', () => {//this works - Tiarra
+    test('can delete task from DB', () => {//this works - Tiarra
         return fns.deleteTask(1).then(response => {
             
             expect(response).toBe('task has been deleted');
