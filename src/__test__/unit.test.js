@@ -50,6 +50,7 @@ describe('lists', () => {
             expect(response).toBe('task has been deleted');
         }).catch(e => console.log(e))
     })
+});
 
 describe('lvling', ()=>{ //unit testing
     
@@ -103,4 +104,4 @@ describe('quests', () => {
         expect(fns.bossdmg(nudailies,6,50,50)).toBe(44);
     })
 
-})
+});
