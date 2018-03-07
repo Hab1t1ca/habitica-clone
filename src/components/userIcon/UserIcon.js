@@ -48,7 +48,6 @@ class UserIcon extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('running next props', nextProps)
             this.healthPctFun()
             this.manaPctFun()
             this.xpPctFun()
@@ -82,12 +81,9 @@ class UserIcon extends Component {
     updateTemp(){
         let temp = []
         let {equipped, inventory} = this.props
-        console.log(inventory, equipped)
-        console.log(equipped, inventory)
         for(let i = 0; i < equipped.length; i++){
             for(let k = 0; k < inventory.length;k++){
                 if(inventory[k].itemid == equipped[i]){
-                    console.log('combining inventory and equipped', inventory[k]);
                     temp.push(inventory[k])
                 }
             }
@@ -133,8 +129,6 @@ class UserIcon extends Component {
     }
 
     render() {
-        console.log(this.props.user, 'render props')
-        console.log(this.state.temp)
 
         return (
 

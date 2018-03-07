@@ -42,13 +42,11 @@ class Home extends Component {
         this.setState({
             rainbowRight: true
         })
-        console.log("changed", this.state.rainbowRight)
     }
 
 
 
     render() {
-        console.log('rendering', this.state.rainbowRight)
         return (
             <div>
                 <div className="bgImage"></div>

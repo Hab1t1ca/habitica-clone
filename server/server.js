@@ -31,12 +31,10 @@ cron.schedule('0 0 * * *', function () {
                     
                     var {quest} = user;
                     if (quest!=null){
-                        console.log('hitting quest')
                         var {bossdmg, bosshp, hp, damage, userid, gold, currentexp} = user;
                         let nudailies = dailies.filter(daily => daily.userid===10);//fix this
                         
                         nudailies.map(daily=>{
-                            console.log('daily', daily)
                             if (daily.completed===false){
                                 hp-=bossdmg;
                             }
@@ -45,15 +43,11 @@ cron.schedule('0 0 * * *', function () {
                                 if (bosshp<=0){
                                     //user receives rewards
                                     db.getQuest([quest]).then(quest=>{
-                                        console.log('quest', quest)
                                         let {rewards} = quest[0];
                                         gold += rewards.gold;
                                         currentexp += rewards.xp;  
 
-                                        console.log("getting quests", quest, quest[0].rewards, gold, currentexp, userid)
-
                                         db.updateXPGold([gold, currentexp,userid]).then(user=>{
-                                            console.log('updated user with rewards')
                                             return user
                                         }).catch(e=>console.log(e))
                                     }).catch(e=>console.log(e))
@@ -172,12 +166,10 @@ passport.use(new Auth0strat({
 }))
 
 passport.serializeUser((user, done) => {
-    // console.log('serialize', user)
     return done(null, user)
 })
 
 passport.deserializeUser((user, done) => {
-    // console.log('deserial', user.userid)
     return done(null, user.userid)
 })
 

@@ -28,7 +28,6 @@ class Abilities extends Component {
     }
 
     useAbility(ability){
-        
         let tree = {
             "Burst of Flames" : burstOfFlames(this.props.user, this.props.lists),
             "Alchemy" : alchemy(this.props.user, this.props.lists),
@@ -41,6 +40,7 @@ class Abilities extends Component {
         let body = tree[ability];
         
         if (typeof(body)==='string'){
+            alert("You don't have enough mana! Do math!")
             return body
         }
         else {
@@ -48,6 +48,8 @@ class Abilities extends Component {
                 return res.data;
             })
         }
+
+        window.location.reload();
     }
 
     render() {

@@ -5,7 +5,7 @@ export function burstOfFlames(user, lists){
     let status = false;
     let {hp,gold,currentexp,mana,damage} = user;
     if (mana<20){
-        return "You don't have enough mana!"
+        return "string"
     }
     else{
         mana-=20;
@@ -27,8 +27,8 @@ export function alchemy(user,lists){
     let dailies = lists.filter(list=>list.daily_todo==="daily");
     let status = false;
     let {hp,gold,currentexp,mana,damage} = user;
-    if (mana<40){
-        return "You don't have enough mana!"
+    if (mana<40){ 
+        return "string"
     }
     else{
         mana-=40;
@@ -50,7 +50,7 @@ export function pickpocket(user,lists){
     let status = false;
     let {hp,gold,currentexp,mana,damage} = user;
     if (mana<40){
-        return "You don't have enough mana!"
+        return "string"
     }
     else{
         mana-=40;
@@ -72,7 +72,7 @@ export function stealth(user,lists){
     let status = true;
     let {hp,gold,currentexp,mana,damage} = user;
     if (mana<45){
-        return "You don't have enough mana!"
+        return "string"
     }
     else{
         mana-=45;
@@ -92,8 +92,8 @@ export function peoplesElbow(user,lists){
     let dailies = lists.filter(list=>list.daily_todo==="daily");
     let status = false;
     let {hp,gold,currentexp,mana,damage} = user;
-    if (mana<20){
-        return "You don't have enough mana!"
+    if (mana<20){ 
+        return "string"
     }
     else{
         mana-=20;
@@ -116,7 +116,7 @@ export function intimidatingGaze(user,lists){
     let status = true;
     let {hp,gold,currentexp,mana,damage} = user;
     if (mana<45){
-        return "You don't have enough mana!"
+        return "string"
     }
     else{
         mana-=45;

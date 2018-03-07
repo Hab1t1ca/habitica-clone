@@ -93,9 +93,6 @@ class Dashboard extends Component {
             const picture = this.editor.getImageScaledToCanvas().toDataURL('image/jpeg', 1);
 
             // If you want the image resized to the canvas size (also a HTMLCanvasElement)
-
-            console.log(canvas, "Cool")
-            console.log(picture, "Cool")
             this.handleImageUpload(picture)
             this.setState({
                 preview: picture
@@ -232,7 +229,6 @@ class Dashboard extends Component {
                     </div>
                 </SwipeableViews>
 {/* <UserIcon/> */}
-                {console.log(this.props.user.name, "Is your name")}
                 <button onClick={e => this.openFirstModal()}>Open Modal - test</button>
 {/* first modal */}
                 <Dialog
