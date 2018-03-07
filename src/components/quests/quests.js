@@ -28,9 +28,7 @@ class Quests extends Component {
 
 
     equipQuest(id, bosshp, bossdmg){
-        this.props.equipQuest(id)
-        this.props.equipQuest(bosshp)
-        this.props.equipQuest(bossdmg)
+        this.props.equipQuest(id, bosshp, bossdmg)
         this.setState({
             modal: true
         })
@@ -50,8 +48,7 @@ class Quests extends Component {
                 <p className="questP">Boss HP: {quest.bosshp}</p>
                 <p className="questP">Boss Damage: {quest.bossdmg}</p>
                 <p className="questP">Required Level: {quest.lvl}</p>
-                <button className="questBtn" onClick={()=>equipQuest(quest.id, quest.bosshp, quest.bossdmg)}>Start Quest!</button>
-                <button className="questBtn" onClick={()=>this.equipQuest(quest.id)}>Start Quest!</button>
+                <button className="questBtn" onClick={()=>this.equipQuest(quest.id, quest.bosshp, quest.bossdmg)}>Start Quest!</button>
             </div>
         )
 
