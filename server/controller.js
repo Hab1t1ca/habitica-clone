@@ -321,11 +321,11 @@ module.exports = {
     equipQuest: (req, res)=>{
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
-        let {id} = req.body;
+        let {id, bosshp, bossdmg} = req.body;
         // const userid = 49
         // const id = 1
 
-        db.equipQuest([id, userid]).then(quest =>{
+        db.equipQuest([id, bosshp, bossdmg, userid]).then(quest =>{
             res.send(quest)
         }).catch(e=>console.log(e))
     }
