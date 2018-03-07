@@ -138,7 +138,8 @@ class Shop extends Component {
                     <DropDownMenu
                         value={this.state.value}
                         onChange={this.handleChange}
-                        style={{ fontSize:".2em",backgroundColor: "white",width: "110px", height: "40px", margin: "10px 0 0 20px", boxShadow: "0 2px 2px 0 rgb(168, 168, 168)" }}
+                        menuStyle={{borderRadius: "5px", marginTop: "5px"}}
+                        style={{ backgroundColor: "white", height: "40px", margin: "10px 0 0 20px" }}
                     >
                         <MenuItem value={1} primaryText="Cost ^" />
                         <MenuItem value={2} primaryText="Cost v" />

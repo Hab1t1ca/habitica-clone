@@ -89,6 +89,14 @@ module.exports = {
             }
         })
         return hp
+    },
+
+    buyPotion:(){
+        let buy = axios.put(`/api/buypotion`, body).then(res => {
+            // console.log(body)
+            return res.data
+        }).catch(e => { console.log(e) })
+    return buy
     }
 
 }
