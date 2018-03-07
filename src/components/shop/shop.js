@@ -61,7 +61,6 @@ class Shop extends Component {
                 return a.cost - b.cost
             }))
 
-            // console.log('stuff', stuff)
             this.setState({
                 stuff: stuff
             })
@@ -100,7 +99,6 @@ class Shop extends Component {
     render() {
 
         let weapons = this.state.stuff.map(item => {
-            // console.log('getting item', item)//we are getting the correct item from state
             if (item.bodlocation === "hand") {
                 return (
                     <div className={this.props.user.lvl >= item.lvlavailable ? "itemCard" : "itemCard noBuy"} key={item.itemid}>
