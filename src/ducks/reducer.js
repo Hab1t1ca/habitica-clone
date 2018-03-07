@@ -388,9 +388,11 @@ export function quests() {
     }
 }
 
-export function equipQuest(id){
+export function equipQuest(id, bosshp, bossdmg){
     let body = {
-        id
+        id,
+        bosshp: bosshp,
+        bossdmg: bossdmg
     }
 
     let quest = axios.put('/api/equipQuest', body).then(res=>{

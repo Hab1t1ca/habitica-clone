@@ -1,3 +1,3 @@
 update users
-set "quest" = $1
-where userid = $2
+set ("quest", "bosshp", "bossdmg") = ($1, $2, $3)
+where userid = $4
