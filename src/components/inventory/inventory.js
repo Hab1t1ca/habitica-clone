@@ -25,6 +25,7 @@ class Inventory extends Component {
 
     render() {
         let inventory = this.props.inventory.map(item => {
+            console.log(this.props.equipped)
                 return (
                     <div className="itemCard" key={item.id}>
                     {this.props.equipped.includes(Number(item.itemid)) ? <button className="buybutton" onClick={()=>this.unequipItem(item.itemid)}>Unequip</button>:<button className="buybutton" onClick={()=>this.equipItem(item.itemid)}>Equip</button>}
