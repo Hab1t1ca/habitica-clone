@@ -263,9 +263,9 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.redirect('https://sticktoit.auth0.com/v2/logout?federated&returnTo=http%3A%2F%2F138.68.2.40%3A3020%2F');
-        // ('https://sticktoit.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F')//url for dev
+        res.redirect('https://sticktoit.auth0.com/v2/logout?federated&returnTo=http://schticktoit.com/')
       },
+
 
     pullInventory: (req,res)=>{
         let userid = req.session.passport.user.userid;
