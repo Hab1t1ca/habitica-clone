@@ -53,7 +53,6 @@ class Abilities extends Component {
     }
 
     render() {
-
         return (
             <div className="abilitiesDiv">
                  <img className="abilityIcon" src={abilityIcon}/>
