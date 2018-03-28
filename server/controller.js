@@ -281,8 +281,8 @@ module.exports = {
     },
 
     getUserAbilities: (req,res)=>{
-        // let userid = req.session.passport.user.userid;
-        const userid = 49;
+        let userid = req.session.passport.user.userid;
+        // const userid = 49;
 
         req.app.get('db').getUserAbilities([userid]).then(results=>{
             res.send(results[0]);

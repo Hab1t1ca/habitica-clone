@@ -62,7 +62,7 @@ describe('lvling', ()=>{ //unit testing
         })
     })
     
-    test.skip('HP increase on lvl', ()=>{
+    test('HP increase on lvl', ()=>{
         var baseHealth = 50;
         var hExpo = 0.3;
         var lvl =2;
@@ -70,7 +70,7 @@ describe('lvling', ()=>{ //unit testing
         expect(newHealth).toEqual(63)               
     })
 
-    test.skip('User gets a certain amount of gold when they lvl up', ()=>{
+    test('User gets a certain amount of gold when they lvl up', ()=>{
         var goldExpo = 0.029;
         var lvl = 15;
         var gold = Math.floor(Math.pow(lvl, (lvl * goldExpo)))
