@@ -86,7 +86,7 @@ class Nav extends Component {
                         <Link to='/inventory'><span className="media-nav-link">Inventory</span></Link>
                         <Link to='/shop'><span className="media-nav-link">Shop</span></Link>
                         <Link to='/quests'><span className="media-nav-link">Quests</span></Link>
-                        <a href ="http://localhost:3020/api/logout" className="media-nav-link">Logout</a>
+                        <a href ={process.env.REACT_APP_LOGOUT} className="media-nav-link">Logout</a>
 
                     </div>
                 </div>

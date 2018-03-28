@@ -158,7 +158,7 @@ export function getInventory() {
 
 export function getEquipped() {
     let equipped = axios.get(`/api/equipped`).then(res => {
-       
+       console.log('res on getEquipped', res.data);
         return res.data[0].equipped
     }).catch(e => { console.log(e) })
 
