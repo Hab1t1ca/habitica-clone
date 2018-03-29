@@ -25,8 +25,6 @@ module.exports = {
                 return results
             })
         })
-        
-        console.log("adding item to inveotry table", itemid, userid);
 
         db.addDefaultItemToInvenTable([userid,itemid]).then(results=>{
             itemid = 101;
@@ -70,7 +68,6 @@ module.exports = {
         let db = req.app.get('db');
         let userid = req.session.passport.user.userid;
         let {userGold, itemid, cost, hp, mp, maxhp, maxmana} = req.body;
-        console.log(userGold, itemid, cost, userid, hp, mp, maxhp, maxmana,"potion stuff")
         userGold -= cost;
 
         db.goldBuyItem([userGold,userid]).then(user=>{
@@ -119,7 +116,6 @@ module.exports = {
         let {itemid} = req.body;
 
         db.equipItem([itemid, userid]).then(item =>{
-            console.log("equip item worked", item)
             res.send(item)
         }).catch(e=>console.log(e))
 
@@ -137,7 +133,6 @@ module.exports = {
 
     ,
     getUser: (req,res)=>{
-        console.log("session", req.session.passport.user.userid)
         const userid = req.session.passport.user.userid;
         // const userid = 49 //For endpoint test
         let db = req.app.get('db');
@@ -162,7 +157,6 @@ module.exports = {
 
     getLists: (req,res)=>{
         let userid = req.user;
-        console.log('get lists userid', userid)
         let db = req.app.get('db');
         // let userid = 1; //this is for testing purposes
 
@@ -197,7 +191,6 @@ module.exports = {
     },
 
     checkLvl: (user, db)=>{//this function runs inside of updateXPGold
-        console.log('checking lvl user', user);
         if (user.currentexp>=user.nextexp){
             let {lvl, nextexp, currentexp, gold, mana, userid, hp} = user;
             lvl+=1;
@@ -206,7 +199,6 @@ module.exports = {
             hp = lvlFns.generalHealthCalc(lvl);
             mana = lvlFns.generalMana(lvl);
             nextexp += 15;
-            // console.log("what up", lvl, nextexp, currentexp, gold, mana, userid, hp);
             db.updateLvl([lvl, hp, mana, nextexp, currentexp, gold, userid]).then(user=>{
                 return user;
             }).catch(e=>console.log(e))
@@ -222,7 +214,6 @@ module.exports = {
         let db = req.app.get('db');
 
         db.updateXPGold([Gold,XP,userid]).then(user=>{
-            console.log(user[0], 'update xp user')
             let response = module.exports.checkLvl(user[0], db)
             res.send(response);
         }).catch(e=>console.log(e))
@@ -234,7 +225,6 @@ module.exports = {
         let userid = req.session.passport.user.userid;
         let db = req.app.get('db');
         damage += 1;
-        console.log("completing daily", req.body, damage)
         db.updateUserDmg([damage,userid]).then(user=>{
             return user
         })
@@ -263,8 +253,9 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.redirect('https://sticktoit.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F')
+        res.redirect('https://sticktoit.auth0.com/v2/logout?federated&returnTo=http://schticktoit.com/')
       },
+
 
     pullInventory: (req,res)=>{
         let userid = req.session.passport.user.userid;

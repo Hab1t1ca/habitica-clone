@@ -70,7 +70,7 @@ class Home extends Component {
                             <img src={stick} className="stickFront" style={styles.fadeIn} />
                         </div>
                         <div className="divButton" style={styles.bounceInDown}>
-                            <a href='http://localhost:3020/api/login' style={{ textDecoration: "none", color: "white" }}><div className="LoginButton">Login</div></a>
+                            <a href={process.env.REACT_APP_LOGIN} style={{ textDecoration: "none", color: "white" }}><div className="LoginButton">Login</div></a>
                             <a href='https://www.screencast.com/t/6VMpLfWEgQt' style={{ textDecoration: "none", color: "white" }}><div className="LoginButton">Video Walk-through</div></a>
                         </div>
                     </StyleRoot>

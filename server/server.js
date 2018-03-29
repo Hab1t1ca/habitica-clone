@@ -1,7 +1,6 @@
 require('dotenv').config();
 const lvlFns = require('./onLvl.js');
 
-
 const express = require('express')
     , session = require('express-session')
     , bodyParser = require('body-parser')
@@ -13,8 +12,10 @@ const express = require('express')
     , passport = require('passport')
     , Auth0strat = require('passport-auth0')
     , cron = require('node-cron')
+    , path = require('path');
 app.use(bodyParser.json());
 app.use(cors());
+app.use( express.static( `${__dirname}/../build` ) );
 
 //cron
 cron.schedule('0 0 * * *', function () {
@@ -209,6 +210,10 @@ app.get('/api/equipped', controller.getEquipped);
 app.put(`/api/equip`, controller.equipItem);
 app.put(`/api/unequip`, controller.unequipItem);
 //End endpoints
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 
 massive(process.env.CONNECTION).then(db => {

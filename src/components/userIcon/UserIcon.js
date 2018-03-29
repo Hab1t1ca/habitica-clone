@@ -111,21 +111,6 @@ class UserIcon extends Component {
                         hat: item.image
                     })
                 }})
-            
-        // switch (item.bodlocation) {
-        //     case hand:
-        //         image = item.image;
-        //         break; 
-        //     case body:
-        //         image = item.image;
-        //         break;
-        //     case hat:
-        //         image = item.image;
-        //         break; 
-        //     default: 
-        //         text = "stuff";
-        // }
-
     }
 
     render() {
