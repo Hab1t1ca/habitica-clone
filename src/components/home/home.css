@@ -86,9 +86,8 @@ footer {
     z-index: 9999;
     position: absolute; }
   .MobileViewPic {
-    height: auto;
+    height: 50px;
     width: 100vw;
-    font-size: 20px;
     display: inline-block; }
   .bgImage {
     display: none; } }
