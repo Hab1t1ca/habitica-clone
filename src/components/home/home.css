@@ -86,7 +86,7 @@ footer {
     z-index: 9999;
     position: absolute; }
   .MobileViewPic {
-    height: auto;
+    height: 50px;
     width: 100vw;
     display: inline-block; }
   .bgImage {
